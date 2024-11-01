@@ -38,6 +38,7 @@ clean:
 	$(RM) posts/ $(IGNORE_ERRORS)
 	$(RM) about/  $(IGNORE_ERRORS)
 	$(RM) categories/  $(IGNORE_ERRORS)
+	$(RM) docs/  $(IGNORE_ERRORS)
 	$(RM) public/  $(IGNORE_ERRORS)
 	$(RM) js/  $(IGNORE_ERRORS)
 	$(RM) page/  $(IGNORE_ERRORS)
@@ -56,7 +57,7 @@ clean:
 
 build: clean
 	@$(PRINTER) "\033[38;5;45mBuild the site...\033[38;5;15m\n"
-	hugo build -d docs
+	hugo build -d .
 .PHONY: build
 
 deploy: build
@@ -72,5 +73,5 @@ deploy: build
 run:
 	@echo "Run the site..."
 	#hugo server --contentDir _content
-	hugo server -D -d docs
+	hugo server -D -d .
 .PHONY: run
