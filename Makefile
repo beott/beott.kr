@@ -56,7 +56,7 @@ clean:
 
 build: clean
 	@$(PRINTER) "\033[38;5;45mBuild the site...\033[38;5;15m\n"
-	hugo build
+	hugo build -d docs
 .PHONY: build
 
 deploy: build
@@ -72,5 +72,5 @@ deploy: build
 run:
 	@echo "Run the site..."
 	#hugo server --contentDir _content
-	hugo server -D
+	hugo server -D -d docs
 .PHONY: run
