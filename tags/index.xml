@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on BEOTT</title>
-    <link>https://beott.github.io/tags/</link>
+    <link>https://beott.kr/tags/</link>
     <description>Recent content in Tags on BEOTT</description>
     <generator>Hugo</generator>
     <language>ko</language>
     <lastBuildDate>Thu, 10 Oct 2024 00:04:00 +0900</lastBuildDate>
-    <atom:link href="https://beott.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://beott.kr/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Kingdom</title>
-      <link>https://beott.github.io/tags/kingdom/</link>
+      <link>https://beott.kr/tags/kingdom/</link>
       <pubDate>Thu, 10 Oct 2024 00:04:00 +0900</pubDate>
-      <guid>https://beott.github.io/tags/kingdom/</guid>
+      <guid>https://beott.kr/tags/kingdom/</guid>
       <description></description>
     </item>
     <item>
       <title>Netflix</title>
-      <link>https://beott.github.io/tags/netflix/</link>
+      <link>https://beott.kr/tags/netflix/</link>
       <pubDate>Thu, 10 Oct 2024 00:04:00 +0900</pubDate>
-      <guid>https://beott.github.io/tags/netflix/</guid>
+      <guid>https://beott.kr/tags/netflix/</guid>
       <description></description>
     </item>
   </channel>
