@@ -1,0 +1,53 @@
+{{ define "main" }}
+
+<div class="hero-image" style="background-image: url('/images/beott-mag.jpeg');">
+  <div class="hero-overlay"></div>
+  <!-- <div>BEOTT</div> -->
+</div>
+
+{{/*
+<div class="navigation-indicators">
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+*/}}
+
+<div class="post-by-group">
+
+{{ range site.Pages.GroupByParam "group" }}
+
+  <section class="carousel-container">
+    <h2 class="row-header-title">{{ .Key | title }}</h2>
+    <div class="carousel-track">
+      {{/*
+        {{ $paginator := .Paginate (where .Site.RegularPages "Params.hidden" "!=" true) }}
+        {{ $paginator := .Paginate (where .Site.RegularPages "Type" "post") }}
+        */}}
+    {{ range .Pages }}
+        {{ if ne ( .Params.hideme ) true }}
+          <div class="carousel-item">
+            <a href="{{.RelPermalink}}" >
+              {{ $thumbnail := .Params.thumbnail }}
+              {{ if $thumbnail }}
+                {{ $image := .Resources.GetMatch (.Params.thumbnail) }}
+                  {{ if $image }}
+                  {{ $thumbnail := $image.Resize "690x360" }}
+                  <div class="post-item-image" style="background-image: url('{{ $thumbnail.RelPermalink }}')"></div>
+                  {{ else }}
+                  <div class="post-item-image" style="background-image: url('{{ $thumbnail | absURL}}')"></div>
+                  {{ end }}
+              {{ end }}
+              <!-- {{.Title}} -->
+            </a>
+          </div>
+        {{ end }}
+      {{ end }}
+    </div>
+  </section>
+{{ end }}
+
+</div>
+
+{{ end }}

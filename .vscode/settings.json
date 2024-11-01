@@ -1,0 +1,14 @@
+{
+  "markdownlint.config": {
+    "fenced-code-language": false,
+    "no-inline-html": false,
+    "single-title": false,
+    "no-trailing-punctuation": false,
+    "no-blanks-blockquote": false,
+    "no-emphasis-as-heading": false,
+    "emphasis-style": false,
+    "no-duplicate-heading": false,
+    "commands-show-output": false,
+    "ol-prefix": false,
+  },
+}

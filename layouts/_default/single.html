@@ -1,0 +1,26 @@
+{{ define "main" }}
+
+<article class="article">
+  <div class="post-title">{{.Title}}</div>
+
+  <section class="post-info">
+    {{ if .Params.Author }}
+    <section class="author">
+      {{.Params.Author}}
+    </section>
+    {{ end }}
+
+    {{ if .Params.Author }}
+    <section class="date">
+      {{/* https://gohugo.io/functions/time/format/ */}}
+      {{time.Format "2006 Jan 2" .Params.Date}}
+    </section>
+    {{ end }}
+  </section>
+
+  <section class="post-contents">
+    {{.Content}}
+  </section>
+</article>
+
+{{ end }}

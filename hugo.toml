@@ -1,0 +1,8 @@
+baseURL = 'https://beott.github.io/'
+languageCode = 'ko'
+title = 'BEOTT'
+# theme = 'beott'
+
+[taxonomies]
+  category = 'categories'
+  tag = 'tags'

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="{{ $.Site.LanguageCode | default "en" }}">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>{{ block "title" . }}{{ .Site.Title }} {{ with .Params.Title }} | {{ . }}{{ end }}{{ end }}</title>
+  <link type="text/css" rel="stylesheet" href="{{"css/index.css" | relURL}}">
+  <link type="text/css" rel="stylesheet" href="{{"css/post.css" | relURL}}">
+</head>
+
+<body>
+  <header>
+    <a href="{{ .Site.BaseURL }}" class="logo">
+      <img src="{{"images/beott-logo-red.png" | relURL}}" alt="Beott">
+    </a>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+    </nav>
+  </header>
+
+  <div id="content">
+    {{- block "main" . }}{{- end }}
+  </div>
+</body>
+
+</html>
