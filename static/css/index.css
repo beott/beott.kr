@@ -94,7 +94,7 @@ header nav a:hover {
   display: flex;
   gap: 15px;
   transition: transform 0.5s ease;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 /* 캐러셀 아이템 (각 카드) */
@@ -153,7 +153,6 @@ header nav a:hover {
   height: 100%;
   background: no-repeat center;
   background-size: cover;
-  overflow: hidden;
   border-radius: 5px;
 }
 .post-item-image::after {
