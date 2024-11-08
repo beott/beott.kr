@@ -6,6 +6,10 @@ body {
   text-decoration: none;
   background-color: #141414;
 }
+a {
+  text-decoration: none;
+  color: #da322e;
+}
 /* 헤더 스타일 */
 header {
   background-image: linear-gradient(180deg,rgba(0,0,0,.7) 10%, transparent);
@@ -72,39 +76,34 @@ header nav a:hover {
   background: rgba(0, 0, 0, 0.1); /* 어두운 오버레이 */
 }
 
-.post-by-group {
-  /* margin: 0 8vw; */
-}
 /* 캐러셀 컨테이너 */
 .carousel-container {
-  overflow: hidden;
   width: 100%;
   position: relative;
   margin: 3vw 0;
   padding: 0 4%;
-  /* max-width: 600px; */
+  box-sizing: border-box;
 }
 .row-header-title {
   color: #e5e5e5;
   margin: 0;
   font-weight: 500;
-  /* font-size: 2vw; */
-  /* vertical-align: bottom; */
-  /* line-height: 1.25vw; */
 }
 /* 캐러셀 트랙 (카드들을 감싸는 영역) */
 .carousel-track {
   display: flex;
   gap: 15px;
   transition: transform 0.5s ease;
+  overflow-x: hidden;
 }
 
 /* 캐러셀 아이템 (각 카드) */
 .carousel-item {
+  display: inline-block;
+  position: relative;
   min-width: 320px;
   height: 180px;
   background-color: #333;
-  display: inline-block;
   border-radius: 8px;
   overflow: hidden;
   cursor: pointer;
@@ -154,6 +153,26 @@ header nav a:hover {
   height: 100%;
   background: no-repeat center;
   background-size: cover;
-  border-radius: 5px;
   overflow: hidden;
+  border-radius: 5px;
+}
+.post-item-image::after {
+  width: 100%;
+  height: 50%; /* 그라데이션 높이 조정 */
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, .7) 10%, transparent);
+  pointer-events: none; /* 클릭 이벤트가 하위 요소로 전달되도록 */
+}
+.post-item-image > .overlay-title {
+  width: 100%;
+  position: absolute;
+  padding: 1px 8px;
+  box-sizing: border-box;
+  font-size: 20px;
+  color: #fff;
+  bottom: 0;
+  z-index: 1;
 }

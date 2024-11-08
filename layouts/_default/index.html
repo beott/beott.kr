@@ -25,7 +25,7 @@
         {{ $paginator := .Paginate (where .Site.RegularPages "Params.hidden" "!=" true) }}
         {{ $paginator := .Paginate (where .Site.RegularPages "Type" "post") }}
         */}}
-    {{ range .Pages }}
+    {{ range sort .Pages "Date" "asc" }}
         {{ if ne ( .Params.hideme ) true }}
           <div class="carousel-item">
             <a href="{{.RelPermalink}}" >
@@ -34,12 +34,15 @@
                 {{ $image := .Resources.GetMatch (.Params.thumbnail) }}
                   {{ if $image }}
                   {{ $thumbnail := $image.Resize "690x360" }}
-                  <div class="post-item-image" style="background-image: url('{{ $thumbnail.RelPermalink }}')"></div>
+                  <div class="post-item-image" style="background-image: url('{{ $thumbnail.RelPermalink }}')">
                   {{ else }}
-                  <div class="post-item-image" style="background-image: url('{{ $thumbnail | absURL}}')"></div>
+                  <div class="post-item-image" style="background-image: url('{{ $thumbnail | absURL}}')">
                   {{ end }}
+                    <div class="overlay-title">
+                      {{.Title}}
+                    </div>
+                  </div>
               {{ end }}
-              <!-- {{.Title}} -->
             </a>
           </div>
         {{ end }}

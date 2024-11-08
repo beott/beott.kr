@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ $.Site.LanguageCode | default "en" }}">
+<html lang="ko">
 
 <head>
   <meta charset="utf-8">
@@ -7,16 +7,16 @@
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=5, user-scalable=5" name="viewport">
   <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
   <meta name="description" content="당신과 나의 OTT, 웹진 [비옽] 입니다.">
-  <title>{{ block "title" . }}{{ .Site.Title }} {{ with .Params.Title }} | {{ . }}{{ end }}{{ end }}</title>
-  <link type="text/css" rel="stylesheet" href="{{"css/index.css" | relURL}}">
-  <link type="text/css" rel="stylesheet" href="{{"css/post.css" | relURL}}">
+  <title>BEOTT  | Contact Us</title>
+  <link type="text/css" rel="stylesheet" href="/css/index.css">
+  <link type="text/css" rel="stylesheet" href="/css/post.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
   <header>
-    <a href="{{ .Site.BaseURL }}" class="logo">
-      <img src="{{"images/beott-logo-red.png" | relURL}}" alt="Beott">
+    <a href="https://beott.kr/" class="logo">
+      <img src="/images/beott-logo-red.png" alt="Beott">
     </a>
     <nav>
         <a href="/">Home</a>
@@ -26,7 +26,30 @@
   </header>
 
   <div id="content">
-    {{- block "main" . }}{{- end }}
+
+<article class="article">
+  <div class="post-title">Contact Us</div>
+
+  <section class="post-info">
+    
+  </section>
+
+  
+
+  
+
+  <section class="post-contents">
+    <ul>
+<li>편집장 구형준</li>
+<li>사이트 문의: <a href="mailto:beottdev@gmail.com">beottdev@gmail.com</a></li>
+</ul>
+
+  </section>
+</article>
+
+
+
+
   </div>
 </body>
 

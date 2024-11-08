@@ -13,24 +13,41 @@ article .post-title {
   font-weight: bold;
   unicode-bidi: isolate;
 }
-article .post-info {
+article .post-info,
+article .post-share {
   overflow: hidden;
   padding-top: 2.75vh;
-  padding-bottom: 4.25vh;
+  text-align: center;
+  /* padding-bottom: 4.25vh; */
+  padding-bottom: 0.25vh;
+}
+#copyButton {
+  border: 0;
+  background-color: #da322e;
+  cursor: grab;
+}
+#copyMessage {
+  /* margin-left: 10px; */
+  display: none;
+  color: #da322e;
+  text-align: center;
 }
 article .author,
 article .date {
   font-size: 1.95vh;
   font-weight: 400;
   text-align: center;
-  width: 50%;
-  float: left;
+  /* width: 50%; */
+  /* float: left; */
 }
 article .post-contents {
+  text-align: justify;
   line-height: 1.65;
-  /* word-break: keep-all; */
+  word-break: keep-all;
+  /* word-spacing: -0.1em; */
 }
-article p {
+article p,
+article ul {
   font-weight: 400;
   font-size: 1.95vh;
   padding-bottom: 1.8vh;

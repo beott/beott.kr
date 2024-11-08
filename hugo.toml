@@ -3,6 +3,14 @@ languageCode = 'ko'
 title = 'BEOTT'
 # theme = 'beott'
 
+[params]
+
 [taxonomies]
   category = 'categories'
   tag = 'tags'
+
+[markup]
+  defaultMarkdownHandler = 'goldmark'
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true # for raw HTML tag (ex: video)

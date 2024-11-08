@@ -9,18 +9,33 @@
       {{.Params.Author}}
     </section>
     {{ end }}
+  </section>
 
+  {{/*
     {{ if .Params.Author }}
     <section class="date">
-      {{/* https://gohugo.io/functions/time/format/ */}}
+      https://gohugo.io/functions/time/format/
       {{time.Format "2006 Jan 2" .Params.Date}}
     </section>
     {{ end }}
-  </section>
+    */}}
+
+  {{ if ne ( .Params.hideme ) true }}
+    <section class="post-share">
+      <button id="copyButton" class="copy-button">
+        <i class="fas fa-copy"></i> 현재 링크 복사
+      </button>
+    </section>
+    <span id="copyMessage">복사되었습니다!</span>
+  {{ end }}
 
   <section class="post-contents">
     {{.Content}}
   </section>
 </article>
+
+{{ if ne ( .Params.hideme ) true }}
+  <script src="{{"js/post.js" | relURL}}"></script>
+{{ end }}
 
 {{ end }}
