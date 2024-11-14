@@ -20,18 +20,18 @@
     {{ end }}
     */}}
 
-  {{ if ne ( .Params.hideme ) true }}
-    <section class="post-share">
-      <button id="copyButton" class="copy-button">
-        <i class="fas fa-copy"></i> 현재 링크 복사
-      </button>
-    </section>
-    <span id="copyMessage">복사되었습니다!</span>
-  {{ end }}
-
   <section class="post-contents">
     {{.Content}}
   </section>
+
+  {{ if ne ( .Params.hideme ) true }}
+  <section class="post-share">
+    <button id="copyButton" class="copy-button">
+      <i class="fas fa-copy"></i> 현재 링크 복사
+    </button>
+  </section>
+  <span id="copyMessage">복사되었습니다!</span>
+  {{ end }}
 </article>
 
 {{ if ne ( .Params.hideme ) true }}

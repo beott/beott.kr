@@ -10,8 +10,8 @@ body {
 /* 모바일, 태블릿 */
 @media (max-width: 1500px) {
   article {
-    width: 80vw;
-    left: 10vw;
+    width: 85vw;
+    left: 7.5vw;
     .post-contents {
       text-align: justify;
       line-height: 1.65;
@@ -270,7 +270,9 @@ article {
     // float: left;
   }
   img {
-    width: 100%;
+    width: 100vw; /* 전체 뷰포트 너비로 설정 */
+    margin-left: calc((100% - 100vw) / 2); /* article의 여백을 고려해 가운데 정렬 */
+    max-width: 100vw; /* 뷰포트보다 커지지 않도록 제한 */
     height: auto;
     border-radius: 5px;
     padding: 3vh 0;
