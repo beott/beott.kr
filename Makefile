@@ -45,7 +45,7 @@ clean:
 	$(RM) page/  $(IGNORE_ERRORS)
 	$(RM) resources/  $(IGNORE_ERRORS)
 	$(RM) css/  $(IGNORE_ERRORS)
-	$(RM) scss/  $(IGNORE_ERRORS)
+	$(RM) sass/  $(IGNORE_ERRORS)
 	$(RM) series/  $(IGNORE_ERRORS)
 	$(RM) tags/  $(IGNORE_ERRORS)
 	$(RM) vendor/  $(IGNORE_ERRORS)
