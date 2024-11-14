@@ -3,12 +3,12 @@ title = "This is not a comedy"
 author = "심미성"
 date = "2024-11-04T00:00:00+09:00"
 tags = ["Netflix"]
-thumbnail = "/images/1/bo-burnham-inside.jpg"
+thumbnail = "/images/1/bo-burnham-inside-thumbnail.jpg"
 group = "비옽 1호: 모니터 앞 파수꾼들"
 draft = false
 +++
 
-![Bo Burnham: Inside](/images/1/bo-burnham-inside.jpg)
+![Bo Burnham: Inside](/images/1/bo-burnham-inside-1.jpg)
 
 미국의 스탠딩 코미디언 보 번햄은 2020년 코로나 시대의 전례 없는 칩거 생활을 맞닥뜨리자 방 안에서 벌이는 1인극 콘텐츠를 기획한다. 〈보 번햄: 못 나가서 만든 쇼〉(Bo Burnham: Inside, 이하 〈인사이드〉)(2021)는 장장 1년을 훌쩍 넘긴 나날 동안 그가 쌓아 온 독백의 기록이다. 연출, 연기, 노래, 촬영, 편집 등 모든 역할을 홀로 도맡았고 비록 장소는 협소하지만 포크, 락, 힙합, 뮤지컬, 인형극 등의 형식을 빌려온 일종의 원맨쇼 콘서트를 다종다양한 구성으로 보여준다. 이때 〈인사이드〉라는 타이틀에는 ‘방의 내부’에서 벌이는 쇼를 가리키는 표면상의 의미가 읽히지만 영화가 진행될수록 서서히 잠식해 가는 그의 ‘내면’에 관한 기록까지 은연중에 내포하고 있음을 알게 된다.
 
