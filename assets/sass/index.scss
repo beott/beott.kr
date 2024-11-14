@@ -9,6 +9,14 @@ body {
 
 /* 모바일, 태블릿 */
 @media (max-width: 1500px) {
+  header {
+    nav {
+      a {
+        font-size: 16px;
+        padding-left: 15px;
+      }
+    }
+  }
   article {
     width: 85vw;
     left: 7.5vw;
@@ -34,6 +42,14 @@ body {
 }
 
 @media (min-width: 1501px) {
+  header {
+    nav {
+      a {
+        font-size: 21px;
+        padding-left: 30px;
+      }
+    }
+  }
   article {
     width: 70vw;
     left: 15vw;
@@ -102,17 +118,15 @@ header {
   nav {
     display: flex;
     gap: 15px;
-  }
-  nav a {
-    color: #e5e5e5;
-    text-decoration: none;
-    font-size: 16px;
-    opacity: 0.8;
-    transition: opacity 0.3s;
-    padding-left: 30px;
-  }
-  nav a:hover {
-    opacity: 1;
+    a {
+      color: #e5e5e5;
+      text-decoration: none;
+      opacity: 0.8;
+      transition: opacity 0.3s;
+      &:hover {
+        opacity: 1;
+      }
+    }
   }
 }
 
