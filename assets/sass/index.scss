@@ -21,6 +21,11 @@ body {
       }
     }
   }
+  .post-item-image {
+    .overlay-title {
+      font-size: 1.25em;
+    }
+  }
   /* 메인 히어로 이미지 스타일 */
   .hero-image {
     height: 60vh; /* 화면 높이의 60%를 차지 */
@@ -83,6 +88,11 @@ body {
       }
     }
   }
+  .post-item-image {
+    .overlay-title {
+      font-size: 1.45em;
+    }
+  }
   /* 메인 히어로 이미지 스타일 */
   .hero-image {
     height: 60vh; /* 화면 높이의 60%를 차지 */
@@ -143,6 +153,11 @@ body {
         font-size: 21px;
         padding-left: 30px;
       }
+    }
+  }
+  .post-item-image {
+    .overlay-title {
+      font-size: 1.75em;
     }
   }
   /* 메인 히어로 이미지 스타일 */
