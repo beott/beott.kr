@@ -17,6 +17,19 @@ body {
       }
     }
   }
+  /* 메인 히어로 이미지 스타일 */
+  .hero-image {
+    height: 60vh; /* 화면 높이의 60%를 차지 */
+    // object-fit: cover;
+    background-size: cover; // 화면 상하단 짤림
+    background-position: center;
+    background-repeat: no-repeat;
+    // background-color: #713031;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
   article {
     width: 85vw;
     left: 7.5vw;
@@ -60,6 +73,18 @@ body {
         padding-left: 30px;
       }
     }
+  }
+  /* 메인 히어로 이미지 스타일 */
+  .hero-image {
+    height: 60vh; /* 화면 높이의 60%를 차지 */
+    // background-size: cover; // 화면 상하단 짤림
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #713031;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
   }
   article {
     width: 70vw;
@@ -146,20 +171,6 @@ header {
       }
     }
   }
-}
-
-/* 메인 히어로 이미지 스타일 */
-.hero-image {
-  height: 60vh; /* 화면 높이의 60%를 차지 */
-  // object-fit: cover;
-  // background-size: cover; // 화면 상하단 짤림
-  background-position: center;
-  background-repeat: no-repeat;
-  background-color: #713031;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
 }
 
 /* 히어로 이미지에 오버레이 추가 */
