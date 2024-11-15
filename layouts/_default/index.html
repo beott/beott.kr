@@ -18,25 +18,25 @@
 
 {{ range site.Pages.GroupByParam "group" }}
 
-  <section class="carousel-container">
+  <section class="swiper main-swiper">
     <h2 class="row-header-title">{{ .Key | title }}</h2>
-    <div class="carousel-track">
+    <div class="swiper-wrapper">
       {{/*
         {{ $paginator := .Paginate (where .Site.RegularPages "Params.hidden" "!=" true) }}
         {{ $paginator := .Paginate (where .Site.RegularPages "Type" "post") }}
         */}}
     {{ range sort .Pages "Date" "asc" }}
         {{ if ne ( .Params.hideme ) true }}
-          <div class="carousel-item">
+          <div class="swiper-slide">
             <a href="{{.RelPermalink}}" >
               {{ $thumbnail := .Params.thumbnail }}
               {{ if $thumbnail }}
                 {{ $image := .Resources.GetMatch (.Params.thumbnail) }}
                   {{ if $image }}
                   {{ $thumbnail := $image.Resize "690x360" }}
-                  <div class="post-item-image" style="background-image: url('{{ $thumbnail.RelPermalink }}')">
+                  <div class="post-item-image" style="background-image: url('{{ $thumbnail.RelPermalink }}')" loading="lazy">
                   {{ else }}
-                  <div class="post-item-image" style="background-image: url('{{ $thumbnail | absURL}}')">
+                  <div class="post-item-image" style="background-image: url('{{ $thumbnail | absURL}}')" loading="lazy">
                   {{ end }}
                     <div class="overlay-title">
                       {{.Title}}
@@ -48,6 +48,7 @@
         {{ end }}
       {{ end }}
     </div>
+    <!-- <div class="swiper-pagination"></div> -->
   </section>
 {{ end }}
 

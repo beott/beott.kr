@@ -15,10 +15,13 @@
 
   {{ $opts := dict "transpiler" "dartsass" "targetPath" "css/index.css" }}
   {{ with resources.Get "sass/index.scss" | toCSS $opts | minify | fingerprint }}
-    <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+  <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
   {{ end }}
-  {{/*<link type="text/css" rel="stylesheet" href="{{"css/index.css" | relURL}}">*/}}
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  {{/*
+  <link type="text/css" rel="stylesheet" href="{{" css/index.css" | relURL}}">*/}}
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
 
 <body>
@@ -27,9 +30,9 @@
       <img src="{{"images/beott-logo-red.png" | relURL}}" alt="Beott">
     </a>
     <nav>
-        <a href="/">Home</a>
-        <a href="/about">About</a>
-        <a href="/contact-us">Contact Us</a>
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/contact-us">Contact Us</a>
     </nav>
   </header>
 
@@ -37,5 +40,40 @@
     {{- block "main" . }}{{- end }}
   </div>
 </body>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+      const swiper = new Swiper('.main-swiper', {
+        grid: {
+          rows: 1,
+        },
+        // loop: true,
+        centeredSlides: false,
+        grabCursor: true,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        breakpoints: {
+          // when window width is >= 320px
+          320: {
+            slidesPerView: 2,
+            spaceBetween: 5,
+          },
+          768: {
+            slidesPerView: 3,
+            spaceBetween: 10,
+          },
+          1024: {
+            slidesPerView: 4,
+            spaceBetween: 15,
+          },
+          1500: {
+            slidesPerView: 5,
+            spaceBetween: 15,
+          },
+        },
+      });
+    </script>
 
 </html>

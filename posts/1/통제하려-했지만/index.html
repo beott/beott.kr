@@ -15,10 +15,12 @@
 
   
   
-    <link rel="stylesheet" href="/css/index.min.f0772aa72520307f3405a469b097e582062a1d151078448ece07344b3ec30aff.css" integrity="sha256-8HcqpyUgMH80BaRpsJflggYqHRUQeESOzgc0Sz7DCv8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/index.min.a07f5c079b01cdda04bb144035a4efe5020fe22b504ba0172be3ab225a948b35.css" integrity="sha256-oH9cB5sBzdoEuxRANaTv5QIP4itQS6AXK&#43;OrIlqUizU=" crossorigin="anonymous">
   
   
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
 
 <body>
@@ -27,9 +29,9 @@
       <img src="/images/beott-logo-red.png" alt="Beott">
     </a>
     <nav>
-        <a href="/">Home</a>
-        <a href="/about">About</a>
-        <a href="/contact-us">Contact Us</a>
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/contact-us">Contact Us</a>
     </nav>
   </header>
 
@@ -83,5 +85,40 @@
 
   </div>
 </body>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+      const swiper = new Swiper('.main-swiper', {
+        grid: {
+          rows: 1,
+        },
+        
+        centeredSlides: false,
+        grabCursor: true,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        breakpoints: {
+          
+          320: {
+            slidesPerView: 2,
+            spaceBetween: 5,
+          },
+          768: {
+            slidesPerView: 3,
+            spaceBetween: 10,
+          },
+          1024: {
+            slidesPerView: 4,
+            spaceBetween: 15,
+          },
+          1500: {
+            slidesPerView: 5,
+            spaceBetween: 15,
+          },
+        },
+      });
+    </script>
 
 </html>

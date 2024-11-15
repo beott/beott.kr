@@ -24,6 +24,10 @@ body {
       text-align: justify;
       line-height: 1.65;
     }
+    .author,
+    .date {
+      font-size: 2.35vh;
+    }
     p,
     ul {
       font-weight: 400;
@@ -32,7 +36,9 @@ body {
     }
     img {
       width: 100vw; /* 전체 뷰포트 너비로 설정 */
-      margin-left: calc((100% - 100vw) / 2); /* article의 여백을 고려해 가운데 정렬 */
+      margin-left: calc(
+        (100% - 100vw) / 2
+      ); /* article의 여백을 고려해 가운데 정렬 */
       max-width: 100vw; /* 뷰포트보다 커지지 않도록 제한 */
       height: auto;
       border-radius: 5px;
@@ -61,6 +67,10 @@ body {
       line-height: 1.65;
       word-break: keep-all;
       // word-spacing: -0.1em;
+    }
+    .author,
+    .date {
+      font-size: 1.95vh;
     }
     p,
     ul {
@@ -162,75 +172,54 @@ header {
   background: rgba(0, 0, 0, 0.1); /* 어두운 오버레이 */
 }
 
-/* 캐러셀 컨테이너 */
-.carousel-container {
-  width: 100%;
-  position: relative;
-  margin: 3vw 0;
-  padding: 0 4%;
-  box-sizing: border-box;
-}
-.row-header-title {
-  color: #e5e5e5;
-  margin: 0;
-  font-weight: 500;
-}
-/* 캐러셀 트랙 (카드들을 감싸는 영역) */
-.carousel-track {
-  display: flex;
-  gap: 15px;
-  transition: transform 0.5s ease;
-  overflow: hidden;
+.post-by-group {
+  padding-top: 4vh;
 }
 
-/* 캐러셀 아이템 (각 카드) */
-.carousel-item {
-  display: inline-block;
-  position: relative;
-  min-width: 320px;
-  height: 180px;
-  background-color: #333;
-  border-radius: 8px;
-  overflow: hidden;
-  cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.3s;
+.swiper {
+  // width: 100%;
+  padding: 0 4%!important;
+  // position: relative;
+  // margin: 3vw 0;
+  // box-sizing: border-box;
 
-  img {
-    width: 100%;
-    height: auto;
-    display: block;
+  .row-header-title {
+    color: #e5e5e5;
+    margin: 0;
+    font-weight: 500;
   }
 
-  &:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-  }
-}
+  .swiper-wrapper {
+    height: 180px;
+    padding-top: 1vh;
+    padding-bottom: 4vh;
+  //     display: flex;
+//     gap: 15px;
+//     transition: transform 0.5s ease;
+//     overflow: hidden;
 
-/* 왼쪽, 오른쪽 버튼 */
-.carousel-button {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.5);
-  border: none;
-  color: #fff;
-  font-size: 24px;
-  cursor: pointer;
-  padding: 10px;
-  z-index: 100;
-  transition: background-color 0.3s;
+//     .swiper-slide {
+//       display: inline-block;
+//       position: relative;
+//       min-width: 320px;
+//       height: 180px;
+//       background-color: #333;
+//       border-radius: 8px;
+//       overflow: hidden;
+//       cursor: pointer;
+//       transition: transform 0.3s, box-shadow 0.3s;
 
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.8);
-  }
+//       img {
+//         width: 100%;
+//         height: auto;
+//         display: block;
+//       }
 
-  .carousel-button.left {
-    left: 10px;
-  }
-
-  .carousel-button.right {
-    right: 10px;
+//       &:hover {
+//         transform: scale(1.05);
+//         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+//       }
+//     }
   }
 }
 
@@ -239,7 +228,7 @@ header {
   height: 100%;
   background: no-repeat center;
   background-size: cover;
-  border-radius: 5px;
+  border-radius: 1px;
 
   &::after {
     width: 100%;
@@ -297,7 +286,6 @@ article {
   }
   .author,
   .date {
-    font-size: 1.95vh;
     font-weight: 400;
     text-align: center;
     // width: 50%;
