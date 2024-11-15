@@ -1,6 +1,6 @@
-document.getElementById("copyButton").addEventListener("click", function() {
+document.getElementById("copy-button").addEventListener("click", function() {
   const link = window.location.href; // 현재 페이지 주소 복사
-  const message = document.getElementById("copyMessage");
+  const message = document.getElementById("copy-message");
 
   navigator.clipboard.writeText(link).then(() => {
     // message.style.display = "inline"; // 문구 표시

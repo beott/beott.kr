@@ -82,8 +82,8 @@ body {
       border-radius: 5px;
       padding: 3vh 0;
     }
-    #copyButton {
-      font-size: 1.15em;
+    #copy-button {
+      font-size: 1.55em;
     }
   }
 }
@@ -154,8 +154,8 @@ body {
       border-radius: 5px;
       padding: 3vh 0;
     }
-    #copyButton {
-      font-size: 1.45em;
+    #copy-button {
+      font-size: 2.45em;
     }
   }
 }
@@ -221,8 +221,8 @@ body {
       border-radius: 5px;
       padding: 3vh 0;
     }
-    #copyButton {
-      font-size: 1.55em;
+    #copy-button {
+      font-size: 2.55em;
     }
   }
 }
@@ -391,13 +391,21 @@ article {
     // padding-bottom: 4.25vh;
     padding-bottom: 0.25vh;
   }
-  #copyButton {
-    border: 0;
-    background-color: #da322e;
-    cursor: grab;
+  #copy-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 7vh;
+    height: 7vh;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    text-decoration: none;
+    user-select: none;
   }
-  #copyMessage {
-    // margin-left: 10px;
+  #copy-message {
+    padding-top: 1vh;
     display: none;
     color: #da322e;
     text-align: center;
