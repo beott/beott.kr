@@ -10,11 +10,17 @@
   <meta name="description" content="당신과 나의 OTT, 웹진 [비옽] 입니다.">
   <meta property="og:title" content="{{ .Params.Title }}" />
   <!-- <meta property="og:description" content="" /> -->
-  <meta property="og:image" content="{{ .Site.BaseURL }}{{ .Params.thumbnail }}" />
+  <meta property="og:image" content="{{ .Site.BaseURL }}{{ or .Params.thumbnail "images/favicon.ico" }}" />
 
-  <title>{{ block "title" . }}{{ .Site.Title }} {{ with .Params.Title }} | {{ . }}{{ end }}{{ end }}</title>
+  <title>
+    {{ block "title" . }}
+      {{ .Site.Title }}
+      {{ with .Params.Title }}
+      | {{ . }}
+      {{ end }}
+    {{ end }}
+  </title>
 
-  <link type="font" rel="stylesheet" href="{{"font/RIDIBatang.otf" | relURL}}">*/}}
   {{ $opts := dict "transpiler" "dartsass" "targetPath" "css/index.css" }}
   {{ with resources.Get "sass/index.scss" | toCSS $opts | minify | fingerprint }}
   <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
@@ -25,6 +31,16 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">  
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E0H5MGHEKM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-E0H5MGHEKM');
+</script>
 
 <body>
   <header>
