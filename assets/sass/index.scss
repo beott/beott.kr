@@ -87,6 +87,9 @@ body {
       height: 7vh;
       font-size: 1.55em;
     }
+    #copy-message {
+      font-size: 1.05em;
+    }
   }
 }
 
@@ -161,6 +164,9 @@ body {
       height: 5vh;
       font-size: 2.45em;
     }
+    #copy-message {
+      font-size: 1.5em;
+    }
   }
 }
 
@@ -229,6 +235,9 @@ body {
       width: 5vh;
       height: 5vh;
       font-size: 2.55em;
+    }
+    #copy-message {
+      font-size: 1.5em;
     }
   }
 }
@@ -413,7 +422,6 @@ article {
     display: none;
     color: #da322e;
     text-align: center;
-    font-size: 1.5em;
   }
   .author,
   .date {
