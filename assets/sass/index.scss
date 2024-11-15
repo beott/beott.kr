@@ -39,13 +39,17 @@ body {
     left: 7.5vw;
     // letter-spacing: 0.01em;
     // word-spacing: -0.08em;
+    .post-title {
+      font-size: 2.25em;
+      font-weight: bold;
+    }
     .post-contents {
       text-align: justify;
       line-height: 1.65;
     }
     .author,
     .date {
-      font-size: 2.35em;
+      font-size: 1.15em;
     }
     p,
     ul {
@@ -97,6 +101,10 @@ body {
     left: 7.5vw;
     // letter-spacing: 0.01em;
     // word-spacing: -0.08em;
+    .post-title {
+      font-size: 2.95em;
+      font-weight: bold;
+    }
     .post-contents {
       text-align: justify;
       line-height: 1.65;
@@ -152,6 +160,10 @@ body {
   article {
     width: 70vw;
     left: 15vw;
+    .post-title {
+      font-size: 3.95em;
+      font-weight: bold;
+    }
     .post-contents {
       text-align: justify;
       line-height: 1.65;
@@ -335,8 +347,6 @@ article {
   .post-title {
     text-align: center;
     padding-top: 3.75vh;
-    font-size: 4.25vh;
-    font-weight: bold;
     unicode-bidi: isolate;
   }
   .post-info,
