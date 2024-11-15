@@ -21,3 +21,16 @@ brew install hugo
 ```ps1
 choco install hugo-extended
 ```
+
+## Install Dart Sass
+
+- [link](https://gohugo.io/hugo-pipes/transpile-sass-to-css/#installing-in-a-development-environment)
+
+```sh
+# Linux
+sudo snap install dart-sass
+# macOS
+brew install sass/sass/sass
+# Windows
+choco install sass
+```
