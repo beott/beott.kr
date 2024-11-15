@@ -14,12 +14,13 @@
 
   <title>{{ block "title" . }}{{ .Site.Title }} {{ with .Params.Title }} | {{ . }}{{ end }}{{ end }}</title>
 
+  <link type="font" rel="stylesheet" href="{{"font/RIDIBatang.otf" | relURL}}">*/}}
   {{ $opts := dict "transpiler" "dartsass" "targetPath" "css/index.css" }}
   {{ with resources.Get "sass/index.scss" | toCSS $opts | minify | fingerprint }}
   <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
   {{ end }}
   {{/*
-  <link type="text/css" rel="stylesheet" href="{{" css/index.css" | relURL}}">*/}}
+  <link type="text/css" rel="stylesheet" href="{{"css/index.css" | relURL}}">*/}}
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">  
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />

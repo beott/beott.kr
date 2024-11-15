@@ -1,5 +1,10 @@
+@font-face {
+  font-family: "NanumSquareNeo";
+  src: url("/font/NanumSquareNeoTTF-bRg.woff2") format("woff2");
+}
 html {
   font-size: 16px;
+  font-family: "NanumSquareNeo", sans-serif;
 }
 body {
   font-size: 1rem;
