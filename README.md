@@ -34,3 +34,15 @@ brew install sass/sass/sass
 # Windows
 choco install sass
 ```
+
+## 로컬 실행
+
+```sh
+make run
+```
+
+## 배포
+
+```sh
+make deploy
+```
