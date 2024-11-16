@@ -1,0 +1,6 @@
+# All Robots
+User-agent: *
+Disallow:
+
+# Sitemap Files
+Sitemap: https://beott.kr/sitemap.xml
