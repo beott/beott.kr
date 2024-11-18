@@ -3,12 +3,12 @@ title = "좀비의 속도감은 장르의 성공에 이르는 첩경인가"
 author = "심미성"
 date = "2024-10-01T00:00:00+09:00"
 tags = ["Netflix"]
-thumbnail = "/images/1/kingdom-1-thumbnail.jpg"
+thumbnail = "/images/1/kingdom-1-thumbnail.webp"
 group = "비옽 1호: 킹덤"
 draft = false
 +++
 
-![kingdom](/images/1/kingdom-1-1.jpg)
+![kingdom](/images/1/kingdom-1-1.webp)
 
 # 0.
 

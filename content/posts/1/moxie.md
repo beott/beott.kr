@@ -3,12 +3,12 @@ title = "손쉽게 자족하지 말 것"
 author = "이보라"
 date = "2024-11-05T00:00:00+09:00"
 tags = ["Netflix"]
-thumbnail = "/images/1/moxie-thumbnail.jpg"
+thumbnail = "/images/1/moxie-thumbnail.webp"
 group = "비옽 1호: 모니터 앞 파수꾼들"
 draft = false
 +++
 
-![Moxie](/images/1/moxie-1.jpg)
+![Moxie](/images/1/moxie-1.webp)
 
 여전히 페미니즘은 이 시대를 관통하는 메인 토픽이다.
 이 물결에 정직하고 부지런하게 몸을 맡기려 할 때면 예기치 못한 질문들이 너울처럼 급습해온다.

@@ -3,12 +3,12 @@ title = "통제하려 했지만"
 author = "한창욱"
 date = "2024-11-01T00:00:00+09:00"
 tags = ["Netflix"]
-thumbnail = "/images/1/the-queens-gambit-thumbnail.jpg"
+thumbnail = "/images/1/the-queens-gambit-thumbnail.webp"
 group = "비옽 1호: 모니터 앞 파수꾼들"
 draft = false
 +++
 
-![The Queen’s Gambit](/images/1/the-queens-gambit-1.jpg)
+![The Queen’s Gambit](/images/1/the-queens-gambit-1.webp)
 
 그들은 갱생할 수 있을까? 나는 이러한 불안과 기대를 안고 〈퀸스 갬빗<sub>The Queen’s Gambit</sub>〉(2020)을 지켜보았다. 내심 중독 상태에서 벗어나기를 바랐던 것이다. 우리는 약물, 혹은 술에 의지한 삶을 권장할 수 없다는 점을 잘 안다. 그것이 비도덕적이거나 비윤리적이기 때문이라기보다는 그런 상태에서 건강한 삶을 누리기 어렵다는 것을 알기 때문이다. 중독은 술이나 약물 등 중독 대상에 의존하는 일이자 그것에 완전히 굴복했다는 것을 뜻한다. 그래서 대부분의 영화나 TV드라마 속 주인공이  중독에 빠져 있다면 그는 자신의 처지를 깨닫고 어떻게든 극복하거나, 반대로 중독에 의해 완전히 망가진다. 이는 그저 장르적 관습에만 기반한 전개만이 아니라, 일상 속에서 우리가 기대하고 희망하거나, 우려하는 결말이다.
 
