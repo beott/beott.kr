@@ -71,6 +71,9 @@ body {
         border-radius: 5px;
         padding: 3vh 0;
       }
+      & > ul {
+        font-size: 1.15em;
+      }
     }
     .author,
     .date {
@@ -156,6 +159,9 @@ body {
         border-radius: 5px;
         padding: 3vh 0;
       }
+      & > ul {
+        font-size: 1.65em;
+      }
     }
     .author,
     .date {
@@ -163,7 +169,7 @@ body {
     }
     p {
       font-weight: 400;
-      font-size: 1.85em;
+      font-size: 1.65em;
       padding-bottom: 1.8vh;
     }
     #copy-button {
@@ -236,6 +242,9 @@ body {
         border-radius: 5px;
         padding: 3vh 0;
       }
+      & > ul {
+        font-size: 1.85em;
+      }
     }
     .author,
     .date {
@@ -243,7 +252,7 @@ body {
     }
     p {
       font-weight: 400;
-      font-size: 1.95em;
+      font-size: 1.85em;
       padding-bottom: 1.8vh;
     }
     #copy-button {
