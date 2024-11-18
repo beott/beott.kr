@@ -1,0 +1,4 @@
+# python -m venv .venv
+# source .venv/bin/activate # or .venv\Scripts\activate on Windows
+# python -m pip install -r scripts/requirements.txt
+pillow==10.4.0
