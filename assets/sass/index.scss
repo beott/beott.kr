@@ -1,3 +1,11 @@
+:root {
+  --swiper-navigation-color: #fff;
+}
+.swiper-button-prev,
+.swiper-button-next {
+  color: var(--swiper-navigation-color);
+  opacity: 0.8;
+}
 @font-face {
   font-family: "NanumSquareNeo";
   src: url("/font/NanumSquareNeoTTF-bRg.woff2") format("woff2");
