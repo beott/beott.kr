@@ -107,10 +107,4 @@
   });
 </script>
 
-{{ if ne ( .Params.hideme ) true }}
-{{ with resources.Get "js/post.js" | js.Build "post.js" | minify | fingerprint }}
-<script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous"></script>
-{{ end }}
-{{ end }}
-
 </html>
