@@ -1,4 +1,5 @@
 :root {
+  // https://swiperjs.com/swiper-api#navigation
   --swiper-theme-color: #fff!important;
   --swiper-navigation-color: var(--swiper-theme-color);
   --swiper-navigation-size: 3vh!important;
@@ -29,7 +30,7 @@ body {
 br.paragraph {
   content: "";
   display: block;
-  margin-bottom: 1.5em;
+  margin-bottom: 1.05em;
 }
 
 /* 모바일 */
