@@ -15,6 +15,11 @@ body {
   text-decoration: none;
   background-color: #141414;
 }
+br.paragraph {
+  content: "";
+  display: block;
+  margin-bottom: 1.5em;
+}
 
 /* 모바일 */
 @media (max-width: 767px) {

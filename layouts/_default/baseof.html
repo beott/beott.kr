@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=5, user-scalable=5" name="viewport">
-  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <meta name="google-site-verification" content="93TE4voJgl9wXWf0k087lUFu5V-2j53L58wT_T_s6MM" />
   <meta name="description" content="당신과 나의 OTT, 웹진 [비옽] 입니다.">
   <meta property="og:title" content="{{ .Params.Title }}" />
@@ -72,10 +72,10 @@
         // loop: true,
         centeredSlides: false,
         grabCursor: true,
-        pagination: {
-          el: ".swiper-pagination",
-          clickable: true,
-        },
+        // pagination: {
+        //   el: ".swiper-pagination",
+        //   clickable: true,
+        // },
         breakpoints: {
           // when window width is >= 320px
           320: {
@@ -88,18 +88,20 @@
           },
           1024: {
             slidesPerView: 4,
-            spaceBetween: 15,
+            spaceBetween: 10,
           },
           1500: {
             slidesPerView: 5,
-            spaceBetween: 15,
+            spaceBetween: 10,
           },
         },
       });
     </script>
 
     {{ if ne ( .Params.hideme ) true }}
-      <script src="{{"js/post.js" | relURL}}"></script>
+      {{ with resources.Get "js/post.js" | js.Build "post.js" | minify | fingerprint }}
+        <script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous"></script>
+      {{ end }}
     {{ end }}
 
 </html>
