@@ -12,11 +12,11 @@
   <!-- META TAGS -->
   <meta property="og:title" content="{{ .Params.Title }}" />
   <meta property="og:description" content="비옽 BEOTT" />
-  <meta property="og:image" content="{{ .Site.BaseURL }}{{ or .Params.thumbnail "favicon.ico" }}" />
+  <meta property="og:image" content="{{ .Site.BaseURL }}{{ or .Params.thumbnail "images/og-image.webp" }}" />
   <meta property="twitter:card" content="summary_large_image" />
   <meta property="twitter:title" content="{{ .Params.Title }}" />
   <meta property="twitter:description" content="비옽 BEOTT" />
-  <meta property="twitter:image" content="{{ .Site.BaseURL }}{{ or .Params.thumbnail "favicon.ico" }}" />
+  <meta property="twitter:image" content="{{ .Site.BaseURL }}{{ or .Params.thumbnail "images/og-image.webp" }}" />
 
   <title>
     {{ block "title" . }}
