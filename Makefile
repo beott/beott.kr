@@ -73,7 +73,8 @@ deploy: build
 	@$(PRINTER) "\033[38;5;198mCOMPLETE! \033[38;5;15m\n"
 .PHONY: deploy
 
-run: clean
+# run: clean
+run:
 	@echo "Run the site..."
 	hugo server -D -d .
 .PHONY: run
