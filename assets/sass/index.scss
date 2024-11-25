@@ -2,13 +2,8 @@
   // https://swiperjs.com/swiper-api#navigation
   --swiper-theme-color: #fff!important;
   --swiper-navigation-color: var(--swiper-theme-color);
-  --swiper-navigation-size: 3vh!important;
+  --swiper-navigation-size: 4vh!important;
   --swiper-navigation-top-offset: 50%;
-}
-.swiper-button-prev,
-.swiper-button-next {
-  color: var(--swiper-navigation-color);
-  opacity: 0.8;
 }
 @font-face {
   font-family: "NanumSquareNeo";
@@ -207,6 +202,16 @@ br.paragraph {
       font-size: 1.5em;
     }
   }
+  .swiper-button-prev,
+  .swiper-button-next {
+    visibility: hidden;
+  }
+  .swiper:hover {
+    .swiper-button-prev,
+    .swiper-button-next {
+      visibility: visible;
+    }
+  }
 }
 
 /* 노트북 */
@@ -288,6 +293,18 @@ br.paragraph {
     }
     #copy-message {
       font-size: 1.5em;
+    }
+  }
+  .swiper-button-prev,
+  .swiper-button-next {
+    // opacity: 0;
+    visibility: hidden;
+  }
+  .swiper:hover {
+    .swiper-button-prev,
+    .swiper-button-next {
+      // opacity: 1;
+      visibility: visible;
     }
   }
 }
