@@ -1,6 +1,7 @@
 +++
 title = "통제하려 했지만"
 author = "한창욱"
+filmTitle = "<퀸스 갬빗> 넷플릭스"
 date = "2024-11-01T00:00:00+09:00"
 tags = ["Netflix"]
 thumbnail = "/images/1/the-queens-gambit-thumbnail.webp"

@@ -1,6 +1,7 @@
 +++
 title = "This is not a comedy"
 author = "심미성"
+filmTitle = "<보 번햄 : 못 나가서 만든 쇼> 넷플릭스"
 date = "2024-11-04T00:00:00+09:00"
 tags = ["Netflix"]
 thumbnail = "/images/1/bo-burnham-inside-thumbnail.webp"

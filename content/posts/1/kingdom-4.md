@@ -1,6 +1,7 @@
 +++
 title = "대체 이 세계는 왜 이렇게"
 author = "한창욱"
+filmTitle = "<킹덤> 넷플릭스"
 date = "2024-10-04T00:00:00+09:00"
 tags = ["Netflix"]
 thumbnail = "/images/1/kingdom-4-thumbnail.webp"

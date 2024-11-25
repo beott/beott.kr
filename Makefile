@@ -75,6 +75,5 @@ deploy: build
 
 run: clean
 	@echo "Run the site..."
-	#hugo server --contentDir _content
 	hugo server -D -d .
 .PHONY: run

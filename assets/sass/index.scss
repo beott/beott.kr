@@ -88,8 +88,9 @@ br.paragraph {
       }
     }
     .author,
-    .date {
+    .film-title {
       font-size: 1.15em;
+      margin-bottom: 1.0vh;
     }
     p {
       font-weight: 400;
@@ -176,8 +177,9 @@ br.paragraph {
       }
     }
     .author,
-    .date {
-      font-size: 2.35em;
+    .film-title {
+      font-size: 2.05em;
+      margin-bottom: 1.0vh;
     }
     p {
       font-weight: 400;
@@ -269,8 +271,9 @@ br.paragraph {
       }
     }
     .author,
-    .date {
-      font-size: 2.35em;
+    .film-title {
+      font-size: 2.05em;
+      margin-bottom: 1.5vh;
     }
     p {
       font-weight: 400;
@@ -491,7 +494,7 @@ article {
     text-align: center;
   }
   .author,
-  .date {
+  .film-title {
     font-weight: 400;
     text-align: center;
     // width: 50%;

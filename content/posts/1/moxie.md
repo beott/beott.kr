@@ -1,6 +1,7 @@
 +++
 title = "손쉽게 자족하지 말 것"
 author = "이보라"
+filmTitle = "<걸스 오브 막시> 넷플릭스"
 date = "2024-11-05T00:00:00+09:00"
 tags = ["Netflix"]
 thumbnail = "/images/1/moxie-thumbnail.webp"
