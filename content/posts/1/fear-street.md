@@ -1,4 +1,6 @@
 +++
+draft = false
+hideme = false
 title = "상상된 역사, 덧씌워진 얼굴들"
 author = "김민우"
 filmTitle = "<피어 스트리트> 넷플릭스"
@@ -6,7 +8,6 @@ date = "2024-11-03T00:00:00+09:00"
 tags = ["Netflix"]
 thumbnail = "/images/1/fear-street-thumbnail.webp"
 group = "비옽 1호: 모니터 앞 파수꾼들"
-draft = false
 +++
 
 ![Fear Street](/images/1/fear-street-1.webp)

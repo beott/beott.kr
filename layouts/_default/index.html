@@ -7,16 +7,20 @@
 
 <div class="post-by-group">
 
-{{ range site.Pages.GroupByParam "group" }}
+{{/* https://discourse.gohugo.io/t/custom-sorting-pagegroups/38469/2 */}}
+{{/*{{ range site.Pages.GroupByParam "group" "desc" }}*/}}
+{{ $groups := slice "비옽 2호: 마인드헌터" "비옽 1호: 킹덤" "비옽 1호: 모니터 앞 파수꾼들" }}
+{{ range $group := $groups }}
+
+  {{ with where site.RegularPages "Params.group" $group }}
+  {{/*{{ if eq .Key "featured" }}*/}}
 
   <section class="swiper main-swiper">
-    <h2 class="row-header-title">{{ .Key | title }}</h2>
+    {{/*<h2 class="row-header-title">{{ .Key | title }}</h2>*/}}
+    <h2 class="row-header-title">{{ $group }}</h2>
     <div class="swiper-wrapper">
-      {{/*
-        {{ $paginator := .Paginate (where .Site.RegularPages "Params.hidden" "!=" true) }}
-        {{ $paginator := .Paginate (where .Site.RegularPages "Type" "post") }}
-        */}}
-    {{ range sort .Pages "Date" "asc" }}
+    {{/*{{ range sort .Pages "Date" "asc" }}*/}}
+    {{ range sort . "Date" "asc" }}
         {{ if ne ( .Params.hideme ) true }}
           <div class="swiper-slide">
             <a href="{{.RelPermalink}}" >
@@ -43,6 +47,7 @@
     <div class="swiper-button-prev"></div>
     <div class="swiper-button-next"></div>
   </section>
+  {{ end }}
 {{ end }}
 
 </div>

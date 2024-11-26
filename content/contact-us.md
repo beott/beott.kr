@@ -1,7 +1,7 @@
 +++
 draft = false
-title = 'Contact Us'
 hideme = true
+title = 'Contact Us'
 +++
 
 - 문의 : mag.beott@gmail.com

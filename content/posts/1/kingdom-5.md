@@ -1,4 +1,6 @@
 +++
+draft = false
+hideme = false
 title = "너무 접촉하거나 너무 떨어지거나, 혹은..."
 author = "윤아랑"
 filmTitle = "<킹덤>, <킹덤: 아신전> 넷플릭스"
@@ -6,7 +8,6 @@ date = "2024-10-05T00:00:00+09:00"
 tags = ["Netflix"]
 thumbnail = "/images/1/kingdom-5-thumbnail.webp"
 group = "비옽 1호: 킹덤"
-draft = false
 +++
 
 ![kingdom](/images/1/kingdom-5-1.webp)

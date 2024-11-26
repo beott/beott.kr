@@ -1,4 +1,6 @@
 +++
+draft = false
+hideme = false
 title = "오해와 오판, 오작동의 오락"
 author = "구형준"
 filmTitle = "<오징어 게임> 넷플릭스"
@@ -6,7 +8,6 @@ date = "2024-11-06T00:04:00+09:00"
 tags = ["Netflix"]
 thumbnail = "/images/1/squid-game-thumbnail.webp"
 group = "비옽 1호: 모니터 앞 파수꾼들"
-draft = false
 +++
 
 ![Squid Game](/images/1/squid-game-1.webp)

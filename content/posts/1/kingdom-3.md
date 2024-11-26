@@ -1,4 +1,6 @@
 +++
+draft = false
+hideme = false
 title = "인간 같지 않은 자들의 이상한 인간성에 대해"
 author = "구형준"
 filmTitle = "<킹덤> 넷플릭스"
@@ -6,7 +8,6 @@ date = "2024-10-03T00:00:00+09:00"
 tags = ["Netflix"]
 thumbnail = "/images/1/kingdom-3-thumbnail.webp"
 group = "비옽 1호: 킹덤"
-draft = false
 +++
 
 ![poster](/images/1/kingdom-3-1.webp)

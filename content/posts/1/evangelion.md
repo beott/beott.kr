@@ -1,12 +1,13 @@
 +++
+draft = false
+hideme = false
 title = "안노 히데아키는 에반게리온을 어떻게 끝내려하는가?"
 author = "김보년 시네마테크 서울아트시네마 프로그래머"
 filmTitle = "<신 에반게리온 극장판> 프라임비디오"
 date = "2024-11-02T00:00:00+09:00"
-tags = ["AmazonPrimeVideo"]
+tags = ["Prime Video"]
 thumbnail = "/images/1/evangelion-thumbnail.webp"
 group = "비옽 1호: 모니터 앞 파수꾼들"
-draft = false
 +++
 
 ![Evangelion 2021](/images/1/evangelion-1.webp)

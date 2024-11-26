@@ -1,7 +1,7 @@
 +++
 draft = false
-title = '소개'
 hideme = true
+title = '소개'
 +++
 
 안녕하세요. 당신과 나의 OTT, [비옽] 입니다.
