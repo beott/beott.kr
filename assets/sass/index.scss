@@ -22,6 +22,13 @@ body {
   text-decoration: none;
   background-color: #141414;
 }
+u {
+  text-decoration: underline;
+  -webkit-text-decoration-color: red;
+  text-decoration-color: red;
+  text-decoration-thickness: 0.2em;
+  text-decoration-skip-ink: none;
+}
 br.paragraph {
   content: "";
   display: block;
