@@ -76,5 +76,6 @@ deploy: build
 # run: clean
 run:
 	@echo "Run the site..."
-	hugo server -D -d .
+	@#echo "--bind=0.0.0.0 --baseURL=http://192.168.0.177 --port=1313"
+	hugo server -D -d . --bind=0.0.0.0
 .PHONY: run

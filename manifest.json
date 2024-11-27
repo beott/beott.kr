@@ -1,0 +1,34 @@
+{
+  "id": "/",
+  "start_url": "/",
+  "name": "비옽",
+  "short_name": "BEOTT",
+  "description": "당신과 나의 OTT, 웹진 [비옽] 입니다.",
+  "display": "standalone",
+  "background_color": "#da322e",
+  "theme_color": "#da322e",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "type": "image/webp",
+      "sizes": "320x320"
+    }
+  ],
+  "screenshots": [
+    {
+     "src": "images/og-image.webp",
+      "sizes": "800x800",
+      "type": "image/webp",
+      "form_factor": "narrow",
+      "label": "Logo"
+    },
+    {
+      "src": "images/main-banner.webp",
+       "sizes": "1280x720",
+       "type": "image/webp",
+       "form_factor": "wide",
+       "label": "Main banner"
+     }
+  ]
+}

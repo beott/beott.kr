@@ -20,7 +20,7 @@ group = "비옽 2호: 마인드헌터"
 
 [^1]: Hawkins Dubois,“Why David Fincher’s ‘Mindhunter’ DP Believes ‘There Are No Rules’ in Lighting”,  『No Film School』, 2017.10.13.
 
-이외에도 색보정 컬러리스트 에릭 바이트Eric Weidt는 70년대 후반의 연조<sub>low-contrast</sub>적 시대 분위기를 만들기 위해 HDR 기술을 이용하여 명부를 끌어내렸다고 밝히기도 한다.[^2]
+이외에도 색보정 컬러리스트 에릭 바이트<sub>Eric Weidt</sub>는 70년대 후반의 연조<sub>low-contrast</sub>적 시대 분위기를 만들기 위해 HDR 기술을 이용하여 명부를 끌어내렸다고 밝히기도 한다.[^2]
 
 [^2]: Calvin C. Choi, “Creating the unique look for Mindhunter”, 『Calvin C. Choi blog』, 2020.02.04.
 
