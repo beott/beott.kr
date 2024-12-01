@@ -78,7 +78,6 @@ br.paragraph {
       font-weight: bold;
     }
     .post-contents {
-      text-align: justify;
       line-height: 1.65;
       img {
         width: 100vw; /* 전체 뷰포트 너비로 설정 */
@@ -103,20 +102,6 @@ br.paragraph {
       font-weight: 400;
       font-size: 1.15em;
       padding-bottom: 1.8vh;
-    }
-    #copy-button {
-      width: 7vh;
-      height: 7vh;
-      font-size: 1.55em;
-      background-color: #dcdcdc;
-      &:hover {
-        background-color: #f0f0f0;
-      }
-      img {
-        width: 3vh;
-        height: 3vh;
-        display: block;
-      }
     }
     #copy-message {
       font-size: 1.05em;
@@ -167,7 +152,6 @@ br.paragraph {
       font-weight: bold;
     }
     .post-contents {
-      text-align: justify;
       line-height: 1.65;
       img {
         width: 100vw; /* 전체 뷰포트 너비로 설정 */
@@ -190,22 +174,8 @@ br.paragraph {
     }
     p {
       font-weight: 400;
-      font-size: 1.65em;
+      font-size: 1.35em;
       padding-bottom: 1.8vh;
-    }
-    #copy-button {
-      width: 5vh;
-      height: 5vh;
-      font-size: 2.45em;
-      background-color: #dcdcdc;
-      &:hover {
-        background-color: #f0f0f0;
-      }
-      img {
-        width: 3vh;
-        height: 3vh;
-        display: block;
-      }
     }
     #copy-message {
       font-size: 1.5em;
@@ -263,7 +233,6 @@ br.paragraph {
       font-weight: bold;
     }
     .post-contents {
-      text-align: justify;
       line-height: 1.65;
       word-break: keep-all;
       // word-spacing: -0.1em;
@@ -284,22 +253,8 @@ br.paragraph {
     }
     p {
       font-weight: 400;
-      font-size: 1.85em;
+      font-size: 1.35em;
       padding-bottom: 1.8vh;
-    }
-    #copy-button {
-      width: 5vh;
-      height: 5vh;
-      font-size: 2.55em;
-      background-color: #dcdcdc;
-      &:hover {
-        background-color: #f0f0f0;
-      }
-      img {
-        width: 3vh;
-        height: 3vh;
-        display: block;
-      }
     }
     #copy-message {
       font-size: 1.5em;
@@ -475,6 +430,10 @@ article {
     padding-top: 3.75vh;
     unicode-bidi: isolate;
   }
+  // .post-contents {
+  //   text-align: justify;
+  //   word-break: auto-phrase;
+  // }
   .post-info,
   .post-share {
     overflow: hidden;
@@ -493,6 +452,17 @@ article {
     cursor: pointer;
     text-decoration: none;
     user-select: none;
+    width: 50px;
+    height: 50px;
+    // font-size: 1.55em;
+    background-color: #dcdcdc;
+    &:hover {
+      background-color: #f0f0f0;
+    }
+    img {
+      width: 80%;
+      display: block;
+    }
   }
   #copy-message {
     padding-top: 1vh;
@@ -515,9 +485,8 @@ article {
   h6 {
     padding-top: 3vh;
   }
-
   h1 {
-    font-size: 24px;
+    font-size: 26px;
   }
 }
 
