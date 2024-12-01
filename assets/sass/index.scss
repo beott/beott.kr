@@ -251,8 +251,10 @@ br.paragraph {
       word-break: keep-all;
       // word-spacing: -0.1em;
       img {
-        width: 100%;
-        height: auto;
+        max-width: 100%;
+        max-height: 1400px;
+        display: block;
+        margin: 0 auto;
         border-radius: 5px;
         padding: 3vh 0;
       }
