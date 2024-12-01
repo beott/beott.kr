@@ -174,7 +174,7 @@ br.paragraph {
     }
     p {
       font-weight: 400;
-      font-size: 1.35em;
+      font-size: 1.55em;
       padding-bottom: 1.8vh;
     }
     #copy-message {
@@ -253,7 +253,7 @@ br.paragraph {
     }
     p {
       font-weight: 400;
-      font-size: 1.35em;
+      font-size: 1.65em;
       padding-bottom: 1.8vh;
     }
     #copy-message {
@@ -416,6 +416,7 @@ header {
     color: #fff;
     bottom: 0;
     z-index: 1;
+    word-break: keep-all;
   }
 }
 
