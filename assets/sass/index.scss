@@ -1,9 +1,23 @@
+// @import "modules/reset";
+$base-color: #da322e;
+$base-color-dark: #b22a27;
+
 :root {
   // https://swiperjs.com/swiper-api#navigation
   --swiper-theme-color: #fff!important;
   --swiper-navigation-color: var(--swiper-theme-color);
   --swiper-navigation-size: 4vh!important;
   --swiper-navigation-top-offset: 50%;
+}
+/* 선택 영역 스타일 변경 */
+::selection {
+  background-color: $base-color-dark;
+  color: #fff;
+  // text-decoration: underline;
+}
+::-webkit-selection {
+  background-color: $base-color-dark;
+  color: #fff;
 }
 @font-face {
   font-family: "NanumSquareNeo";
@@ -24,8 +38,8 @@ body {
 }
 u {
   text-decoration: underline;
-  -webkit-text-decoration-color: #da322e;
-  text-decoration-color: #da322e;
+  -webkit-text-decoration-color: $base-color;
+  text-decoration-color: $base-color;
   text-decoration-thickness: 0.2em;
   text-decoration-skip-ink: none;
 }
@@ -253,7 +267,7 @@ br.paragraph {
     }
     p {
       font-weight: 400;
-      font-size: 1.65em;
+      font-size: 1.55em;
       padding-bottom: 1.8vh;
     }
     #copy-message {
@@ -274,17 +288,35 @@ br.paragraph {
   }
 }
 
-/* 데스크탑 */
-@media (min-width: 1801px) {
+// FHD
+@media (min-width: 1920px) {
   article {
     width: 60vw;
     left: 20vw;
+    p {
+      font-size: 1.6em;
+    }
   }
 }
-
+// QHD: 2K
+@media (min-width: 2560px) {
+  article {
+    p {
+      font-size: 1.65em;
+    }
+  }
+}
+// UHD: 4K
+@media (min-width: 3840px) {
+  article {
+    p {
+      font-size: 1.85em;
+    }
+  }
+}
 a {
   text-decoration: none;
-  color: #da322e;
+  color: $base-color;
 }
 
 // 헤더 스타일
@@ -468,7 +500,7 @@ article {
   #copy-message {
     padding-top: 1vh;
     display: none;
-    color: #da322e;
+    color: $base-color;
     text-align: center;
   }
   .author,
