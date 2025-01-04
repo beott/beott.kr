@@ -4,6 +4,12 @@ title = 'BEOTT'
 # theme = 'beott'
 
 [params]
+  main = [
+    "비옽 2호: MAPPING",
+    "비옽 2호: 마인드헌터",
+    "비옽 1호: 킹덤",
+    "비옽 1호: 모니터 앞 파수꾼들",
+  ]
 
 [taxonomies]
   category = 'categories'

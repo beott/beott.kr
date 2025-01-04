@@ -8,9 +8,9 @@
 <div class="post-by-group">
 
 {{/* https://discourse.gohugo.io/t/custom-sorting-pagegroups/38469/2 */}}
-{{/*{{ range site.Pages.GroupByParam "group" "desc" }}*/}}
-{{/*TODO: 파라미터로 만들기*/}}
-{{ $groups := slice "비옽 2호: MAPPING" "비옽 2호: 마인드헌터" "비옽 1호: 킹덤" "비옽 1호: 모니터 앞 파수꾼들" }}
+{{/* range site.Pages.GroupByParam "group" "desc" */}}
+{{/* $groups := slice "비옽 2호: MAPPING" "비옽 2호: 마인드헌터" "비옽 1호: 킹덤" "비옽 1호: 모니터 앞 파수꾼들" */}}
+{{ $groups := .Site.Params.main }}
 {{ range $group := $groups }}
 
   {{ with where site.RegularPages "Params.group" $group }}
