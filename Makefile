@@ -1,29 +1,29 @@
-SHELL := bash
+# SHELL := /usr/bin/env bash -ex
 BRANCH := $(shell git rev-parse --abbrev-ref HEAD)
-
-# 기본적으로 OS를 식별하는 변수를 설정
-UNAME_S := $(shell uname -s)
-RM := rm -rf
-LINE_CONTINUATION := \
 
 # 운영체제에 따라 다른 변수나 동작을 설정
 ifeq ($(OS), Windows_NT)
-    # Windows의 경우
+    # Windows
     OSFLAG := WINDOWS
-    RM := powershell -Command Remove-Item -Force -Recurse
-    IGNORE_ERRORS := -ErrorAction SilentlyContinue; exit 0
-#		LINE_CONTINUATION := `
-    PRINTER := echo
+    PRINTER := Write-Host
+		CLEAN := powershell -ExecutionPolicy Bypass -File .\scripts\windows.clean.ps1
+		BUILD := powershell -ExecutionPolicy Bypass -File .\scripts\windows.build.ps1
+		DEPLOY := powershell -ExecutionPolicy Bypass -File .\scripts\windows.deploy.ps1
+		RUN := powershell -ExecutionPolicy Bypass -File .\scripts\windows.run.ps1
 else
-    IGNORE_ERRORS :=
-    PRINTER := printf
     # uname으로 운영체제 구분
+		UNAME_S := $(shell uname -s)
     ifeq ($(UNAME_S), Linux)
         OSFLAG := LINUX
     endif
     ifeq ($(UNAME_S), Darwin)
         OSFLAG := MACOS
     endif
+    PRINTER := printf
+		CLEAN := ./scripts/clean.sh
+		BUILD := ./scripts/build.sh
+		DEPLOY := ./scripts/deploy.sh
+		RUN := ./scripts/run.sh
 endif
 
 # ANSI Escape Code - Color
@@ -34,48 +34,17 @@ all:
 .PHONY: all
 
 clean:
-	@echo "Remove all generated files and directories...$(OSFLAG)"
-	$(RM) posts/ $(IGNORE_ERRORS)
-	$(RM) about/  $(IGNORE_ERRORS)
-	$(RM) contact-us/  $(IGNORE_ERRORS)
-	$(RM) categories/  $(IGNORE_ERRORS)
-	$(RM) docs/  $(IGNORE_ERRORS)
-	$(RM) public/  $(IGNORE_ERRORS)
-	$(RM) js/  $(IGNORE_ERRORS)
-	$(RM) page/  $(IGNORE_ERRORS)
-	$(RM) resources/  $(IGNORE_ERRORS)
-	$(RM) css/  $(IGNORE_ERRORS)
-	$(RM) sass/  $(IGNORE_ERRORS)
-	$(RM) series/  $(IGNORE_ERRORS)
-	$(RM) tags/  $(IGNORE_ERRORS)
-	$(RM) vendor/  $(IGNORE_ERRORS)
-	$(RM) 404.html $(IGNORE_ERRORS)
-	$(RM) images/ $(IGNORE_ERRORS)
-	$(RM) index.html $(IGNORE_ERRORS)
-	$(RM) index.xml $(IGNORE_ERRORS)
-	$(RM) robots.txt $(IGNORE_ERRORS)
-	$(RM) rss.xsl $(IGNORE_ERRORS)
-	$(RM) sitemap.xml $(IGNORE_ERRORS)
+	$(CLEAN)
 .PHONY: clean
 
 build: clean
-	@$(PRINTER) "\033[38;5;45mBuild the site...\033[38;5;15m\n"
-	hugo build -d .
+	$(BUILD)
 .PHONY: build
 
 deploy: build
-	git add -A
-	@msg="rebuilding site $(shell date '+%Y-%m-%dT%H:%M:%S %Z%z') on Unix-like system"; \
-	echo "$$msg"; \
-	git commit -m "$$msg"
-	@$(PRINTER) "\033[38;5;46mDeploying updates to GitHub...\033[38;5;15m\n"
-	@git push origin $(BRANCH)
-	@$(PRINTER) "\033[38;5;198mCOMPLETE! \033[38;5;15m\n"
+	$(DEPLOY)
 .PHONY: deploy
 
-# run: clean
 run:
-	@echo "Run the site..."
-	@#echo "--bind=0.0.0.0 --baseURL=http://192.168.0.177 --port=1313"
-	hugo server -D -d . --bind=0.0.0.0
+	$(RUN)
 .PHONY: run
