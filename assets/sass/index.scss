@@ -4,9 +4,9 @@ $base-color-dark: #b22a27;
 
 :root {
   // https://swiperjs.com/swiper-api#navigation
-  --swiper-theme-color: #fff!important;
+  --swiper-theme-color: #fff !important;
   --swiper-navigation-color: var(--swiper-theme-color);
-  --swiper-navigation-size: 4vh!important;
+  --swiper-navigation-size: 4vh !important;
   --swiper-navigation-top-offset: 50%;
 }
 /* 선택 영역 스타일 변경 */
@@ -106,16 +106,19 @@ br.paragraph {
       & > ul {
         font-size: 1.15em;
       }
+      & > p {
+        font-weight: 400;
+        font-size: 1.15em;
+        padding-bottom: 1.8vh;
+      }
     }
     .author,
     .film-title {
       font-size: 1.15em;
-      margin-bottom: 1.0vh;
+      margin-bottom: 1vh;
     }
-    p {
-      font-weight: 400;
+    li {
       font-size: 1.15em;
-      padding-bottom: 1.8vh;
     }
     #copy-message {
       font-size: 1.05em;
@@ -180,16 +183,19 @@ br.paragraph {
       & > ul {
         font-size: 1.65em;
       }
+      & > p {
+        font-weight: 400;
+        font-size: 1.55em;
+        padding-bottom: 1.8vh;
+      }
     }
     .author,
     .film-title {
       font-size: 2.05em;
-      margin-bottom: 1.0vh;
+      margin-bottom: 1vh;
     }
-    p {
-      font-weight: 400;
+    li {
       font-size: 1.55em;
-      padding-bottom: 1.8vh;
     }
     #copy-message {
       font-size: 1.5em;
@@ -261,16 +267,19 @@ br.paragraph {
       & > ul {
         font-size: 1.85em;
       }
+      & > p {
+        font-weight: 400;
+        font-size: 1.55em;
+        padding-bottom: 1.8vh;
+      }
     }
     .author,
     .film-title {
       font-size: 2.05em;
       margin-bottom: 1.5vh;
     }
-    p {
-      font-weight: 400;
+    li {
       font-size: 1.55em;
-      padding-bottom: 1.8vh;
     }
     #copy-message {
       font-size: 1.5em;
