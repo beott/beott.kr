@@ -10,7 +10,7 @@ thumbnail = "/images/3/dark-thumbnail.jpeg"
 group = "비옽 3호: SF"
 +++
 
-![landscapers](/images/3/dark-1.jpg)
+![dark](/images/3/dark-1.jpg)
 
 # 0.
 
