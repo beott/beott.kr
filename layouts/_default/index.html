@@ -1,8 +1,15 @@
 {{ define "main" }}
 
-<div class="hero-image" style="background-image: url('/images/main-banner.webp');">
-  <div class="hero-overlay"></div>
-  <!-- <div>BEOTT</div> -->
+<div class="hero-overlay swiper">
+  <div class="swiper-wrapper">
+    {{ range sort ( where site.RegularPages "Section" "posts" ) "Date" "desc" | first 5 }}
+      <div class="swiper-slide">
+        <a href="{{.RelPermalink}}" class="hero-link">
+          <div class="hero-slide" style="background-image: url('{{ .Params.thumbnail }}')" loading="lazy"></div>
+        </a>
+      </div>
+    {{ end }}
+  </div>
 </div>
 
 <div class="post-by-group">
@@ -10,9 +17,9 @@
 {{/* https://discourse.gohugo.io/t/custom-sorting-pagegroups/38469/2 */}}
 {{/* range site.Pages.GroupByParam "group" "desc" */}}
 {{/* $groups := slice "비옽 2호: MAPPING" "비옽 2호: 마인드헌터" "비옽 1호: 킹덤" "비옽 1호: 모니터 앞 파수꾼들" */}}
+
 {{ $groups := .Site.Params.main }}
 {{ range $group := $groups }}
-
   {{ with where site.RegularPages "Params.group" $group }}
   {{/*{{ if eq .Key "featured" }}*/}}
 
@@ -52,5 +59,64 @@
 {{ end }}
 
 </div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+
+  new Swiper('.hero-overlay', {
+    grid: {
+      rows: 1,
+    },
+    loop: true,
+    centeredSlides: false,
+    grabCursor: true,
+    effect: 'fade', // fade, mo
+    speed: 1_600, // ms
+    fadeEffect: { 
+      crossFade: true 
+    },
+    autoplay: {
+        delay: 3_500, // ms
+    },
+  });
+
+  new Swiper('.main-swiper', {
+    grid: {
+      rows: 1,
+    },
+    // loop: true,
+    centeredSlides: false,
+    grabCursor: true,
+    // pagination: {
+    //   el: ".swiper-pagination",
+    //   clickable: true,
+    // },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    breakpoints: {
+      // when window width is >= 320px
+      320: {
+        slidesPerView: 2,
+        spaceBetween: 5,
+      },
+      768: {
+        slidesPerView: 3,
+        spaceBetween: 10,
+      },
+      1024: {
+        slidesPerView: 4,
+        spaceBetween: 10,
+      },
+      1500: {
+        slidesPerView: 5,
+        spaceBetween: 10,
+      },
+    },
+  });
+</script>
+
 
 {{ end }}

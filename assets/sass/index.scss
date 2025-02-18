@@ -379,17 +379,25 @@ header {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 70vh;
+  min-height: 50vh;
   background: rgba(0, 0, 0, 0.1); /* 어두운 오버레이 */
+  .hero-slide {
+    height: 100%;
+    width: 100%;
+    background-size: cover; // contain, cover
+    background-position: center;
+    background-repeat: no-repeat;
+  }
 }
 
 .post-by-group {
   padding-top: 4vh;
 }
 
-.swiper {
+.main-swiper {
   // width: 100%;
-  padding: 0 4% !important;
+  padding: 0 4%!important; /* 16:9 Aspect Ratio */
   // position: relative;
   // margin: 3vw 0;
   // box-sizing: border-box;
@@ -409,7 +417,7 @@ header {
     //     transition: transform 0.5s ease;
     //     overflow: hidden;
 
-    //     .swiper-slide {
+      .swiper-slide {
     //       display: inline-block;
     //       position: relative;
     //       min-width: 320px;
@@ -430,36 +438,38 @@ header {
     //         transform: scale(1.05);
     //         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
     //       }
-    //     }
-  }
-}
+      .post-item-image {
+        width: 100%;
+        height: 100%;
+        // height: auto;
+        // aspect-ratio: 16/9; // 4:3 비율 설정
+        // position: absolute; // absolute하면 overlay-title이 짤리는 화면 사이즈가 있음
+        background: no-repeat center;
+        background-size: cover;
+        border-radius: 1px;
 
-.post-item-image {
-  width: 100%;
-  height: 100%;
-  background: no-repeat center;
-  background-size: cover;
-  border-radius: 1px;
-
-  &::after {
-    width: 100%;
-    height: 50%; /* 그라데이션 높이 조정 */
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 10%, transparent);
-    pointer-events: none; /* 클릭 이벤트가 하위 요소로 전달되도록 */
-  }
-  & > .overlay-title {
-    width: 100%;
-    position: absolute;
-    padding: 1px 8px;
-    box-sizing: border-box;
-    color: #fff;
-    bottom: 0;
-    z-index: 1;
-    word-break: keep-all;
+        &::after {
+          width: 100%;
+          height: 50%; /* 그라데이션 높이 조정 */
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 10%, transparent);
+          pointer-events: none; /* 클릭 이벤트가 하위 요소로 전달되도록 */
+        }
+        & > .overlay-title {
+          width: 100%;
+          position: absolute;
+          padding: 1px 8px;
+          box-sizing: border-box;
+          color: #fff;
+          bottom: 0;
+          z-index: 1;
+          word-break: keep-all;
+        }
+      }
+    }
   }
 }
 

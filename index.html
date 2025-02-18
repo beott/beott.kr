@@ -2,7 +2,7 @@
 <html lang="ko">
 
 <head>
-	<meta name="generator" content="Hugo 0.140.2">
+	<meta name="generator" content="Hugo 0.143.1">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=5, user-scalable=5" name="viewport">
@@ -29,7 +29,7 @@
 
   
   
-  <link rel="stylesheet" href="/css/index.min.e40fed7735d6c937cd4e123e310464a616d5678def6c76ba79866b4640b901fa.css" integrity="sha256-5A/tdzXWyTfNThI&#43;MQRkphbVZ43vbHa6eYZrRkC5Afo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/index.min.43f460bb32e1675f1f69670f12f63923514111bb27a1c20c42c817dfb044ed5d.css" integrity="sha256-Q/RguzLhZ18faWcPEvY5I1FBEbsnocIMQsgX37BE7V0=" crossorigin="anonymous">
   
   
 
@@ -60,9 +60,40 @@
 
   <div id="content">
 
-<div class="hero-image" style="background-image: url('/images/main-banner.webp');">
-  <div class="hero-overlay"></div>
-  
+<div class="hero-overlay swiper">
+  <div class="swiper-wrapper">
+    
+      <div class="swiper-slide">
+        <a href="/posts/3/severance/" class="hero-link">
+          <div class="hero-slide" style="background-image: url('/images/3/severance-thumbnail.jpeg')" loading="lazy"></div>
+        </a>
+      </div>
+    
+      <div class="swiper-slide">
+        <a href="/posts/3/black-mirror/" class="hero-link">
+          <div class="hero-slide" style="background-image: url('/images/3/black-mirror-thumbnail.jpg')" loading="lazy"></div>
+        </a>
+      </div>
+    
+      <div class="swiper-slide">
+        <a href="/posts/3/dark/" class="hero-link">
+          <div class="hero-slide" style="background-image: url('/images/3/dark-thumbnail.jpeg')" loading="lazy"></div>
+        </a>
+      </div>
+    
+      <div class="swiper-slide">
+        <a href="/posts/2/how-to-sell-drugs-online-fast/" class="hero-link">
+          <div class="hero-slide" style="background-image: url('/images/2/How-to-Sell-Drugs-Online-Fast-thumbnail.jpg')" loading="lazy"></div>
+        </a>
+      </div>
+    
+      <div class="swiper-slide">
+        <a href="/posts/2/evil-genius/" class="hero-link">
+          <div class="hero-slide" style="background-image: url('/images/2/Evil-Genius-thumbnail.jpg')" loading="lazy"></div>
+        </a>
+      </div>
+    
+  </div>
 </div>
 
 <div class="post-by-group">
@@ -142,7 +173,6 @@
     <div class="swiper-button-next"></div>
   </section>
   
-
 
   
   
@@ -286,7 +316,6 @@
   </section>
   
 
-
   
   
 
@@ -374,7 +403,6 @@
     <div class="swiper-button-next"></div>
   </section>
   
-
 
   
   
@@ -481,7 +509,6 @@
     <div class="swiper-button-next"></div>
   </section>
   
-
 
   
   
@@ -611,28 +638,27 @@
 </div>
 
 
-  </div>
-
-  <footer>
-    ©️ BEOTT
-  </footer>
-</body>
-
-<script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/js/sw.js')
-      .then(registration => {
-        console.log('Service Worker registered with scope:', registration.scope);
-      })
-      .catch(error => {
-        console.log('Service Worker registration failed:', error);
-      });
-  }
-</script>
-
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
-  const swiper = new Swiper('.main-swiper', {
+
+  new Swiper('.hero-overlay', {
+    grid: {
+      rows: 1,
+    },
+    loop: true,
+    centeredSlides: false,
+    grabCursor: true,
+    effect: 'fade', 
+    speed: 1_600, 
+    fadeEffect: { 
+      crossFade: true 
+    },
+    autoplay: {
+        delay: 3_500, 
+    },
+  });
+
+  new Swiper('.main-swiper', {
     grid: {
       rows: 1,
     },
@@ -667,6 +693,27 @@
       },
     },
   });
+</script>
+
+
+
+  </div>
+
+  <footer>
+    ©️ BEOTT
+  </footer>
+</body>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/js/sw.js')
+      .then(registration => {
+        console.log('Service Worker registered with scope:', registration.scope);
+      })
+      .catch(error => {
+        console.log('Service Worker registration failed:', error);
+      });
+  }
 </script>
 
 </html>
