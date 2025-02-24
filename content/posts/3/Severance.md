@@ -6,7 +6,7 @@ author = "구형준"
 filmTitle = "<세브란스: 단절> Apple TV+"
 date = "2025-02-16T23:16:00+09:00"
 tags = ["Apple TV+"]
-thumbnail = "/images/3/severance-thumbnail.jpeg"
+thumbnail = "/images/3/severance-thumbnail.jpg"
 group = "비옽 3호: SF"
 +++
 

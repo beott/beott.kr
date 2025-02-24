@@ -6,7 +6,7 @@ author = "한창욱"
 filmTitle = "<다크> 넷플릭스"
 date = "2025-02-11T00:05:00+09:00"
 tags = ["Netflix"]
-thumbnail = "/images/3/dark-thumbnail.jpeg"
+thumbnail = "/images/3/dark-thumbnail.jpg"
 group = "비옽 3호: SF"
 +++
 

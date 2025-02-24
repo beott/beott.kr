@@ -6,11 +6,11 @@ author = "구형준"
 filmTitle = "<애틀랜타의 실종과 살인> WAVVE"
 date = "2025-01-10T19:00:00+09:00"
 tags = ["WAVVE"]
-thumbnail = "/images/2/Atlantas-Missing-and-Murdered-The-Lost-Children-thumbnail.jpeg"
+thumbnail = "/images/2/Atlantas-Missing-and-Murdered-The-Lost-Children-thumbnail.jpg"
 group = "비옽 2호: MAPPING"
 +++
 
-![Atlanta's Missing and Murdered: The Lost Children](/images/2/Atlantas-Missing-and-Murdered-The-Lost-Children-1.jpeg)
+![Atlanta's Missing and Murdered: The Lost Children](/images/2/Atlantas-Missing-and-Murdered-The-Lost-Children-1.jpg)
 
 # 0.
 
