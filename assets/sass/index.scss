@@ -106,6 +106,7 @@ br.paragraph {
       & > ul {
         font-size: 1.15em;
       }
+      & > blockquote > p,
       & > p {
         font-weight: 400;
         font-size: 1.15em;
@@ -183,6 +184,7 @@ br.paragraph {
       & > ul {
         font-size: 1.65em;
       }
+      & > blockquote > p,
       & > p {
         font-weight: 400;
         font-size: 1.55em;
@@ -267,6 +269,7 @@ br.paragraph {
       & > ul {
         font-size: 1.85em;
       }
+      & > blockquote > p,
       & > p {
         font-weight: 400;
         font-size: 1.55em;
