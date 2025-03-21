@@ -272,7 +272,7 @@ br.paragraph {
       & > blockquote > p,
       & > p {
         font-weight: 400;
-        font-size: 24px;
+        font-size: 26px;
         padding-bottom: 1.8vh;
       }
     }
@@ -308,7 +308,7 @@ br.paragraph {
     width: 60vw;
     left: 20vw;
     p {
-      font-size: 24px;
+      font-size: 26px;
     }
   }
 }
@@ -316,7 +316,7 @@ br.paragraph {
 @media (min-width: 2560px) {
   article {
     p {
-      font-size: 1.65em;
+      font-size: 26px;
     }
   }
 }
@@ -324,7 +324,7 @@ br.paragraph {
 @media (min-width: 3840px) {
   article {
     p {
-      font-size: 1.85em;
+      font-size: 28px;
     }
   }
 }
