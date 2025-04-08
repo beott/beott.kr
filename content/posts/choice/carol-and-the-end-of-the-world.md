@@ -6,11 +6,11 @@ author = "변해빈"
 filmTitle = "<종말에 대처하는 캐럴의 자세> Netflix"
 date = "2025-04-08T19:00:00+09:00"
 tags = ["Netflix"]
-thumbnail = "/images/4/carol-and-the-end-of-the-world-thumbnail.jpg"
-group = "비옽 4호: CONTENT"
+thumbnail = "/images/choice/carol-and-the-end-of-the-world-thumbnail.jpg"
+group = "CHOICE"
 +++
 
-![Carol & The End of The World](/images/4/carol-and-the-end-of-the-world-1.jpg)
+![Carol & The End of The World](/images/choice/carol-and-the-end-of-the-world-1.jpg)
 
 지구 종말까지 7개월 남은 시점에서 시작되는 애니메이션 시리즈 <종말에 대처하는 캐럴의 자세> (이하 <캐럴의 자세>)에는 재난 서사를 지탱하는 이론, 정치적 상황, 심지어 생존을 도모하는 인물들의 행위가 없다. 군대가 최소한의 질서를 유지하는 데 투입되었음을 짐작할 수 있으나 그뿐이다. 대다수의 인물은 카르페디엠을 외치며 아쉬움 없는 여생을 보낼 작정으로 보인다. 그 중에서도 이 시리즈는 쾌락 및 유희와 거리가 먼 회계법인 행정 직원 캐럴(마사 켈리)의 단조로운 일상을 조명한다. 이를 통해 전하려는 바는 명확해 보인다. 시간의 유한성이 새삼스러워진 이때, 자신이 진정 원하는 삶은 무엇인지 묻고 알아내라는 것. 그러면 타자와 세계, 궁극적으로는 나 자신과의 관계를 더 깊이 사고할 수 있게 된다는 것. 일단 이 접근이 시리즈를 가장 뭉클하게 감상하는 방법이다.
 
