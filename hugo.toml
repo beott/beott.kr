@@ -5,6 +5,7 @@ title = 'BEOTT'
 
 [params]
   main = [
+    "RECOMMEND",
     "CHOICE",
     "비옽 3호: 울타리 친 정원",
     "비옽 3호: SF",
