@@ -7,7 +7,7 @@ filmTitle = "<씨: 어둠의 나날> Apple TV+"
 date = "2025-04-28T22:20:00+09:00"
 tags = ["Apple TV+"]
 thumbnail = "/images/recommend/see-thumbnail.webp"
-group = "CHOICE"
+group = "RECOMMEND"
 +++
 
 ![Westworld](/images/recommend/see-1.webp)
