@@ -2,19 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://beott.kr/</loc>
+    <lastmod>2025-05-08T18:40:00+09:00</lastmod>
+  </url><url>
+    <loc>https://beott.kr/posts/</loc>
+    <lastmod>2025-05-08T18:40:00+09:00</lastmod>
+  </url><url>
+    <loc>https://beott.kr/tags/</loc>
+    <lastmod>2025-05-08T18:40:00+09:00</lastmod>
+  </url><url>
+    <loc>https://beott.kr/tags/watcha/</loc>
+    <lastmod>2025-05-08T18:40:00+09:00</lastmod>
+  </url><url>
+    <loc>https://beott.kr/posts/recommend/nagis-long-vacation/</loc>
+    <lastmod>2025-05-08T18:40:00+09:00</lastmod>
+  </url><url>
     <loc>https://beott.kr/tags/apple-tv&#43;/</loc>
     <lastmod>2025-04-28T22:20:00+09:00</lastmod>
   </url><url>
-    <loc>https://beott.kr/</loc>
-    <lastmod>2025-04-28T22:20:00+09:00</lastmod>
-  </url><url>
-    <loc>https://beott.kr/posts/</loc>
-    <lastmod>2025-04-28T22:20:00+09:00</lastmod>
-  </url><url>
-    <loc>https://beott.kr/tags/</loc>
-    <lastmod>2025-04-28T22:20:00+09:00</lastmod>
-  </url><url>
-    <loc>https://beott.kr/posts/recommend/gannibal/</loc>
+    <loc>https://beott.kr/posts/recommend/see/</loc>
     <lastmod>2025-04-28T22:20:00+09:00</lastmod>
   </url><url>
     <loc>https://beott.kr/tags/disney&#43;/</loc>

@@ -10,7 +10,7 @@ thumbnail = "/images/recommend/see-thumbnail.webp"
 group = "RECOMMEND"
 +++
 
-![Westworld](/images/recommend/see-1.webp)
+![See](/images/recommend/see-1.webp)
 
 애플티비의 <씨 : 어둠의 나날>(이하 '어둠의 나날')은 인간의 시각 능력이 소멸해버린 세계를 재현한다. 갑자기 모든 인류가 바이러스에 걸려 시력을 잃고, 오랜 시간이 지나 시력 자체가 그저 미신이 되어버린 세계가 존재하는 것이다. 시각의 부재로 인해 화려한 기술문명을 이룬 인류는 사라지고, 미신과 야만이 지배하는 원시적 문화가 만개한다.
 
