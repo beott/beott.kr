@@ -64,6 +64,10 @@ group = "비옽 1호: 모니터 앞 파수꾼들"
 
 ## Styling Rules (`assets/sass/index.scss`)
 
+### Accessibility
+
+- 공통 레이아웃(`baseof.html`)은 `header` / `main` / `footer` 랜드마크를 유지한다. PageSpeed Insights 접근성 항목이다.
+
 ### Typography
 
 - font-size는 파일 상단의 `$font-size-*` 변수만 사용한다. 변수는 `clamp(최소, 선호값, 최대)`와 `rem`으로 정의한다.
@@ -86,12 +90,14 @@ group = "비옽 1호: 모니터 앞 파수꾼들"
 - breakpoint는 모바일 `≤767px`, 태블릿 `768–1500px`, 데스크톱 `≥1501px` 세 가지다. 레이아웃과 여백 차이에만 사용한다.
 - 글 본문 폭은 `min(85vw, $article-max-width)`(720px)로 가운데 정렬한다. 모바일/태블릿 이미지는 `100vw` full-bleed다.
 - 랜딩 썸네일(`.post-item-image`)은 `aspect-ratio: 16 / 9`로 폭에서 높이를 계산한다. **높이를 고정값(`vh`, `px`)으로 지정하지 않는다.** 한 줄당 개수는 `index.html`의 Swiper `slidesPerView`에서 조정한다.
+- Swiper `breakpoints`의 `slidesPerView`/`spaceBetween`을 바꾸면 `index.scss`의 `.swiper-slide` 초기 `width`/`margin-right`도 같은 값으로 수정한다. 어긋나면 JS 초기화 시점에 레이아웃이 밀려 CLS가 나빠진다.
 - 터치 대상(버튼)은 최소 44px(`2.75rem`)을 유지한다. 예: `$copy-button-size`.
 
 ### Color
 
 - 포인트 색상은 `$base-color`(`#da322e`), `$base-color-dark`(`#b22a27`)를 사용한다.
 - 배경은 `#141414`, 본문 텍스트는 `#fff`, 헤더/섹션 제목은 `#e5e5e5`다.
+- 이미지 로딩 전 자리 표시는 `$placeholder-color`(썸네일), `$hero-placeholder-color`(히어로)를 사용한다. 스켈레톤 애니메이션은 쓰지 않는다. 정적 사이트라 늦게 오는 건 이미지뿐이다.
 
 ## Verification
 

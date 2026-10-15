@@ -1,6 +1,9 @@
 // @import "modules/reset";
 $base-color: #da322e;
 $base-color-dark: #b22a27;
+// 이미지 로딩 전 자리 표시 색 (페이지 배경 #141414보다 약간 밝게)
+$placeholder-color: #2a2a2a;
+$hero-placeholder-color: #1f1f1f;
 
 // 타이포 스케일: clamp(최소, 선호값, 최대)로 화면 크기에 따라 자연스럽게 조정
 // 본문 16px → 18px
@@ -38,6 +41,7 @@ $article-max-width: 720px;
 @font-face {
   font-family: "NanumSquareNeo";
   src: url("/font/NanumSquareNeoTTF-bRg.woff2") format("woff2");
+  font-display: swap;
 }
 html {
   // 브라우저 기본 글꼴 크기(보통 16px)를 존중
@@ -242,6 +246,8 @@ header {
     background-size: cover; // contain, cover
     background-position: center;
     background-repeat: no-repeat;
+    // 히어로 이미지 로딩 전 자리 표시
+    background-color: $hero-placeholder-color;
   }
 }
 
@@ -295,6 +301,20 @@ header {
     //       }
       // 슬라이드 높이를 썸네일 비율에 맞춤 (Swiper 기본값 height: 100% 대체)
       height: auto;
+      // Swiper 초기화 전에도 최종 크기로 그려 레이아웃 이동(CLS) 방지
+      // 슬라이드 개수/간격은 layouts/_default/index.html의 Swiper breakpoints와 같은 값 유지
+      width: calc((100% - 5px) / 2);
+      margin-right: 5px;
+      @media (min-width: 768px) {
+        width: calc((100% - 2 * 10px) / 3);
+        margin-right: 10px;
+      }
+      @media (min-width: 1024px) {
+        width: calc((100% - 3 * 10px) / 4);
+      }
+      @media (min-width: 1500px) {
+        width: calc((100% - 4 * 10px) / 5);
+      }
       & > a {
         display: block;
       }
@@ -305,6 +325,8 @@ header {
         // position: absolute; // absolute하면 overlay-title이 짤리는 화면 사이즈가 있음
         background: no-repeat center;
         background-size: cover;
+        // 썸네일 로딩 전 자리 표시 (background 단축 속성 뒤에 둬야 초기화되지 않음)
+        background-color: $placeholder-color;
         border-radius: 1px;
 
         &::after {
