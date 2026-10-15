@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Prime Video on BEOTT</title>
-    <link>https://beott.kr/tags/prime-video/</link>
-    <description>Recent content in Prime Video on BEOTT</description>
-    <generator>Hugo</generator>
-    <language>ko</language>
-    <lastBuildDate>Sat, 02 Nov 2024 00:00:00 +0900</lastBuildDate>
-    <atom:link href="https://beott.kr/tags/prime-video/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>안노 히데아키는 에반게리온을 어떻게 끝내려하는가?</title>
-      <link>https://beott.kr/posts/1/evangelion/</link>
-      <pubDate>Sat, 02 Nov 2024 00:00:00 +0900</pubDate>
-      <guid>https://beott.kr/posts/1/evangelion/</guid>
-      <description>&lt;p&gt;&lt;img src=&#34;https://beott.kr/images/1/evangelion-1.webp&#34; alt=&#34;Evangelion 2021&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&amp;lt;신 에반게리온 극장판&amp;gt;(2021)의 결말을 생각해보았다. 중학생 때 에반게리온을 처음 접한 뒤 이 이야기의 결말을 계속 상상했고, 몇 개의 결말(TV판 결말, 1997년 &amp;lt;엔드 오브 에반게리온&amp;gt;의 결말, 만화책의 결말)을 실제로 보기도 했지만, 이런 식의 결말은 전혀 예상하지 못했다. 이제야 말로 에반게리온은 정말 끝났다고 선언하는 것 같은 &amp;lt;신 에반게리온 극장판&amp;gt;을 본 뒤 복잡한 생각과 감정이 찾아왔고 이를 좀 더 고민해보고 싶어졌다.&lt;/p&gt;&#xA;&lt;p&gt;한 편의 픽션 영화는 필연적으로 어떤 세계를 만든다는 전제에서 시작해보자. 이 세계는 물론 진짜가 아닌 가상의 허구이다. 그렇다면 관객은 어떻게 이런 허구를 보며 감동을 느끼는 걸까? 다시 말해 우리는 왜 &amp;lt;신 에반게리온 극장판&amp;gt;의 신지가 본인의 의지로 에바에 타겠다고 말할 때나, 미사토가 죽음을 각오하고 싸움에 나설 때 마음이 움직이는 걸까? 냉정하게 말하면 이들은 그저 픽션 속 가상의 인물이며, 심지어 실제 배우가 연기한 인물도 아닌 애니메이션 캐릭터일 뿐인데 말이다.&lt;/p&gt;</description>
-    </item>
-  </channel>
+	<channel>
+		<title>Prime Video on BEOTT</title>
+		<link>https://beott.kr/tags/prime-video/</link>
+		<description>Recent content in Prime Video on BEOTT</description>
+		<generator>Hugo</generator>
+		<language>ko</language>
+		
+		
+		
+		
+			<lastBuildDate>Sat, 02 Nov 2024 00:00:00 +0900</lastBuildDate>
+		
+			<atom:link href="https://beott.kr/tags/prime-video/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>안노 히데아키는 에반게리온을 어떻게 끝내려하는가?</title>
+				<link>https://beott.kr/posts/1/evangelion/</link>
+				<pubDate>Sat, 02 Nov 2024 00:00:00 +0900</pubDate>
+				<guid>https://beott.kr/posts/1/evangelion/</guid>
+				<description>&lt;p&gt;&lt;img src=&#34;https://beott.kr/images/1/evangelion-1.webp&#34; alt=&#34;Evangelion 2021&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&amp;lt;신 에반게리온 극장판&amp;gt;(2021)의 결말을 생각해보았다. 중학생 때 에반게리온을 처음 접한 뒤 이 이야기의 결말을 계속 상상했고, 몇 개의 결말(TV판 결말, 1997년 &amp;lt;엔드 오브 에반게리온&amp;gt;의 결말, 만화책의 결말)을 실제로 보기도 했지만, 이런 식의 결말은 전혀 예상하지 못했다. 이제야 말로 에반게리온은 정말 끝났다고 선언하는 것 같은 &amp;lt;신 에반게리온 극장판&amp;gt;을 본 뒤 복잡한 생각과 감정이 찾아왔고 이를 좀 더 고민해보고 싶어졌다.&lt;/p&gt;&#xA;&lt;p&gt;한 편의 픽션 영화는 필연적으로 어떤 세계를 만든다는 전제에서 시작해보자. 이 세계는 물론 진짜가 아닌 가상의 허구이다. 그렇다면 관객은 어떻게 이런 허구를 보며 감동을 느끼는 걸까? 다시 말해 우리는 왜 &amp;lt;신 에반게리온 극장판&amp;gt;의 신지가 본인의 의지로 에바에 타겠다고 말할 때나, 미사토가 죽음을 각오하고 싸움에 나설 때 마음이 움직이는 걸까? 냉정하게 말하면 이들은 그저 픽션 속 가상의 인물이며, 심지어 실제 배우가 연기한 인물도 아닌 애니메이션 캐릭터일 뿐인데 말이다.&lt;/p&gt;</description>
+			</item>
+	</channel>
 </rss>

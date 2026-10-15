@@ -2,6 +2,24 @@
 $base-color: #da322e;
 $base-color-dark: #b22a27;
 
+// 타이포 스케일: clamp(최소, 선호값, 최대)로 화면 크기에 따라 자연스럽게 조정
+// 본문 16px → 18px
+$font-size-body: clamp(1rem, 0.95rem + 0.2vw, 1.125rem);
+// 글 제목 28px → 40px
+$font-size-post-title: clamp(1.75rem, 1.5rem + 1vw, 2.5rem);
+// 본문 내 h1 20px → 24px
+$font-size-post-heading: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+// 작성자/영화 제목 15px → 17px
+$font-size-post-meta: clamp(0.9375rem, 0.9rem + 0.15vw, 1.0625rem);
+// 메인 슬라이더 섹션 제목 18px → 24px
+$font-size-row-title: clamp(1.125rem, 1rem + 0.5vw, 1.5rem);
+// 썸네일 오버레이 제목 14px → 18px
+$font-size-overlay-title: clamp(0.875rem, 0.8rem + 0.3vw, 1.125rem);
+// 헤더 네비게이션 16px → 18px
+$font-size-nav: clamp(1rem, 0.95rem + 0.2vw, 1.125rem);
+$font-size-copy-message: 0.9375rem;
+$article-max-width: 720px;
+
 :root {
   // https://swiperjs.com/swiper-api#navigation
   --swiper-theme-color: #fff !important;
@@ -24,7 +42,8 @@ $base-color-dark: #b22a27;
   src: url("/font/NanumSquareNeoTTF-bRg.woff2") format("woff2");
 }
 html {
-  font-size: 16px;
+  // 브라우저 기본 글꼴 크기(보통 16px)를 존중
+  font-size: 100%;
   font-family: "NanumSquareNeo", sans-serif;
 }
 body {
@@ -54,19 +73,8 @@ br.paragraph {
   header {
     nav {
       a {
-        font-size: 16px;
         padding-left: 15px;
       }
-    }
-  }
-  .swiper {
-    .row-header-title {
-      font-size: 1.35em;
-    }
-  }
-  .post-item-image {
-    .overlay-title {
-      font-size: 1.15em;
     }
   }
   /* 메인 히어로 이미지 스타일 */
@@ -83,16 +91,9 @@ br.paragraph {
     position: relative;
   }
   article {
-    width: 85vw;
-    left: 7.5vw;
     // letter-spacing: 0.01em;
     // word-spacing: -0.08em;
-    .post-title {
-      font-size: 2.25em;
-      font-weight: bold;
-    }
     .post-contents {
-      line-height: 1.65;
       img {
         width: 100vw; /* 전체 뷰포트 너비로 설정 */
         margin-left: calc(
@@ -103,26 +104,10 @@ br.paragraph {
         border-radius: 5px;
         padding: 3vh 0;
       }
-      & > ul {
-        font-size: 1.15em;
-      }
-      & > blockquote > p,
-      & > p {
-        font-weight: 400;
-        font-size: 1.15em;
-        padding-bottom: 1.8vh;
-      }
     }
     .author,
     .film-title {
-      font-size: 1.15em;
       margin-bottom: 1vh;
-    }
-    li {
-      font-size: 1.15em;
-    }
-    #copy-message {
-      font-size: 1.05em;
     }
   }
 }
@@ -132,19 +117,8 @@ br.paragraph {
   header {
     nav {
       a {
-        font-size: 16px;
         padding-left: 15px;
       }
-    }
-  }
-  .swiper {
-    .row-header-title {
-      font-size: 1.95em;
-    }
-  }
-  .post-item-image {
-    .overlay-title {
-      font-size: 1.45em;
     }
   }
   /* 메인 히어로 이미지 스타일 */
@@ -161,16 +135,9 @@ br.paragraph {
     position: relative;
   }
   article {
-    width: 85vw;
-    left: 7.5vw;
     // letter-spacing: 0.01em;
     // word-spacing: -0.08em;
-    .post-title {
-      font-size: 2.95em;
-      font-weight: bold;
-    }
     .post-contents {
-      line-height: 1.65;
       img {
         width: 100vw; /* 전체 뷰포트 너비로 설정 */
         margin-left: calc(
@@ -181,26 +148,10 @@ br.paragraph {
         border-radius: 5px;
         padding: 3vh 0;
       }
-      & > ul {
-        font-size: 1.65em;
-      }
-      & > blockquote > p,
-      & > p {
-        font-weight: 400;
-        font-size: 24px;
-        padding-bottom: 1.8vh;
-      }
     }
     .author,
     .film-title {
-      font-size: 2.05em;
       margin-bottom: 1vh;
-    }
-    li {
-      font-size: 26px;
-    }
-    #copy-message {
-      font-size: 1.5em;
     }
   }
   .swiper-button-prev,
@@ -220,19 +171,8 @@ br.paragraph {
   header {
     nav {
       a {
-        font-size: 21px;
         padding-left: 30px;
       }
-    }
-  }
-  .swiper {
-    .row-header-title {
-      font-size: 2.05em;
-    }
-  }
-  .post-item-image {
-    .overlay-title {
-      font-size: 1.75em;
     }
   }
   /* 메인 히어로 이미지 스타일 */
@@ -248,14 +188,7 @@ br.paragraph {
     position: relative;
   }
   article {
-    width: 70vw;
-    left: 15vw;
-    .post-title {
-      font-size: 3.75em;
-      font-weight: bold;
-    }
     .post-contents {
-      line-height: 1.65;
       word-break: keep-all;
       // word-spacing: -0.1em;
       img {
@@ -266,26 +199,10 @@ br.paragraph {
         border-radius: 5px;
         padding: 3vh 0;
       }
-      & > ul {
-        font-size: 1.85em;
-      }
-      & > blockquote > p,
-      & > p {
-        font-weight: 400;
-        font-size: 26px;
-        padding-bottom: 1.8vh;
-      }
     }
     .author,
     .film-title {
-      font-size: 2.05em;
       margin-bottom: 1.5vh;
-    }
-    li {
-      font-size: 24px;
-    }
-    #copy-message {
-      font-size: 1.5em;
     }
   }
   .swiper-button-prev,
@@ -302,32 +219,6 @@ br.paragraph {
   }
 }
 
-// FHD
-@media (min-width: 1920px) {
-  article {
-    width: 60vw;
-    left: 20vw;
-    p {
-      font-size: 26px;
-    }
-  }
-}
-// QHD: 2K
-@media (min-width: 2560px) {
-  article {
-    p {
-      font-size: 26px;
-    }
-  }
-}
-// UHD: 4K
-@media (min-width: 3840px) {
-  article {
-    p {
-      font-size: 28px;
-    }
-  }
-}
 a {
   text-decoration: none;
   color: $base-color;
@@ -365,6 +256,7 @@ header {
     display: flex;
     gap: 15px;
     a {
+      font-size: $font-size-nav;
       color: #e5e5e5;
       text-decoration: none;
       opacity: 0.8;
@@ -406,13 +298,13 @@ header {
   // box-sizing: border-box;
 
   .row-header-title {
+    font-size: $font-size-row-title;
     color: #e5e5e5;
     margin: 0;
     font-weight: 500;
   }
 
   .swiper-wrapper {
-    height: 18vh;
     padding-top: 1vh;
     padding-bottom: 4vh;
     //     display: flex;
@@ -441,11 +333,15 @@ header {
     //         transform: scale(1.05);
     //         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
     //       }
+      // 슬라이드 높이를 썸네일 비율에 맞춤 (Swiper 기본값 height: 100% 대체)
+      height: auto;
+      & > a {
+        display: block;
+      }
       .post-item-image {
         width: 100%;
-        height: 100%;
-        // height: auto;
-        // aspect-ratio: 16/9; // 4:3 비율 설정
+        // 슬라이드 폭에 따라 높이가 정해지므로 어떤 화면에서도 16:9 유지
+        aspect-ratio: 16 / 9;
         // position: absolute; // absolute하면 overlay-title이 짤리는 화면 사이즈가 있음
         background: no-repeat center;
         background-size: cover;
@@ -462,6 +358,7 @@ header {
           pointer-events: none; /* 클릭 이벤트가 하위 요소로 전달되도록 */
         }
         & > .overlay-title {
+          font-size: $font-size-overlay-title;
           width: 100%;
           position: absolute;
           padding: 1px 8px;
@@ -477,15 +374,28 @@ header {
 }
 
 article {
+  width: min(85vw, $article-max-width);
+  margin: 0 auto;
   color: #fff;
   position: relative;
   top: 9vh;
   padding-bottom: 10vh;
 
   .post-title {
+    font-size: $font-size-post-title;
+    font-weight: bold;
     text-align: center;
     padding-top: 3.75vh;
     unicode-bidi: isolate;
+  }
+  .post-contents {
+    font-size: $font-size-body;
+    line-height: 1.75;
+    & > blockquote > p,
+    & > p {
+      font-weight: 400;
+      padding-bottom: 1.8vh;
+    }
   }
   // .post-contents {
   //   text-align: justify;
@@ -522,6 +432,7 @@ article {
     }
   }
   #copy-message {
+    font-size: $font-size-copy-message;
     padding-top: 1vh;
     display: none;
     color: $base-color;
@@ -529,6 +440,7 @@ article {
   }
   .author,
   .film-title {
+    font-size: $font-size-post-meta;
     font-weight: 400;
     text-align: center;
     // width: 50%;
@@ -543,7 +455,7 @@ article {
     padding-top: 3vh;
   }
   h1 {
-    font-size: 26px;
+    font-size: $font-size-post-heading;
   }
 }
 

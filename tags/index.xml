@@ -1,61 +1,66 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Tags on BEOTT</title>
-    <link>https://beott.kr/tags/</link>
-    <description>Recent content in Tags on BEOTT</description>
-    <generator>Hugo</generator>
-    <language>ko</language>
-    <lastBuildDate>Tue, 01 Jul 2025 20:00:00 +0900</lastBuildDate>
-    <atom:link href="https://beott.kr/tags/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Netflix</title>
-      <link>https://beott.kr/tags/netflix/</link>
-      <pubDate>Tue, 01 Jul 2025 20:00:00 +0900</pubDate>
-      <guid>https://beott.kr/tags/netflix/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>WATCHA</title>
-      <link>https://beott.kr/tags/watcha/</link>
-      <pubDate>Thu, 08 May 2025 18:40:00 +0900</pubDate>
-      <guid>https://beott.kr/tags/watcha/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Apple TV&#43;</title>
-      <link>https://beott.kr/tags/apple-tv&#43;/</link>
-      <pubDate>Mon, 28 Apr 2025 22:20:00 +0900</pubDate>
-      <guid>https://beott.kr/tags/apple-tv&#43;/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Disney&#43;</title>
-      <link>https://beott.kr/tags/disney&#43;/</link>
-      <pubDate>Mon, 28 Apr 2025 22:10:00 +0900</pubDate>
-      <guid>https://beott.kr/tags/disney&#43;/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>OTT</title>
-      <link>https://beott.kr/tags/ott/</link>
-      <pubDate>Fri, 21 Mar 2025 12:30:00 +0900</pubDate>
-      <guid>https://beott.kr/tags/ott/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Wavve</title>
-      <link>https://beott.kr/tags/wavve/</link>
-      <pubDate>Thu, 13 Mar 2025 00:05:00 +0900</pubDate>
-      <guid>https://beott.kr/tags/wavve/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Prime Video</title>
-      <link>https://beott.kr/tags/prime-video/</link>
-      <pubDate>Sat, 02 Nov 2024 00:00:00 +0900</pubDate>
-      <guid>https://beott.kr/tags/prime-video/</guid>
-      <description></description>
-    </item>
-  </channel>
+	<channel>
+		<title>Tags on BEOTT</title>
+		<link>https://beott.kr/tags/</link>
+		<description>Recent content in Tags on BEOTT</description>
+		<generator>Hugo</generator>
+		<language>ko</language>
+		
+		
+		
+		
+			<lastBuildDate>Tue, 01 Jul 2025 20:00:00 +0900</lastBuildDate>
+		
+			<atom:link href="https://beott.kr/tags/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Netflix</title>
+				<link>https://beott.kr/tags/netflix/</link>
+				<pubDate>Tue, 01 Jul 2025 20:00:00 +0900</pubDate>
+				<guid>https://beott.kr/tags/netflix/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>WATCHA</title>
+				<link>https://beott.kr/tags/watcha/</link>
+				<pubDate>Thu, 08 May 2025 18:40:00 +0900</pubDate>
+				<guid>https://beott.kr/tags/watcha/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Apple TV&#43;</title>
+				<link>https://beott.kr/tags/apple-tv&#43;/</link>
+				<pubDate>Mon, 28 Apr 2025 22:20:00 +0900</pubDate>
+				<guid>https://beott.kr/tags/apple-tv&#43;/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Disney&#43;</title>
+				<link>https://beott.kr/tags/disney&#43;/</link>
+				<pubDate>Mon, 28 Apr 2025 22:10:00 +0900</pubDate>
+				<guid>https://beott.kr/tags/disney&#43;/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>OTT</title>
+				<link>https://beott.kr/tags/ott/</link>
+				<pubDate>Fri, 21 Mar 2025 12:30:00 +0900</pubDate>
+				<guid>https://beott.kr/tags/ott/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Wavve</title>
+				<link>https://beott.kr/tags/wavve/</link>
+				<pubDate>Thu, 13 Mar 2025 00:05:00 +0900</pubDate>
+				<guid>https://beott.kr/tags/wavve/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Prime Video</title>
+				<link>https://beott.kr/tags/prime-video/</link>
+				<pubDate>Sat, 02 Nov 2024 00:00:00 +0900</pubDate>
+				<guid>https://beott.kr/tags/prime-video/</guid>
+				<description></description>
+			</item>
+	</channel>
 </rss>
