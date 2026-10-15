@@ -4,7 +4,7 @@
   <div class="swiper-wrapper">
     {{ range sort ( where site.RegularPages "Section" "posts" ) "Date" "desc" | first 5 }}
       <div class="swiper-slide">
-        <a href="{{.RelPermalink}}" class="hero-link">
+        <a href="{{.RelPermalink}}" class="hero-link" aria-label="{{ .Title }}">
           <div class="hero-slide" style="background-image: url('{{ .Params.thumbnail }}')" loading="lazy"></div>
         </a>
       </div>

@@ -67,6 +67,7 @@ group = "비옽 1호: 모니터 앞 파수꾼들"
 ### Accessibility
 
 - 공통 레이아웃(`baseof.html`)은 `header` / `main` / `footer` 랜드마크를 유지한다. PageSpeed Insights 접근성 항목이다.
+- 텍스트 없이 이미지(배경 이미지 포함)만 있는 링크는 `aria-label`로 이름을 준다. 예: 히어로 슬라이드의 `a.hero-link`.
 
 ### Typography
 
