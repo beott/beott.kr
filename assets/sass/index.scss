@@ -18,6 +18,8 @@ $font-size-overlay-title: clamp(0.875rem, 0.8rem + 0.3vw, 1.125rem);
 // 헤더 네비게이션 16px → 18px
 $font-size-nav: clamp(1rem, 0.95rem + 0.2vw, 1.125rem);
 $font-size-copy-message: 0.9375rem;
+// 링크 복사 버튼 44px (모바일 터치 타깃 권장 최소값)
+$copy-button-size: 2.75rem;
 $article-max-width: 720px;
 
 :root {
@@ -32,10 +34,6 @@ $article-max-width: 720px;
   background-color: $base-color-dark;
   color: #fff;
   // text-decoration: underline;
-}
-::-webkit-selection {
-  background-color: $base-color-dark;
-  color: #fff;
 }
 @font-face {
   font-family: "NanumSquareNeo";
@@ -77,19 +75,6 @@ br.paragraph {
       }
     }
   }
-  /* 메인 히어로 이미지 스타일 */
-  .hero-image {
-    height: 60vh; /* 화면 높이의 60%를 차지 */
-    // object-fit: cover;
-    background-size: cover; // 화면 상하단 짤림
-    background-position: center;
-    background-repeat: no-repeat;
-    // background-color: #713031;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-  }
   article {
     // letter-spacing: 0.01em;
     // word-spacing: -0.08em;
@@ -120,19 +105,6 @@ br.paragraph {
         padding-left: 15px;
       }
     }
-  }
-  /* 메인 히어로 이미지 스타일 */
-  .hero-image {
-    height: 60vh; /* 화면 높이의 60%를 차지 */
-    // object-fit: cover;
-    background-size: cover; // 화면 상하단 짤림
-    background-position: center;
-    background-repeat: no-repeat;
-    // background-color: #713031;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
   }
   article {
     // letter-spacing: 0.01em;
@@ -174,18 +146,6 @@ br.paragraph {
         padding-left: 30px;
       }
     }
-  }
-  /* 메인 히어로 이미지 스타일 */
-  .hero-image {
-    height: 60vh; /* 화면 높이의 60%를 차지 */
-    // background-size: cover; // 화면 상하단 짤림
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: #713031;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
   }
   article {
     .post-contents {
@@ -240,7 +200,6 @@ header {
   z-index: 1000;
 
   .logo {
-    font-size: 24px;
     color: #e5e5e5;
     // margin-right: auto;
     text-decoration: none;
@@ -292,7 +251,8 @@ header {
 
 .main-swiper {
   // width: 100%;
-  padding: 0 4%!important; /* 16:9 Aspect Ratio */
+  /* 좌우 여백 (Swiper 기본 padding 덮어쓰기) */
+  padding: 0 4%!important;
   // position: relative;
   // margin: 3vw 0;
   // box-sizing: border-box;
@@ -419,15 +379,14 @@ article {
     cursor: pointer;
     text-decoration: none;
     user-select: none;
-    width: 50px;
-    height: 50px;
-    // font-size: 1.55em;
+    width: $copy-button-size;
+    height: $copy-button-size;
     background-color: #dcdcdc;
     &:hover {
       background-color: #f0f0f0;
     }
     img {
-      width: 80%;
+      width: 50%;
       display: block;
     }
   }
