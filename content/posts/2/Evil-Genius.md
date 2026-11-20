@@ -1,14 +1,3 @@
-+++
-draft = false
-hideme = false
-title = "삼켜진 현실의 문제"
-author = "심미성"
-filmTitle = "<이블 지니어스: 누가 피자맨을 죽였나?> 넷플릭스"
-date = "2025-01-14T20:00:00+09:00"
-tags = ["Netflix"]
-thumbnail = "/images/2/Evil-Genius-thumbnail.jpg"
-group = "비옽 2호: MAPPING"
-+++
 
 ![Evil Genius](/images/2/Evil-Genius-1.jpg)
 

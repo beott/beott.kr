@@ -1,14 +1,3 @@
-+++
-draft = false
-hideme = false
-title = "부부는 어디에 있는가"
-author = "이보라"
-filmTitle = "<랜드스케이퍼스> Wavve"
-date = "2024-12-20T11:00:00+09:00"
-tags = ["Wavve"]
-thumbnail = "/images/2/landscapers-thumbnail.jpg"
-group = "비옽 2호: MAPPING"
-+++
 
 ![landscapers](/images/2/landscapers-1.jpg)
 

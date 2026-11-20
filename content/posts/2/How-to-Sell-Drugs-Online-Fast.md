@@ -1,14 +1,3 @@
-+++
-draft = false
-hideme = false
-title = "넷플릭스에서 마약을 파는 법"
-author = "정지돈"
-filmTitle = "<인터넷으로 마약을 파는 법> 넷플릭스"
-date = "2025-01-21T22:00:00+09:00"
-tags = ["Netflix"]
-thumbnail = "/images/2/How-to-Sell-Drugs-Online-Fast-thumbnail.jpg"
-group = "비옽 2호: MAPPING"
-+++
 
 ![How to Sell Drugs Online (Fast)](/images/2/How-to-Sell-Drugs-Online-Fast-1.jpg)
 

@@ -1,14 +1,3 @@
-+++
-draft = false
-hideme = false
-title = "나에게, 아니 당신에게, 그러니까… 나 이면서 당신인 그대에게"
-author = "구형준"
-filmTitle = "<세브란스: 단절> Apple TV+"
-date = "2025-02-16T23:16:00+09:00"
-tags = ["Apple TV+"]
-thumbnail = "/images/3/severance-thumbnail.jpg"
-group = "비옽 3호: SF"
-+++
 
 ![Severance](/images/3/severance-1.jpg)
 

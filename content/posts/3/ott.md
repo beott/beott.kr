@@ -1,14 +1,3 @@
-+++
-draft = false
-hideme = false
-title = "OTT SF 장르 시리즈물로부터 배울 수 있는 것들"
-author = "이동윤"
-filmTitle = ""
-date = "2025-03-21T12:30:00+09:00"
-tags = ["OTT"]
-thumbnail = "/images/3/ott-thumbnail.jpg"
-group = "비옽 3호: 울타리 친 정원"
-+++
 
 ![Over-the-top media service](/images/3/ott-1.jpg)
 

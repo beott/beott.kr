@@ -1,14 +1,3 @@
-+++
-draft = false
-hideme = false
-title = "모호함, 하지만 흥미로움"
-author = "정지돈"
-filmTitle = "<웨스트월드> Wavve"
-date = "2025-03-13T00:05:00+09:00"
-tags = ["Wavve", ]
-thumbnail = "/images/3/westworld-thumbnail.jpg"
-group = "비옽 3호: 울타리 친 정원"
-+++
 
 ![Westworld](/images/3/westworld-1.jpg)
 

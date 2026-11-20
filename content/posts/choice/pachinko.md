@@ -1,14 +1,3 @@
-+++
-draft = false
-hideme = false
-title = "게임은 계속해야지"
-author = "한창욱"
-filmTitle = "<파친코> 시즌2 Apple TV+"
-date = "2025-04-05T19:00:00+09:00"
-tags = ["Apple TV+"]
-thumbnail = "/images/choice/pachinko-thumbnail.jpg"
-group = "CHOICE"
-+++
 
 ![Pachinko](/images/choice/pachinko-1.jpg)
 

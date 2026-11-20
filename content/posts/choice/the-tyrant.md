@@ -1,14 +1,3 @@
-+++
-draft = false
-hideme = false
-title = "박훈정과 시리즈라는 이종교배"
-author = "이우빈"
-filmTitle = "<폭군> Disney+"
-date = "2025-04-14T19:00:00+09:00"
-tags = ["Disney+"]
-thumbnail = "/images/choice/the-tyrant-thumbnail.jpg"
-group = "CHOICE"
-+++
 
 ![Carol & The End of The World](/images/choice/the-tyrant-1.jpg)
 

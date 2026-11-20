@@ -1,14 +1,3 @@
-+++
-draft = false
-hideme = false
-title = "무지도라와 장만옥. 그리고 알리시아 비칸데르"
-author = "구형준"
-filmTitle = "<이마 베프> Wavve"
-date = "2025-02-27T18:40:00+09:00"
-tags = ["Wavve"]
-thumbnail = "/images/3/irma-vep-thumbnail.jpg"
-group = "비옽 3호: 울타리 친 정원"
-+++
 
 ![Irma Vep](/images/3/irma-vep-1.jpg)
 

@@ -1,14 +1,3 @@
-+++
-draft = false
-hideme = false
-title = "노이즈라 하더라도"
-author = "한창욱"
-filmTitle = "<러시아 인형처럼> 넷플릭스"
-date = "2025-01-02T18:00:00+09:00"
-tags = ["Netflix"]
-thumbnail = "/images/2/russian-doll-thumbnail.jpg"
-group = "비옽 2호: MAPPING"
-+++
 
 ![landscapers](/images/2/russian-doll-1.jpg)
 

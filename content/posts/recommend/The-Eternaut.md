@@ -1,14 +1,3 @@
-+++
-draft = false
-hideme = false
-title = "안과 밖의 적대자"
-author = "한창욱"
-filmTitle = "<영원한 항해자 에테르나우타> Netflix"
-date = "2025-06-25T23:20:00+09:00"
-tags = ["Netflix"]
-thumbnail = "/images/recommend/the-eternaut-thumbnail.webp"
-group = "RECOMMEND"
-+++
 
 ![The Eternaut](/images/recommend/the-eternaut-1.webp)
 

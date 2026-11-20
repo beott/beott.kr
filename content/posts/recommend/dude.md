@@ -1,14 +1,3 @@
-+++
-draft = false
-hideme = false
-title = "사라진 남성, 남아있는 여성"
-author = "김민우"
-filmTitle = "<녀석들의 졸업백서> Netflix"
-date = "2025-05-26T18:00:00+09:00"
-tags = ["Netflix"]
-thumbnail = "/images/recommend/dude-thumbnail.jpg"
-group = "RECOMMEND"
-+++
 
 ![Dude](/images/recommend/dude-1.jpg)
 

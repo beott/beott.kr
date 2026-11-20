@@ -1,14 +1,3 @@
-+++
-draft = false
-hideme = false
-title = "휴식 이후의 삶"
-author = "이광호"
-filmTitle = "<나기의 휴식> WATCHA"
-date = "2025-05-08T18:40:00+09:00"
-tags = ["WATCHA"]
-thumbnail = "/images/recommend/nagis-long-vacation-thumbnail.jpg"
-group = "RECOMMEND"
-+++
 
 ![Nagi's Long Vacation](/images/recommend/nagis-long-vacation-1.png)
 

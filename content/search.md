@@ -1,7 +1,0 @@
-+++
-title = "검색"
-type = "search"
-hideme = true
-[build]
-  list = "never"
-+++

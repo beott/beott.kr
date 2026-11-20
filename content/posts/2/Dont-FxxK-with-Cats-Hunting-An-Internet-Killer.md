@@ -1,14 +1,3 @@
-+++
-draft = false
-hideme = false
-title = "관심과 관음, 그 사이의 사람들"
-author = "김민우"
-filmTitle = "<고양이는 건드리지 마라: 인터넷 킬러 사냥> 넷플릭스"
-date = "2025-01-04T22:00:00+09:00"
-tags = ["Netflix"]
-thumbnail = "/images/2/Dont-FxxK-with-Cats-Hunting-An-Internet-Killer-thumbnail.jpg"
-group = "비옽 2호: MAPPING"
-+++
 
 ![landscapers](/images/2/Dont-FxxK-with-Cats-Hunting-An-Internet-Killer-1.jpg)
 

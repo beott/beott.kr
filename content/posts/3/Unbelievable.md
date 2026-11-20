@@ -1,14 +1,3 @@
-+++
-draft = false
-hideme = false
-title = "문제는, 문제를 해결하는 것"
-author = "한창욱"
-filmTitle = "<믿을 수 없는 이야기> Netflix"
-date = "2025-03-02T22:00:00+09:00"
-tags = ["Netflix"]
-thumbnail = "/images/3/unbelievable-thumbnail.jpg"
-group = "비옽 3호: 울타리 친 정원"
-+++
 
 ![Unbelievable](/images/3/unbelievable-1.jpg)
 

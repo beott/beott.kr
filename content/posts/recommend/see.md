@@ -1,14 +1,3 @@
-+++
-draft = false
-hideme = false
-title = "야만의 두 얼굴"
-author = "한창욱"
-filmTitle = "<씨: 어둠의 나날> Apple TV+"
-date = "2025-04-28T22:20:00+09:00"
-tags = ["Apple TV+"]
-thumbnail = "/images/recommend/see-thumbnail.webp"
-group = "RECOMMEND"
-+++
 
 ![See](/images/recommend/see-1.webp)
 

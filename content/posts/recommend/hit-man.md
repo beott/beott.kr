@@ -1,14 +1,3 @@
-+++
-draft = false
-hideme = false
-title = "여기와 저기의 사이에서"
-author = "구형준"
-filmTitle = "<히트맨> Netflix"
-date = "2025-05-15T10:00:00+09:00"
-tags = ["Netflix"]
-thumbnail = "/images/recommend/hit-man-thumbnail.webp"
-group = "RECOMMEND"
-+++
 
 ![Hit Man](/images/recommend/hit-man-1.jpg)
 

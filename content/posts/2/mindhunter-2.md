@@ -1,14 +1,3 @@
-+++
-draft = false
-hideme = false
-title = "우리는 미친 사람을 좋아한다."
-author = "김민우"
-filmTitle = "<마인드헌터> 넷플릭스"
-date = "2024-11-27T12:00:00+09:00"
-tags = ["Netflix"]
-thumbnail = "/images/2/mindhunter-2-thumbnail.webp"
-group = "비옽 2호: 마인드헌터"
-+++
 
 ![Mindhunter](/images/2/mindhunter-2-1.webp)
 

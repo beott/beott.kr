@@ -1,14 +1,3 @@
-+++
-draft = false
-hideme = false
-title = "여전히 어두운 그곳"
-author = "한창욱"
-filmTitle = "<마인드헌터> 넷플릭스"
-date = "2024-11-26T12:00:00+09:00"
-tags = ["Netflix"]
-thumbnail = "/images/2/mindhunter-1-thumbnail.webp"
-group = "비옽 2호: 마인드헌터"
-+++
 
 ![Mindhunter](/images/2/mindhunter-1-1.webp)
 

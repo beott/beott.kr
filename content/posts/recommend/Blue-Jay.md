@@ -1,14 +1,3 @@
-+++
-draft = false
-hideme = false
-title = "작은 화면, 작은 영화"
-author = "이광호"
-filmTitle = "<블루 제이> Netflix"
-date = "2025-07-01T20:00:00+09:00"
-tags = ["Netflix"]
-thumbnail = "/images/recommend/blue-jay-thumbnail.jpg"
-group = "RECOMMEND"
-+++
 
 ![Blue Jay](/images/recommend/blue-jay-1.webp)
 

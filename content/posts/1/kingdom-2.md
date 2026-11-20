@@ -1,14 +1,3 @@
-+++
-draft = false
-hideme = false
-title = "싹둑 싹둑"
-author = "김민우"
-filmTitle = "<킹덤> 넷플릭스"
-date = "2024-10-02T00:00:00+09:00"
-tags = ["Netflix"]
-thumbnail = "/images/1/kingdom-2-thumbnail.webp"
-group = "비옽 1호: 킹덤"
-+++
 
 ![poster](/images/1/kingdom-2-1.webp)
 

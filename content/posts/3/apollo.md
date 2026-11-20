@@ -1,14 +1,3 @@
-+++
-draft = false
-hideme = false
-title = "나의 (조작된) 추억을 사랑하겠어!"
-author = "김민우"
-filmTitle = "<아폴로 10 1/2> Netflix"
-date = "2025-02-21T23:18:00+09:00"
-tags = ["Netflix"]
-thumbnail = "/images/3/apollo-thumbnail.jpg"
-group = "비옽 3호: 울타리 친 정원"
-+++
 
 ![WandaVision](/images/3/apollo-1.jpg)
 

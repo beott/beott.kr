@@ -1,14 +1,3 @@
-+++
-draft = false
-hideme = false
-title = "세계의 동시적인 활동들"
-author = "변해빈"
-filmTitle = "<종말에 대처하는 캐럴의 자세> Netflix"
-date = "2025-04-08T19:00:00+09:00"
-tags = ["Netflix"]
-thumbnail = "/images/choice/carol-and-the-end-of-the-world-thumbnail.jpg"
-group = "CHOICE"
-+++
 
 ![Carol & The End of The World](/images/choice/carol-and-the-end-of-the-world-1.jpg)
 

@@ -1,14 +1,3 @@
-+++
-draft = false
-hideme = false
-title = "공명하는 세계"
-author = "심미성"
-filmTitle = "<OA> Netflix"
-date = "2025-02-24T12:20:00+09:00"
-tags = ["Netflix"]
-thumbnail = "/images/3/the-oa-thumbnail.jpg"
-group = "비옽 3호: 울타리 친 정원"
-+++
 
 ![The OA](/images/3/the-oa-1.jpg)
 

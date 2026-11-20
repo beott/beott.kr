@@ -1,8 +1,3 @@
-+++
-draft = false
-hideme = true
-title = 'Contact Us'
-+++
 
 - 문의 : mag.beott@gmail.com
 - 인스타그램 [@beott.mag](https://www.instagram.com/beott.mag/)

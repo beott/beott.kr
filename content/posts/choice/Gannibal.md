@@ -1,14 +1,3 @@
-+++
-draft = false
-hideme = false
-title = "놀러오세요 동물의 숲"
-author = "이광호"
-filmTitle = "<간니발> Disney+"
-date = "2025-04-28T22:10:00+09:00"
-tags = ["Disney+"]
-thumbnail = "/images/choice/Gannibal-thumbnail.png"
-group = "CHOICE"
-+++
 
 ![Westworld](/images/choice/Gannibal-1.webp)
 
