@@ -24,6 +24,11 @@ $font-size-copy-message: 0.9375rem;
 // 링크 복사 버튼 44px (모바일 터치 타깃 권장 최소값)
 $copy-button-size: 2.75rem;
 $article-max-width: 720px;
+// 검색 dialog·페이지 최대 폭과 배경
+$search-max-width: 720px;
+$search-surface-color: #1d1d1d;
+$search-hover-color: #2a2a2a;
+$search-muted-color: #b8b8b8;
 
 :root {
   // https://swiperjs.com/swiper-api#navigation
@@ -74,9 +79,17 @@ br.paragraph {
 @media (max-width: 767px) {
   header {
     nav {
+      margin-left: auto;
       a {
-        padding-left: 15px;
+        padding-left: 8px;
       }
+      // 로고가 홈 링크이므로 좁은 화면에서는 중복 Home 링크를 숨겨 검색 자리를 확보
+      .nav-home {
+        display: none;
+      }
+    }
+    .search-shortcut {
+      display: none;
     }
   }
   article {
@@ -202,6 +215,8 @@ header {
   top: 0;
   width: 100%;
   z-index: 1000;
+  // padding이 폭에 더해져 오른쪽이 화면 밖으로 밀리지 않게 헤더에만 한정
+  box-sizing: border-box;
 
   .logo {
     color: #e5e5e5;
@@ -217,7 +232,9 @@ header {
   }
   nav {
     display: flex;
+    align-items: center;
     gap: 15px;
+    min-width: 0;
     a {
       font-size: $font-size-nav;
       color: #e5e5e5;
@@ -445,4 +462,239 @@ footer {
   text-align: center;
   padding-top: 4vh;
   padding-bottom: 2vh;
+}
+
+// 검색 실행 링크: JS가 없으면 /search/로 이동하고, JS가 있으면 dialog를 연다
+header nav .search-launch {
+  display: inline-flex;
+  align-items: center;
+  min-height: $copy-button-size;
+  white-space: nowrap;
+  .search-shortcut {
+    margin-left: 6px;
+    padding: 1px 6px;
+    border: 1px solid rgba(229, 229, 229, 0.4);
+    border-radius: 4px;
+    font-size: $font-size-copy-message;
+  }
+}
+
+// 검색 dialog·페이지 공통 (search root 아래로 범위 한정)
+.site-search {
+  color: #fff;
+  box-sizing: border-box;
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
+  }
+  .search-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .search-title {
+    margin: 0;
+    color: #e5e5e5;
+    font-size: $font-size-row-title;
+    font-weight: 500;
+  }
+  .search-form {
+    margin-top: 12px;
+  }
+  .search-label {
+    display: block;
+    margin-bottom: 8px;
+    color: $search-muted-color;
+    font-size: $font-size-post-meta;
+  }
+  .search-input-row {
+    display: flex;
+    gap: 8px;
+  }
+  .search-input {
+    flex: 1 1 auto;
+    min-width: 0;
+    min-height: $copy-button-size;
+    padding: 0 12px;
+    border: 1px solid #555;
+    border-radius: 6px;
+    background-color: #141414;
+    color: #fff;
+    font-family: inherit;
+    // 16px 이상이어야 iOS Safari가 입력 시 확대하지 않음
+    font-size: $font-size-body;
+    &:focus {
+      outline: 2px solid $base-color;
+      outline-offset: 1px;
+      border-color: $base-color;
+    }
+  }
+  .search-submit,
+  .search-close,
+  .search-retry {
+    min-width: $copy-button-size;
+    min-height: $copy-button-size;
+    padding: 0 14px;
+    border: 0;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: $font-size-post-meta;
+    cursor: pointer;
+  }
+  .search-submit,
+  .search-retry {
+    background-color: $base-color;
+    color: #fff;
+    &:hover {
+      background-color: $base-color-dark;
+    }
+  }
+  .search-retry[hidden] {
+    display: none;
+  }
+  .search-close {
+    flex: 0 0 auto;
+    background-color: transparent;
+    color: #e5e5e5;
+    border: 1px solid #555;
+    &:hover {
+      background-color: $search-hover-color;
+    }
+  }
+  .search-status {
+    margin: 12px 0 8px;
+    color: $search-muted-color;
+    font-size: $font-size-post-meta;
+  }
+  .search-results {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .search-result + .search-result {
+    border-top: 1px solid #333;
+  }
+  .search-result-link {
+    display: block;
+    padding: 12px 8px;
+    border-radius: 6px;
+    color: #e5e5e5;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+    word-break: keep-all;
+    &:hover,
+    &:focus-visible {
+      background-color: $search-hover-color;
+    }
+    &:focus-visible {
+      outline: 2px solid $base-color;
+      outline-offset: -2px;
+    }
+  }
+  .search-result-title {
+    display: block;
+    color: #fff;
+    font-size: $font-size-body;
+    font-weight: bold;
+  }
+  .search-result-meta,
+  .search-result-snippet {
+    display: block;
+    margin-top: 4px;
+    font-size: $font-size-post-meta;
+    line-height: 1.5;
+  }
+  .search-result-meta {
+    color: $base-color;
+  }
+  .search-result-snippet {
+    color: $search-muted-color;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    overflow: hidden;
+  }
+  .search-hint {
+    margin: 12px 0 0;
+    color: $search-muted-color;
+    font-size: $font-size-copy-message;
+  }
+  .search-all {
+    display: inline-flex;
+    align-items: center;
+    min-height: $copy-button-size;
+    font-size: $font-size-post-meta;
+  }
+  .search-noscript {
+    font-size: $font-size-body;
+  }
+}
+
+.site-search--dialog {
+  width: min(92vw, $search-max-width);
+  max-width: none;
+  max-height: calc(100vh - 8vh);
+  max-height: calc(100dvh - 8vh);
+  margin: max(4vh, env(safe-area-inset-top)) auto auto;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background-color: $search-surface-color;
+  overflow: hidden;
+
+  &[open] {
+    display: flex;
+  }
+  &::backdrop {
+    background-color: rgba(0, 0, 0, 0.72);
+  }
+  .search-panel {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-height: inherit;
+    padding: 16px 20px 12px;
+  }
+  // 닫기 버튼·입력창은 고정하고 결과 목록만 스크롤
+  .search-results {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+}
+
+.site-search--page {
+  width: min(92vw, $search-max-width);
+  min-height: 70vh;
+  margin: 0 auto;
+  padding-top: calc(env(safe-area-inset-top) + 96px);
+  padding-bottom: 6vh;
+}
+
+@media (max-width: 767px) {
+  // 기본 header 규칙보다 뒤에 있어야 덮어쓸 수 있는 값
+  header {
+    padding: 12px 16px;
+    nav {
+      gap: 4px;
+    }
+  }
+  .site-search--dialog {
+    width: calc(100vw - 16px);
+    margin-top: max(8px, env(safe-area-inset-top));
+    .search-panel {
+      padding: 12px 12px 8px;
+    }
+    .search-hint {
+      display: none;
+    }
+  }
+  .site-search--page {
+    padding-top: calc(env(safe-area-inset-top) + 80px);
+  }
 }

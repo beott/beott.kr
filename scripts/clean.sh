@@ -6,6 +6,7 @@ printf "\033[38;5;45mRemove all generated files and directories...\033[38;5;15m\
 
 rm -rf \
   posts/ \
+  search/ \
   images/ \
   about/ \
   categories/ \
@@ -19,6 +20,7 @@ rm -rf \
   vendor/ \
   404.html \
   index.html \
+  index.json \
   index.xml \
   robots.txt \
   rss.xsl \

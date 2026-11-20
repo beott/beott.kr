@@ -2,6 +2,7 @@ Write-Host "Remove all generated files and directories..." -ForegroundColor Cyan
 
 Remove-Item -Force -Recurse -ErrorAction SilentlyContinue `
   "posts/", `
+  "search/", `
   "images/", `
   "about/", `
   "categories/", `
@@ -15,6 +16,7 @@ Remove-Item -Force -Recurse -ErrorAction SilentlyContinue `
   "vendor/", `
   "404.html", `
   "index.html", `
+  "index.json", `
   "index.xml", `
   "robots.txt", `
   "rss.xsl", `

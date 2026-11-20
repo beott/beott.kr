@@ -24,3 +24,6 @@ title = 'BEOTT'
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true # for raw HTML tag (ex: video)
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]

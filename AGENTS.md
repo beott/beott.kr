@@ -4,7 +4,7 @@
 
 ## Overview
 
-- Hugo extended (README 기준 `v0.136.2`) + Dart Sass
+- Hugo (검증 버전은 README 참고, 현재 `v0.170.0`) + Dart Sass
 - 테마 없이 `layouts/`에 직접 템플릿 작성
 - 슬라이더는 CDN의 Swiper 11 사용
 

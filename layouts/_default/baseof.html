@@ -55,11 +55,14 @@
       <img src="{{"images/beott-logo-red.webp" | relURL}}" alt="Beott">
     </a>
     <nav>
-      <a href="/">Home</a>
+      <a href="/" class="nav-home">Home</a>
       <a href="/about/">About</a>
       <a href="/contact-us/">Contact Us</a>
+      <a class="search-launch" href="{{ "search/" | relURL }}" data-search-launch>검색<span class="search-shortcut" aria-hidden="true" data-search-shortcut hidden></span></a>
     </nav>
   </header>
+
+  {{ partial "site-search.html" (dict "mode" "dialog") }}
 
   <main id="content">
     {{- block "main" . }}{{- end }}
@@ -68,6 +71,9 @@
   <footer>
     ©️ BEOTT
   </footer>
+  {{ with resources.Get "js/search.js" | js.Build (dict "targetPath" "js/search.js" "minify" true) | fingerprint }}
+  <script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous" defer></script>
+  {{ end }}
 </body>
 
 <script>
