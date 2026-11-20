@@ -1,12 +1,12 @@
 # make clean이 repo 루트에서 지우는 생성물 목록(한 줄에 하나, glob 허용).
 # Astro 빌드(dist/)를 루트로 복사한 결과와 예전 Hugo 생성물이다. 소스 디렉터리는 절대 넣지 않는다.
+# font/는 넣지 않는다: 루트에만 남아 있는 font/RIDIBatang.otf(예전 배포물)를 기존 clean처럼 보존한다.
 404.html
 about/
 categories/
 contact-us/
 css/
 favicon.ico
-font/
 images/
 index.html
 index.json
