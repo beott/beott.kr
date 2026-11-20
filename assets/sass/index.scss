@@ -558,9 +558,19 @@ header {
       $page-background-color 100%
     );
   }
+  // 모바일은 본문 첫 이미지가 화면 폭을 꽉 채워 바로 이어지므로, 더 길고 완만하게 페이드해 경계를 흐린다
   @media (max-width: 767px) {
-    height: 45vh;
-    min-height: 260px;
+    height: 52vh;
+    min-height: 300px;
+    &::after {
+      background: linear-gradient(
+        to bottom,
+        rgba($page-background-color, 0.25) 0%,
+        rgba($page-background-color, 0.45) 35%,
+        rgba($page-background-color, 0.85) 65%,
+        $page-background-color 88%
+      );
+    }
   }
 }
 
@@ -589,6 +599,10 @@ article {
     }
     .post-info {
       text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+      // 배경이 완전히 사라진 뒤 본문 이미지가 시작되도록 숨 쉴 간격을 둔다
+      @media (max-width: 767px) {
+        padding-bottom: 5vh;
+      }
     }
   }
 
