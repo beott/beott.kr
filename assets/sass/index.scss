@@ -446,7 +446,7 @@ header {
       // 슬라이드 높이를 썸네일 비율에 맞춤 (Swiper 기본값 height: 100% 대체)
       height: auto;
       // Swiper 초기화 전에도 최종 크기로 그려 레이아웃 이동(CLS) 방지
-      // 슬라이드 개수/간격은 layouts/_default/index.html의 Swiper breakpoints와 같은 값 유지
+      // 슬라이드 개수/간격은 src/pages/index.astro의 Swiper breakpoints와 같은 값 유지
       width: calc((100% - 5px) / 2);
       margin-right: 5px;
       @media (min-width: 768px) {
