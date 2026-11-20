@@ -1,0 +1,1 @@
+var e=document.querySelector(`body > header`);if(e){let t=!1,n=()=>{e.classList.toggle(`is-scrolled`,window.scrollY>0),t=!1};window.addEventListener(`scroll`,()=>{t||(t=!0,window.requestAnimationFrame(n))},{passive:!0}),n()}
