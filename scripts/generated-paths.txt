@@ -1,0 +1,28 @@
+# make clean이 repo 루트에서 지우는 생성물 목록(한 줄에 하나, glob 허용).
+# Astro 빌드(dist/)를 루트로 복사한 결과와 예전 Hugo 생성물이다. 소스 디렉터리는 절대 넣지 않는다.
+404.html
+about/
+categories/
+contact-us/
+css/
+favicon.ico
+font/
+images/
+index.html
+index.json
+index.xml
+js/
+manifest.json
+media/
+page/
+post.min.*.js
+posts/
+resources/
+robots.txt
+rss.xsl
+scss/
+search/
+series/
+sitemap.xml
+tags/
+vendor/

@@ -1,3 +1,5 @@
 Write-Host "Running..." -ForegroundColor Magenta
 
-hugo server --contentDir=content --bind=0.0.0.0 --baseURL=http://127.0.0.1
+Set-Location (Join-Path $PSScriptRoot "..")
+if (-not (Test-Path "node_modules")) { npm ci }
+npx astro dev --host 0.0.0.0

@@ -1,13 +1,17 @@
 {
-  "name": "beott-search-tests",
+  "name": "beott-kr",
   "private": true,
   "type": "module",
   "scripts": {
+    "dev": "astro dev --host 0.0.0.0",
+    "build": "astro build",
+    "preview": "astro preview",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --runInBand",
-    "test:integration": "node scripts/test-search-build.mjs"
+    "test:integration": "node scripts/test-search-build.mjs",
+    "compare": "node scripts/compare-builds.mjs"
   },
   "engines": {
-    "node": ">=22"
+    "node": ">=22.23.4"
   },
   "jest": {
     "testEnvironment": "node",

@@ -1,6 +1,6 @@
-/** 실제 Hugo 출력과 외부 콘텐츠 fixture로 검색 색인의 공개 정책·갱신을 검증합니다. */
+/** 실제 Astro 빌드와 외부 콘텐츠 fixture로 검색 색인의 공개 정책·갱신과 주요 출력을 검증합니다. */
 import assert from "node:assert/strict";
-import { mkdtemp, cp, readFile, writeFile, mkdir, stat } from "node:fs/promises";
+import { cp, mkdir, mkdtemp, readFile, realpath, rm, stat, symlink, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -8,23 +8,21 @@ import { spawnSync } from "node:child_process";
 import { gzipSync } from "node:zlib";
 
 const source = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const temporary = await mkdtemp(join(tmpdir(), "beott-search-build-"));
+// macOS의 /var → /private/var 심볼릭 링크 때문에 Vite 모듈 경로가 어긋나지 않도록 실제 경로를 씁니다.
+const temporary = await realpath(await mkdtemp(join(tmpdir(), "beott-search-build-")));
 const fixture = join(temporary, "site");
+const output = join(fixture, "dist");
 await mkdir(fixture);
-for (const path of ["hugo.toml", "layouts", "assets", "static", "content"]) {
+for (const path of ["astro.config.mjs", "package.json", "src", "assets", "public", "content"]) {
   await cp(join(source, path), join(fixture, path), { recursive: true });
 }
+await symlink(join(source, "node_modules"), join(fixture, "node_modules"), "dir");
 
-/** 저장소에 산출물을 쓰지 않고 격리된 Hugo 빌드를 실행합니다. */
-function build(extra = []) {
-  const result = spawnSync("hugo", [
-    "--source", fixture,
-    "--destination", join(temporary, "public"),
-    "--cacheDir", join(temporary, "cache"),
-    "--noBuildLock",
-    ...extra,
-  ], {
-    env: { ...process.env, HUGO_RESOURCEDIR: join(temporary, "resources") },
+/** 저장소에 산출물을 쓰지 않고 격리된 Astro 빌드를 실행합니다. */
+function build() {
+  const result = spawnSync(process.execPath, [join(source, "node_modules/astro/bin/astro.mjs"), "build", "--root", fixture], {
+    cwd: fixture,
+    env: { ...process.env, ASTRO_TELEMETRY_DISABLED: "1" },
     encoding: "utf8",
   });
   assert.equal(result.status, 0, result.stdout + result.stderr);
@@ -33,15 +31,16 @@ function build(extra = []) {
 
 /** 생성된 JSON 배열을 읽어 경로 중복을 확인합니다. */
 async function index() {
-  const entries = JSON.parse(await readFile(join(temporary, "public/index.json"), "utf8"));
+  const entries = JSON.parse(await readFile(join(output, "index.json"), "utf8"));
   assert.ok(Array.isArray(entries));
   assert.equal(new Set(entries.map((entry) => entry.href)).size, entries.length);
   return entries;
 }
 
-/** 격리한 콘텐츠 디렉터리에 검증용 글을 추가합니다. */
-async function post(name, frontMatter = "", body = "초기 본문 고유검증어") {
-  await writeFile(join(fixture, `content/posts/${name}.md`), `+++\ntitle = "${name}"\n${frontMatter}\n+++\n${body}\n`);
+/** 격리한 콘텐츠 디렉터리에 검증용 글(md 본문 + json 메타데이터)을 추가합니다. */
+async function post(name, data = {}, body = "초기 본문 고유검증어") {
+  await writeFile(join(fixture, `content/posts/${name}.json`), JSON.stringify({ title: name, ...data }, null, 2));
+  await writeFile(join(fixture, `content/posts/${name}.md`), `${body}\n`);
 }
 
 try {
@@ -53,38 +52,47 @@ try {
   assert.ok(entries.some((entry) => entry.href === "/contact-us/"));
   assert.ok(entries.every((entry) => entry.href.startsWith("/posts/") || ["/about/", "/contact-us/"].includes(entry.href)));
   assert.ok(entries.some((entry) => entry.body.includes("스탠딩 코미디언")));
-  const home = await readFile(join(temporary, "public/index.html"), "utf8");
-  const detail = await readFile(join(temporary, "public/posts/1/kingdom-1/index.html"), "utf8");
-  const search = await readFile(join(temporary, "public/search/index.html"), "utf8");
+  const home = await readFile(join(output, "index.html"), "utf8");
+  const detail = await readFile(join(output, "posts/1/kingdom-1/index.html"), "utf8");
+  const search = await readFile(join(output, "search/index.html"), "utf8");
   assert.ok(home.includes("hero-link") && home.includes("main-swiper"));
   assert.ok(detail.includes("copy-button") && detail.includes("post-contents"));
   assert.ok(search.includes('data-mode="page"') && search.includes('name="q"'));
   for (const html of [home, detail, search]) {
     for (const landmark of ["header", "main", "footer"]) assert.equal((html.match(new RegExp(`<${landmark}\\b`, "g")) || []).length, 1);
     for (const match of html.matchAll(/(?:src|href)="(\/(?!\/)[^"?#]+\.(?:js|css))"/g)) {
-      assert.ok((await stat(join(temporary, "public", match[1]))).isFile());
+      assert.ok((await stat(join(output, match[1]))).isFile());
     }
-    assert.ok(html.includes("search.js") || /search[.\w-]*\.js/.test(html));
+    assert.ok(/\/js\/search\.[\w-]+\.js/.test(html), "검색 스크립트 번들");
   }
-  const rss = await readFile(join(temporary, "public/index.xml"), "utf8");
-  const sitemap = await readFile(join(temporary, "public/sitemap.xml"), "utf8");
+  const rss = await readFile(join(output, "index.xml"), "utf8");
+  const sitemap = await readFile(join(output, "sitemap.xml"), "utf8");
   assert.ok(rss.includes("<rss") && rss.includes("/posts/"));
-  assert.ok(!rss.includes("/search/") && !sitemap.includes("/search/"), "검색 페이지는 RSS·sitemap 목록에서 제외");
+  assert.ok(!rss.includes("/search/"), "검색 페이지는 RSS 목록에서 제외");
+  assert.ok(sitemap.includes("<loc>https://beott.kr/search/</loc>"), "검색 페이지는 sitemap에 포함");
+  assert.equal((sitemap.match(/<loc>/g) || []).length, 57);
+  for (const feed of ["posts", "categories", "tags", "tags/apple-tv+", "tags/netflix"]) {
+    assert.ok((await readFile(join(output, feed, "index.xml"), "utf8")).includes("<rss"), `${feed} RSS`);
+  }
+  for (const missing of ["tags/index.html", "categories/index.html", "posts/index.html"]) {
+    await assert.rejects(stat(join(output, missing)), `${missing}는 만들지 않음`);
+  }
   assert.ok(entries.find((entry) => entry.href === "/contact-us/").body.includes("mag.beott@gmail.com"));
-  for (const entry of entries) await stat(join(temporary, "public", entry.href, "index.html"));
-  const raw = await readFile(join(temporary, "public/index.json"));
+  for (const entry of entries) await stat(join(output, entry.href, "index.html"));
+  const raw = await readFile(join(output, "index.json"));
   const metrics = { entries: entries.length, rawBytes: raw.length, gzipBytes: gzipSync(raw).length };
   await writeFile(join(temporary, "metrics.json"), JSON.stringify(metrics, null, 2));
-  await cp(join(temporary, "public"), join(temporary, "baseline"), { recursive: true });
+  await cp(output, join(temporary, "baseline"), { recursive: true });
 
-  await post("search-draft", "draft = true");
-  await post("search-future", 'publishDate = "2999-01-01T00:00:00Z"');
-  await post("search-expired", 'expiryDate = "2000-01-01T00:00:00Z"');
-  await post("search-hideme", "hideme = true");
-  await post("search-hidden", "hidden = true");
-  await post("search-headless", '[build]\nlist = "never"\nrender = "never"');
-  await post("search-public", 'filmTitle = "<작품명>"', "첫문단 &amp; 엔티티\n\n둘째문단<br>줄바꿈\n\n고유검증어");
-  build(["--buildDrafts", "--buildFuture", "--buildExpired"]);
+  await post("search-draft", { draft: true });
+  await post("search-future", { publishDate: "2999-01-01T00:00:00Z" });
+  await post("search-future-date", { date: "2999-01-01T00:00:00+09:00" });
+  await post("search-expired", { expiryDate: "2000-01-01T00:00:00Z" });
+  await post("search-hideme", { hideme: true });
+  await post("search-hidden", { hidden: true });
+  await post("search-headless", { build: { list: "never", render: "never" } });
+  await post("search-public", { filmTitle: "<작품명>" }, "첫문단 &amp; 엔티티\n\n둘째문단<br>줄바꿈\n\n고유검증어");
+  build();
   const withFixtures = await index();
   assert.equal(withFixtures.length, 46);
   const added = withFixtures.find((entry) => entry.href === "/posts/search-public/");
@@ -92,12 +100,14 @@ try {
   assert.ok(added.body.includes("첫문단 & 엔티티"));
   assert.match(added.body, /둘째문단\s+줄바꿈/);
   assert.ok(!withFixtures.some((entry) => /search-(?:draft|future|expired|hideme|hidden|headless)/.test(entry.href)));
-  await post("search-public", "", "수정후본문재색인");
+  for (const hidden of ["search-draft", "search-future", "search-future-date", "search-expired", "search-headless"]) {
+    await assert.rejects(stat(join(output, "posts", hidden, "index.html")), `${hidden}는 페이지를 만들지 않음`);
+  }
+  await stat(join(output, "posts/search-hideme/index.html"));
+  await post("search-public", {}, "수정후본문재색인");
   build();
   assert.ok((await index()).find((entry) => entry.href === "/posts/search-public/").body.includes("수정후본문재색인"));
-  await cp(join(source, "content"), join(temporary, "saved-content"), { recursive: true });
   // 빈 공개 색인도 null이 아닌 JSON 배열로 출력되어야 합니다.
-  const { rm } = await import("node:fs/promises");
   await rm(join(fixture, "content"), { recursive: true });
   await mkdir(join(fixture, "content"));
   build();

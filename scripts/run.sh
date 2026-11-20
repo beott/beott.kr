@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
+# Astro 개발 서버를 실행한다.
 
-set -ex
+set -euo pipefail
+
+cd "$(dirname "$0")/.."
+if [[ ! -d node_modules ]]; then
+  npm ci
+fi
 
 echo "Run the site..."
-hugo server --contentDir=content --bind=0.0.0.0 --baseURL=http://127.0.0.1
+npx astro dev --host 0.0.0.0
