@@ -82,14 +82,18 @@ group = "비옽 1호: 모니터 앞 파수꾼들"
 | `$font-size-post-title` | 28 → 40px |
 | `$font-size-post-heading` | 20 → 24px |
 | `$font-size-post-meta` | 15 → 17px |
+| `$font-size-article-body` | 16 → 18px, 2560px 이상 20px (글 상세 본문) |
+| `$font-size-article-meta` | 15 → 17px, 2560px 이상 19px (글 상세 작성자/작품명) |
 | `$font-size-row-title` | 18 → 24px |
 | `$font-size-overlay-title` | 14 → 18px |
 | `$font-size-nav` | 16 → 18px |
 
+- `$font-size-large-boost`는 대형 화면 보정값이다. 1920px 이하 0, 2560px 이상 상한 0.125rem(2px)이며 `$font-size-article-*`에만 더한다. `$font-size-body`/`$font-size-post-meta`는 검색 UI에서 그대로 쓴다.
+
 ### Layout
 
 - breakpoint는 모바일 `≤767px`, 태블릿 `768–1500px`, 데스크톱 `≥1501px` 세 가지다. 레이아웃과 여백 차이에만 사용한다.
-- 글 본문 폭은 `min(85vw, $article-max-width)`(720px)로 가운데 정렬한다. 모바일/태블릿 이미지는 `100vw` full-bleed다.
+- 글 본문 폭은 `min(85vw, $article-max-width)`로 가운데 정렬한다. `$article-max-width`는 `45rem`(720px) + 대형 화면 보정×40으로, 최대 800px이다. 모바일/태블릿 이미지는 `100vw` full-bleed다.
 - 랜딩 썸네일(`.post-item-image`)은 `aspect-ratio: 16 / 9`로 폭에서 높이를 계산한다. **높이를 고정값(`vh`, `px`)으로 지정하지 않는다.** 한 줄당 개수는 `index.html`의 Swiper `slidesPerView`에서 조정한다.
 - Swiper `breakpoints`의 `slidesPerView`/`spaceBetween`을 바꾸면 `index.scss`의 `.swiper-slide` 초기 `width`/`margin-right`도 같은 값으로 수정한다. 어긋나면 JS 초기화 시점에 레이아웃이 밀려 CLS가 나빠진다.
 - 터치 대상(버튼)은 최소 44px(`2.75rem`)을 유지한다. 예: `$copy-button-size`.
@@ -106,7 +110,7 @@ group = "비옽 1호: 모니터 앞 파수꾼들"
 
 1. 임시 폴더로 빌드해 SCSS 컴파일 에러가 없는지 확인한다.
 2. `make run` 후 375 / 768 / 1280 / 1920 / 3840px 폭에서 랜딩과 글 상세 페이지를 확인한다.
-   - 본문 16~18px, 제목 40px 이하
+   - 본문 16~18px(2560px 이상 최대 20px), 제목 40px 이하
    - 썸네일 16:9 유지, 오버레이 제목 잘림 없음
 
 ## Git

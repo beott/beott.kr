@@ -14,6 +14,12 @@ $font-size-post-title: clamp(1.75rem, 1.5rem + 1vw, 2.5rem);
 $font-size-post-heading: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
 // 작성자/영화 제목 15px → 17px
 $font-size-post-meta: clamp(0.9375rem, 0.9rem + 0.15vw, 1.0625rem);
+// 대형 화면 보정: 1920px 이하 0, 2560px 이상 2px(0.125rem)에서 멈춘다. 글 상세 본문·메타에만 더한다
+$font-size-large-boost: clamp(0rem, 0.3125vw - 0.375rem, 0.125rem);
+// 글 본문 16px → 18px(1920px) → 20px(2560px~)
+$font-size-article-body: calc(#{$font-size-body} + #{$font-size-large-boost});
+// 글 작성자/영화 제목 15px → 17px(1920px) → 19px(2560px~)
+$font-size-article-meta: calc(#{$font-size-post-meta} + #{$font-size-large-boost});
 // 메인 슬라이더 섹션 제목 18px → 24px
 $font-size-row-title: clamp(1.125rem, 1rem + 0.5vw, 1.5rem);
 // 썸네일 오버레이 제목 14px → 18px
@@ -23,7 +29,8 @@ $font-size-nav: clamp(1rem, 0.95rem + 0.2vw, 1.125rem);
 $font-size-copy-message: 0.9375rem;
 // 링크 복사 버튼 44px (모바일 터치 타깃 권장 최소값)
 $copy-button-size: 2.75rem;
-$article-max-width: 720px;
+// 글 본문 최대 폭: 본문 18px 기준 한글 약 40자(720px). 대형 화면 보정과 같은 비율로 넓혀 한 줄 글자 수를 유지
+$article-max-width: calc(45rem + #{$font-size-large-boost} * 40);
 // 검색 dialog·페이지 최대 폭과 배경
 $search-max-width: 720px;
 $search-surface-color: #1d1d1d;
@@ -614,7 +621,7 @@ article {
     unicode-bidi: isolate;
   }
   .post-contents {
-    font-size: $font-size-body;
+    font-size: $font-size-article-body;
     line-height: 1.75;
     & > blockquote > p,
     & > p {
@@ -706,7 +713,7 @@ article {
   }
   .author,
   .film-title {
-    font-size: $font-size-post-meta;
+    font-size: $font-size-article-meta;
     font-weight: 400;
     text-align: center;
     // width: 50%;
