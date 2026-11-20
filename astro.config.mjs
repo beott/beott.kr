@@ -25,6 +25,8 @@ export default defineConfig({
   site: "https://beott.kr",
   trailingSlash: "ignore",
   devToolbar: { enabled: false },
+  // Hugo 출력처럼 인라인 요소 사이 공백(예: 제목과 작성자 사이)을 유지한다.
+  compressHTML: false,
   build: {
     format: "directory",
     inlineStylesheets: "never",

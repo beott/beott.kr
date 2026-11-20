@@ -71,22 +71,44 @@ function normalizeAsset(value) {
 
 const collapse = (text) => text.replace(/\s+/g, " ").trim();
 
+const INLINE_TAGS = new Set(["a", "abbr", "b", "button", "code", "del", "em", "i", "img", "input", "label", "mark", "s", "small", "span", "strong", "sub", "sup", "svg", "u"]);
+
+/** 공백이 렌더링에 영향을 주는 인라인 이웃(텍스트·인라인 요소)인지 확인합니다. */
+function isInlineNeighbor(node) {
+  if (!node) return false;
+  if (node.nodeName === "#text") return collapse(node.value) !== "";
+  return INLINE_TAGS.has(node.nodeName);
+}
+
+/** 형제 목록에서 앞·뒤 이웃을 찾습니다(주석 제외). */
+function neighbors(node) {
+  const siblings = (node.parentNode?.childNodes ?? []).filter((child) => child.nodeName !== "#comment");
+  const index = siblings.indexOf(node);
+  return { previous: siblings[index - 1], next: siblings[index + 1] };
+}
+
 /** HTML 문서를 비교용 줄 목록(태그·정규화 속성·텍스트)으로 펼칩니다. */
 function flatten(html) {
   const document = parse(html);
   const lines = [];
   const facts = { title: "", meta: {}, images: [], links: [], scripts: [], stylesheets: [] };
-  const walk = (node, depth) => {
+  const walk = (node, depth, inBody = false) => {
     if (node.nodeName === "#comment" || node.nodeName === "#documentType") return;
     if (node.nodeName === "#text") {
       const text = collapse(node.value);
-      if (text) lines.push(`${" ".repeat(depth)}"${text}"`);
+      // body 안에서 인라인 이웃과 맞닿은 공백은 렌더링(띄어쓰기)에 영향을 주므로 유무(␠)를 함께 비교합니다.
+      const { previous, next } = neighbors(node);
+      const leading = inBody && /^\s/.test(node.value) && isInlineNeighbor(previous) ? "␠" : "";
+      const trailing = inBody && /\s$/.test(node.value) && isInlineNeighbor(next) ? "␠" : "";
+      if (text) lines.push(`${" ".repeat(depth)}"${leading}${text}${trailing}"`);
+      else if (inBody && isInlineNeighbor(previous) && isInlineNeighbor(next)) lines.push(`${" ".repeat(depth)}"␠"`);
       return;
     }
     if (node.nodeName === "#document") {
       node.childNodes.forEach((child) => walk(child, depth));
       return;
     }
+    const childInBody = inBody || node.nodeName === "body";
     const attributes = Object.fromEntries((node.attrs || []).map((attribute) => [attribute.name, attribute.value]));
     let tag = node.nodeName;
     if (tag === "script") {
@@ -116,7 +138,7 @@ function flatten(html) {
     const rendered = Object.keys(attributes).sort().map((name) => `${name}=${JSON.stringify(attributes[name])}`).join(" ");
     lines.push(`${" ".repeat(depth)}<${tag}${rendered ? ` ${rendered}` : ""}>`);
     const children = node.nodeName === "template" ? node.content.childNodes : node.childNodes || [];
-    children.forEach((child) => walk(child, depth + 1));
+    children.forEach((child) => walk(child, depth + 1, childInBody));
   };
   walk(document, 0);
   return { lines, facts };
