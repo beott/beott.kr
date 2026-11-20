@@ -1,0 +1,15 @@
+{
+  "title": "BEOTT",
+  "baseURL": "https://beott.kr/",
+  "languageCode": "ko",
+  "main": [
+    "RECOMMEND",
+    "CHOICE",
+    "비옽 3호: 울타리 친 정원",
+    "비옽 3호: SF",
+    "비옽 2호: MAPPING",
+    "비옽 2호: 마인드헌터",
+    "비옽 1호: 킹덤",
+    "비옽 1호: 모니터 앞 파수꾼들"
+  ]
+}
