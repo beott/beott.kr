@@ -31,7 +31,7 @@
   <link rel="preload" href="/font/NanumSquareNeoTTF-bRg.woff2" as="font" type="font/woff2" crossorigin>
   
   
-  <link rel="stylesheet" href="/css/index.min.0d8ef7316d883d30f17581e08929e750c0d8f48efbe915da42c8145a8f1a6697.css" integrity="sha256-DY73MW2IPTDxdYHgiSnnUMDY9I776RXaQsgUWo8aZpc=" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/index.min.328aacb3eb07a973db2cdb727451c032bc6182feae02862beb969fcd3d2a8c76.css" integrity="sha256-Moqss&#43;sHqXPbLNtydFHAMrxhgv6uAoYr65afzT0qjHY=" crossorigin="anonymous">
   
   
 
@@ -54,15 +54,53 @@
       <img src="/images/beott-logo-red.webp" alt="Beott">
     </a>
     <nav>
-      <a href="/">Home</a>
+      <a href="/" class="nav-home">Home</a>
       <a href="/about/">About</a>
       <a href="/contact-us/">Contact Us</a>
+      <a class="search-launch" href="/search/" data-search-launch>검색<span class="search-shortcut" aria-hidden="true" data-search-shortcut hidden></span></a>
     </nav>
   </header>
 
+  
+
+
+
+
+
+<dialog class="site-search site-search--dialog" aria-labelledby="search-dialog-title" data-site-search data-mode="dialog" data-search-index="/index.json" data-search-limit="8">
+
+  <div class="search-panel">
+    <div class="search-heading">
+      
+      <h2 id="search-dialog-title" class="search-title">글 검색</h2>
+      <button class="search-close" type="button" data-search-close>닫기</button>
+      
+    </div>
+    <form class="search-form" role="search" action="/search/" method="get" data-search-form>
+      <label class="search-label" for="search-dialog-input">제목·작품명·작성자·호수·태그·본문 검색</label>
+      <div class="search-input-row">
+        <input id="search-dialog-input" class="search-input" type="search" name="q" maxlength="200" autocomplete="off" spellcheck="false" enterkeyhint="search" placeholder="예: 킹덤, 공동체" data-search-input>
+        <button class="search-submit" type="submit">검색</button>
+      </div>
+    </form>
+    <p class="search-status" role="status" aria-live="polite" data-search-status>검색어를 입력하세요.</p>
+    <button class="search-retry" type="button" data-search-retry hidden>다시 불러오기</button>
+    <ul class="search-results" aria-label="검색 결과" data-search-results></ul>
+    
+    <p class="search-hint" aria-hidden="true">↑↓ 결과 이동 · Enter 열기 · Esc 닫기</p>
+    <a class="search-all" href="/search/" data-search-all>전체 검색 페이지 열기</a>
+    
+  </div>
+</dialog>
+
+
   <main id="content">
 
-<article>
+
+<div class="post-backdrop" style="background-image: url('/images/1/bo-burnham-inside-thumbnail.webp')" aria-hidden="true"></div>
+
+
+<article class="has-backdrop">
   <div class="post-title">This is not a comedy</div>
 
   <section class="post-info">
@@ -97,17 +135,20 @@
 
   
   <section class="post-share">
-    <button id="copy-button" title="현재 페이지 링크 복사">
-      <img src="/images/link.svg" alt="Copy">
-    </button>
+    
+    <span class="copy-anchor">
+      <button id="copy-button" type="button" title="현재 페이지 링크 복사">
+        <img src="/images/link.svg" alt="링크 복사">
+      </button>
+      <span id="copy-message" role="status" aria-live="polite"></span>
+    </span>
   </section>
-  <span id="copy-message">복사되었습니다!</span>
   
 </article>
 
 
   
-    <script src="/post.min.0f15da8b4135767d5dc14e415c460a057745ea40838eb4db10201960ecd6e755.js" integrity="sha256-DxXai0E1dn1dwU5BXEYKBXdF6kCDjrTbECAZYOzW51U=" crossorigin="anonymous"></script>
+    <script src="/post.min.595ce3b029cff270215b80f34006bd310a89b443cd4621ca321429c77c32b0fb.js" integrity="sha256-WVzjsCnP8nAhW4DzQAa9MQqJtEPNRiHKMhQpx3wysPs=" crossorigin="anonymous"></script>
   
 
 
@@ -117,6 +158,12 @@
   <footer>
     ©️ BEOTT
   </footer>
+  
+  <script src="/js/header.3297c7a01a889c0a69cc6634d5cf44ac7fa3985ee4c99a70fcdc96c864cfe0ad.js" integrity="sha256-MpfHoBqInAppzGY01c9ErH&#43;jmF7kyZpw/NyWyGTP4K0=" crossorigin="anonymous" defer></script>
+  
+  
+  <script src="/js/search.9a1cfe3caf0169fe28fe3f2d6ebf2f9ba0987bbc0110dd3bad8dee3c8b55659e.js" integrity="sha256-mhz&#43;PK8Baf4o/j8tbr8vm6CYe7wBEN07rY3uPItVZZ4=" crossorigin="anonymous" defer></script>
+  
 </body>
 
 <script>
