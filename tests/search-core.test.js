@@ -3,11 +3,13 @@ import {
   buildSearchUrl,
   createIndexLoader,
   getShortcutLabel,
+  highlightSegments,
   isSearchShortcut,
   normalizeText,
   prepareIndex,
   searchEntries,
   safeSearchHref,
+  tokenizeQuery,
 } from "../assets/js/search-core.js";
 
 /** 검색 테스트용 공개 문서를 만듭니다. */
@@ -165,6 +167,59 @@ describe("검색 단축키", () => {
   test("편집 중이거나 다른 dialog가 열려 있으면 가로채지 않는다", () => {
     expect(isSearchShortcut(key(), { editing: true })).toBe(false);
     expect(isSearchShortcut(key(), { otherDialogOpen: true })).toBe(false);
+  });
+});
+
+describe("검색어 분리", () => {
+  test("정규화한 뒤 공백으로 나누고 12개까지만 쓴다", () => {
+    expect(tokenizeQuery("  ＨＢＯ   공동체 ")).toEqual(["hbo", "공동체"]);
+    expect(tokenizeQuery(" \n ")).toEqual([]);
+    expect(tokenizeQuery(Array.from({ length: 20 }, (_, i) => `w${i}`).join(" "))).toHaveLength(12);
+  });
+});
+
+describe("일치 구간 하이라이트", () => {
+  /** 일치한 부분만 뽑아 비교하기 쉽게 만듭니다. */
+  function matched(segments) {
+    return segments.filter((segment) => segment.match).map((segment) => segment.text);
+  }
+
+  test("일치한 부분과 나머지를 순서대로 나누고 원문을 그대로 보존한다", () => {
+    const segments = highlightSegments("공명하는 세계의 세계", ["세계"]);
+    expect(segments).toEqual([
+      { text: "공명하는 ", match: false },
+      { text: "세계", match: true },
+      { text: "의 ", match: false },
+      { text: "세계", match: true },
+    ]);
+  });
+
+  test("대소문자·전각 차이가 있어도 원문 표기 그대로 표시한다", () => {
+    expect(matched(highlightSegments("<웨스트월드> HBO", ["hbo"]))).toEqual(["HBO"]);
+    expect(matched(highlightSegments("ＨＢＯ 맥스", ["hbo"]))).toEqual(["ＨＢＯ"]);
+  });
+
+  test("연속 공백이 있어도 공백 포함 검색어와 맞춘다", () => {
+    expect(matched(highlightSegments("비옽  3호: SF", ["비옽 3호:"]))).toEqual(["비옽  3호:"]);
+  });
+
+  test("겹치거나 맞닿은 일치 구간은 하나로 합친다", () => {
+    expect(matched(highlightSegments("abcde", ["abc", "bcd"]))).toEqual(["abcd"]);
+    expect(matched(highlightSegments("abcd", ["ab", "cd"]))).toEqual(["abcd"]);
+  });
+
+  test("일치가 없거나 검색어가 비면 원문 한 덩어리를 돌려준다", () => {
+    expect(highlightSegments("킹덤", ["없음"])).toEqual([{ text: "킹덤", match: false }]);
+    expect(highlightSegments("킹덤", [])).toEqual([{ text: "킹덤", match: false }]);
+    expect(highlightSegments("", ["킹덤"])).toEqual([]);
+  });
+
+  test("HTML처럼 보이는 문자열도 텍스트 조각으로만 나눈다", () => {
+    expect(highlightSegments("<img onerror>", ["img"])).toEqual([
+      { text: "<", match: false },
+      { text: "img", match: true },
+      { text: " onerror>", match: false },
+    ]);
   });
 });
 

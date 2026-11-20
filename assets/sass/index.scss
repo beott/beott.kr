@@ -872,6 +872,21 @@ header nav .search-launch {
     line-clamp: 3;
     overflow: hidden;
   }
+  // 검색어 일치 부분: 브랜드 빨강을 옅게 깔고 흰 글자로 띄운다(빨간 메타 줄에서도 구분되게)
+  .search-hit {
+    padding: 0 2px;
+    border-radius: 2px;
+    background-color: rgba($base-color, 0.35);
+    color: #fff;
+    font-weight: 700;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    @media (forced-colors: active) {
+      background-color: Mark;
+      color: MarkText;
+      forced-color-adjust: none;
+    }
+  }
   .search-hint {
     margin: 12px 0 0;
     color: $search-muted-color;

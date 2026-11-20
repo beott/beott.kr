@@ -3,9 +3,11 @@ import {
   buildSearchUrl,
   createIndexLoader,
   getShortcutLabel,
+  highlightSegments,
   isSearchShortcut,
   prepareIndex,
   searchEntries,
+  tokenizeQuery,
 } from "./search-core.js";
 
 const MESSAGES = {
@@ -33,26 +35,35 @@ async function fetchIndex() {
 
 const loader = createIndexLoader(fetchIndex);
 
-/** 텍스트만 담은 요소를 만들어 검색 결과에 HTML이 해석되지 않게 합니다. */
-function textElement(tag, className, text) {
+/** 검색어와 일치한 부분을 <mark>로 감싼 요소를 텍스트 노드만으로 만듭니다. */
+function highlightedElement(tag, className, text, tokens) {
   const element = document.createElement(tag);
   element.className = className;
-  element.textContent = text;
+  for (const segment of highlightSegments(text, tokens)) {
+    if (!segment.match) {
+      element.append(segment.text);
+      continue;
+    }
+    const mark = document.createElement("mark");
+    mark.className = "search-hit";
+    mark.textContent = segment.text;
+    element.append(mark);
+  }
   return element;
 }
 
-/** 검색 결과 하나를 안전한 링크 항목으로 만듭니다. */
-function createResultItem(hit) {
+/** 검색 결과 하나를 일치 부분이 강조된 안전한 링크 항목으로 만듭니다. */
+function createResultItem(hit, tokens) {
   const item = document.createElement("li");
   item.className = "search-result";
   const link = document.createElement("a");
   link.className = "search-result-link";
   link.href = hit.href;
   link.dataset.searchResult = "";
-  link.append(textElement("span", "search-result-title", hit.title));
+  link.append(highlightedElement("span", "search-result-title", hit.title, tokens));
   const meta = [hit.filmTitle, hit.author, hit.group].filter(Boolean).join(" · ");
-  if (meta) link.append(textElement("span", "search-result-meta", meta));
-  if (hit.snippet) link.append(textElement("span", "search-result-snippet", hit.snippet));
+  if (meta) link.append(highlightedElement("span", "search-result-meta", meta, tokens));
+  if (hit.snippet) link.append(highlightedElement("span", "search-result-snippet", hit.snippet, tokens));
   item.append(link);
   return item;
 }
@@ -95,8 +106,8 @@ function createController(root) {
   }
 
   /** 결과 목록을 비우고 새 결과를 텍스트 노드로만 그립니다. */
-  function render(found) {
-    results.replaceChildren(...found.entries.map(createResultItem));
+  function render(found, tokens) {
+    results.replaceChildren(...found.entries.map((hit) => createResultItem(hit, tokens)));
     if (!found.total) {
       setStatus(MESSAGES.none);
       return;
@@ -122,7 +133,7 @@ function createController(root) {
     try {
       const index = await loader.load();
       if (current !== revision) return;
-      render(searchEntries(index, query, limit));
+      render(searchEntries(index, query, limit), tokenizeQuery(query));
       renderedRevision = current;
     } catch (error) {
       if (current !== revision) return;

@@ -55,10 +55,73 @@ function makeSnippet(body, tokens) {
   return `${start ? "…" : ""}${body.slice(start, end)}${end < body.length ? "…" : ""}`;
 }
 
+/** 검색어를 정규화해 공백 단위 토큰으로 나눕니다(최대 12개). */
+export function tokenizeQuery(query) {
+  return normalizeText(query.slice(0, QUERY_LIMIT)).split(" ").filter(Boolean).slice(0, TOKEN_LIMIT);
+}
+
+/** 원문을 글자 단위로 정규화하며 정규화 문자열의 각 위치가 원문 어디에서 왔는지 기록합니다. */
+function mapNormalized(text) {
+  let normalized = "";
+  const starts = [];
+  const ends = [];
+  let previousSpace = true;
+  for (let index = 0; index < text.length;) {
+    const char = String.fromCodePoint(text.codePointAt(index));
+    let piece = char.normalize("NFKC").toLocaleLowerCase("ko");
+    const isSpace = /^\s+$/u.test(piece);
+    if (isSpace && previousSpace) {
+      index += char.length;
+      continue;
+    }
+    if (isSpace) piece = " ";
+    previousSpace = isSpace;
+    for (let offset = 0; offset < piece.length; offset += 1) {
+      starts.push(index);
+      ends.push(index + char.length);
+    }
+    normalized += piece;
+    index += char.length;
+  }
+  return { normalized, starts, ends };
+}
+
+/** 원문을 검색어 일치 구간과 나머지로 나눕니다. 정규화 기준으로 찾고 원문 표기를 보존합니다. */
+export function highlightSegments(text, tokens) {
+  if (!text) return [];
+  const { normalized, starts, ends } = mapNormalized(text);
+  const ranges = [];
+  for (const token of tokens) {
+    if (!token) continue;
+    for (let found = normalized.indexOf(token); found >= 0; found = normalized.indexOf(token, found + 1)) {
+      ranges.push([starts[found], ends[found + token.length - 1]]);
+    }
+  }
+  ranges.sort((left, right) => left[0] - right[0]);
+  const merged = [];
+  for (const range of ranges) {
+    const last = merged[merged.length - 1];
+    if (last && range[0] <= last[1]) {
+      last[1] = Math.max(last[1], range[1]);
+    } else {
+      merged.push([...range]);
+    }
+  }
+  const segments = [];
+  let cursor = 0;
+  for (const [start, end] of merged) {
+    if (start > cursor) segments.push({ text: text.slice(cursor, start), match: false });
+    segments.push({ text: text.slice(start, end), match: true });
+    cursor = end;
+  }
+  if (cursor < text.length) segments.push({ text: text.slice(cursor), match: false });
+  return segments;
+}
+
 /** 모든 검색어가 맞는 글을 제목·작품명 우선으로 정렬해 건수와 발췌를 반환합니다. */
 export function searchEntries(index, query, limit = 60) {
   const normalizedQuery = normalizeText(query.slice(0, QUERY_LIMIT));
-  const tokens = normalizedQuery.split(" ").filter(Boolean).slice(0, TOKEN_LIMIT);
+  const tokens = tokenizeQuery(query);
   if (!tokens.length) return { entries: [], total: 0 };
   const candidates = index.flatMap((entry) => {
     const fields = entry.normalized;
