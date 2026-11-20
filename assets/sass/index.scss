@@ -49,7 +49,8 @@ $card-radius: 4px;
   // https://swiperjs.com/swiper-api#navigation
   --swiper-theme-color: #fff !important;
   --swiper-navigation-color: var(--swiper-theme-color);
-  --swiper-navigation-size: 4vh !important;
+  // 화살표 크기: 화면 높이(vh)에 묶으면 세로로 긴 모바일에서 과하게 커지므로 rem 기반 상한을 둔다
+  --swiper-navigation-size: clamp(1.5rem, 1.2rem + 0.6vw, 2.25rem) !important;
   --swiper-navigation-top-offset: 50%;
 }
 /* 선택 영역 스타일 변경 */
@@ -390,16 +391,22 @@ header {
     height: auto;
     width: 4%;
     margin-top: 0;
-    background-color: rgba($page-background-color, 0.5);
-    transition: background-color 0.2s;
+    color: #fff;
+    transition: background-color 0.2s, opacity 0.2s;
     &::after {
+      font-weight: 700;
+      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
       transition: transform 0.2s;
     }
-    &:hover {
-      background-color: rgba($page-background-color, 0.75);
+    &:hover,
+    &:focus-visible {
       &::after {
-        transform: scale(1.25);
+        transform: scale(1.2);
       }
+    }
+    &:focus-visible {
+      outline: 2px solid #fff;
+      outline-offset: -2px;
     }
     // 더 넘길 카드가 없으면 패널 자체를 숨긴다
     &.swiper-button-disabled {
@@ -407,11 +414,21 @@ header {
       pointer-events: none;
     }
   }
+  // 패널은 바깥쪽이 진하고 카드 쪽으로 옅어져 카드 가장자리를 덮어도 경계가 딱딱하지 않다
   .swiper-button-prev {
     left: 0;
+    background: linear-gradient(to right, rgba($page-background-color, 0.85), rgba($page-background-color, 0.2));
   }
   .swiper-button-next {
     right: 0;
+    background: linear-gradient(to left, rgba($page-background-color, 0.85), rgba($page-background-color, 0.2));
+  }
+  // 터치 기기는 손가락으로 넘기므로 좁은 화면을 가리는 화살표를 숨긴다(마우스가 있는 기기는 유지)
+  @media (hover: none) and (pointer: coarse) {
+    .swiper-button-prev,
+    .swiper-button-next {
+      display: none;
+    }
   }
 
   .swiper-wrapper {
