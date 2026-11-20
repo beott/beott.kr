@@ -9,7 +9,7 @@ if [[ ! -f astro.config.mjs ]]; then
   exit 1
 fi
 
-PROTECTED=(.git .github .vscode assets content node_modules public scripts src tests dist .astro CNAME README.md AGENTS.md Makefile package.json package-lock.json astro.config.mjs tsconfig.json)
+PROTECTED=(.git .github .vscode assets content node_modules public scripts src tests dist .astro CNAME _config.yml README.md AGENTS.md Makefile package.json package-lock.json astro.config.mjs tsconfig.json)
 
 printf "\033[38;5;45mRemove all generated files and directories...\033[38;5;15m\n"
 

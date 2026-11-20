@@ -5,7 +5,7 @@ $ErrorActionPreference = "Stop"
 Set-Location (Join-Path $PSScriptRoot "..")
 if (-not (Test-Path "astro.config.mjs")) { throw "repo 루트를 찾지 못했습니다." }
 
-$protected = @(".git", ".github", ".vscode", "assets", "content", "node_modules", "public", "scripts", "src", "tests", "dist", ".astro", "CNAME", "README.md", "AGENTS.md", "Makefile", "package.json", "package-lock.json", "astro.config.mjs", "tsconfig.json")
+$protected = @(".git", ".github", ".vscode", "assets", "content", "node_modules", "public", "scripts", "src", "tests", "dist", ".astro", "CNAME", "_config.yml", "README.md", "AGENTS.md", "Makefile", "package.json", "package-lock.json", "astro.config.mjs", "tsconfig.json")
 
 Get-Content "scripts/generated-paths.txt" | ForEach-Object {
   $pattern = $_.Trim()
