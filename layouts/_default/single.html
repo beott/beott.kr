@@ -33,11 +33,14 @@
 
   {{ if ne ( .Params.hideme ) true }}
   <section class="post-share">
-    <button id="copy-button" title="현재 페이지 링크 복사">
-      <img src="{{"images/link.svg" | relURL}}" alt="Copy">
-    </button>
+    {{/* 안내 문구는 버튼 위 말풍선으로 띄워 레이아웃을 밀지 않는다 */}}
+    <span class="copy-anchor">
+      <button id="copy-button" type="button" title="현재 페이지 링크 복사">
+        <img src="{{"images/link.svg" | relURL}}" alt="링크 복사">
+      </button>
+      <span id="copy-message" role="status" aria-live="polite"></span>
+    </span>
   </section>
-  <span id="copy-message">복사되었습니다!</span>
   {{ end }}
 </article>
 

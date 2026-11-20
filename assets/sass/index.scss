@@ -620,6 +620,14 @@ article {
     // padding-bottom: 4.25vh;
     padding-bottom: 0.25vh;
   }
+  // 말풍선이 버튼 위로 넘쳐 보여야 하므로 잘라내지 않는다
+  .post-share {
+    overflow: visible;
+  }
+  .copy-anchor {
+    position: relative;
+    display: inline-block;
+  }
   #copy-button {
     display: inline-flex;
     align-items: center;
@@ -641,12 +649,46 @@ article {
       display: block;
     }
   }
+  // 버튼 위에 뜨는 말풍선: 흐름에서 빠져 있어 나타나도 아래 레이아웃이 움직이지 않는다
   #copy-message {
+    position: absolute;
+    bottom: calc(100% + 12px);
+    left: 50%;
+    padding: 6px 12px;
+    border-radius: $card-radius;
+    background-color: #fff;
+    color: $page-background-color;
     font-size: $font-size-copy-message;
-    padding-top: 1vh;
-    display: none;
-    color: $base-color;
-    text-align: center;
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    pointer-events: none;
+    opacity: 0;
+    transform: translate(-50%, 4px);
+    transition: opacity 0.2s, transform 0.2s;
+    // 아래쪽 꼬리
+    &::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 6px solid transparent;
+      border-top-color: #fff;
+    }
+    &.is-visible {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+    &.is-error {
+      background-color: $base-color;
+      color: #fff;
+      &::after {
+        border-top-color: $base-color;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      transition: none;
+    }
   }
   .author,
   .film-title {
