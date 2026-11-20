@@ -29,6 +29,14 @@ $search-max-width: 720px;
 $search-surface-color: #1d1d1d;
 $search-hover-color: #2a2a2a;
 $search-muted-color: #b8b8b8;
+$page-background-color: #141414;
+// 히어로 제목 28px → 56px
+$font-size-hero-title: clamp(1.75rem, 1.2rem + 2.5vw, 3.5rem);
+// 히어로 보조 문구 14px → 18px
+$font-size-hero-meta: clamp(0.875rem, 0.8rem + 0.3vw, 1.125rem);
+// 썸네일 줄 제목 줄간격: 화살표 패널 위치 계산에 같은 값을 쓴다
+$row-title-line-height: 1.5;
+$card-radius: 4px;
 
 :root {
   // https://swiperjs.com/swiper-api#navigation
@@ -217,6 +225,12 @@ header {
   z-index: 1000;
   // padding이 폭에 더해져 오른쪽이 화면 밖으로 밀리지 않게 헤더에만 한정
   box-sizing: border-box;
+  transition: background-color 0.4s;
+
+  // assets/js/header.js가 스크롤 시 붙이는 상태: 본문 위에서도 메뉴가 읽히게 단색 처리
+  &.is-scrolled {
+    background-color: $page-background-color;
+  }
 
   .logo {
     color: #e5e5e5;
@@ -248,16 +262,22 @@ header {
   }
 }
 
-/* 히어로 이미지에 오버레이 추가 */
+/* 히어로: 큰 배경 이미지 위에 제목·소개·읽기 버튼을 얹는 빌보드 */
 .hero-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
+  // Swiper CSS가 .swiper를 relative로 덮어쓰므로 실제 동작과 같게 명시
+  position: relative;
   width: 100%;
-  height: 70vh;
-  min-height: 50vh;
-  background: rgba(0, 0, 0, 0.1); /* 어두운 오버레이 */
+  height: 80vh;
+  min-height: 420px;
+  .swiper-slide {
+    position: relative;
+  }
+  .hero-link {
+    display: block;
+    height: 100%;
+  }
   .hero-slide {
+    position: relative;
     height: 100%;
     width: 100%;
     background-size: cover; // contain, cover
@@ -265,11 +285,78 @@ header {
     background-repeat: no-repeat;
     // 히어로 이미지 로딩 전 자리 표시
     background-color: $hero-placeholder-color;
+    // 왼쪽은 글자가 읽히게 어둡게, 아래는 썸네일 줄 배경으로 자연스럽게 이어지게
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      // 먼저 쓴 레이어가 위에 그려지므로 아래쪽 페이드를 앞에 둬 왼쪽 그늘과 경계가 생기지 않게 한다
+      background:
+        linear-gradient(to bottom, transparent 50%, rgba($page-background-color, 0.7) 72%, $page-background-color 92%),
+        linear-gradient(77deg, rgba($page-background-color, 0.8) 0%, rgba($page-background-color, 0.3) 45%, transparent 75%);
+      pointer-events: none;
+    }
+  }
+  .hero-info {
+    position: absolute;
+    left: 4%;
+    bottom: 22%;
+    z-index: 2;
+    max-width: min(560px, 92%);
+    color: #fff;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
+    word-break: keep-all;
+    p {
+      margin: 0;
+    }
+  }
+  .hero-group {
+    font-size: $font-size-hero-meta;
+    color: #e5e5e5;
+    letter-spacing: 0.02em;
+  }
+  .hero-title {
+    font-size: $font-size-hero-title;
+    font-weight: 800;
+    line-height: 1.2;
+    margin: 0.3em 0 0.4em;
+  }
+  .hero-meta {
+    font-size: $font-size-hero-meta;
+    color: #e5e5e5;
+  }
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: $copy-button-size;
+    margin-top: 1.25rem;
+    padding: 0 1.6em;
+    border-radius: $card-radius;
+    background-color: #fff;
+    color: #000;
+    font-size: $font-size-nav;
+    font-weight: 700;
+    text-shadow: none;
+    transition: background-color 0.2s;
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.75);
+    }
+    &:focus-visible {
+      outline: 3px solid #fff;
+      outline-offset: 3px;
+    }
   }
 }
 
+// 첫 썸네일 줄을 히어로 아래쪽에 살짝 겹쳐 하나의 화면처럼 보이게 한다
 .post-by-group {
-  padding-top: 4vh;
+  position: relative;
+  z-index: 2;
+  margin-top: -12vh;
+  @media (max-width: 767px) {
+    margin-top: -8vh;
+  }
 }
 
 .main-swiper {
@@ -282,9 +369,42 @@ header {
 
   .row-header-title {
     font-size: $font-size-row-title;
+    line-height: $row-title-line-height;
     color: #e5e5e5;
     margin: 0;
-    font-weight: 500;
+    font-weight: 700;
+  }
+
+  // 좌우 화살표: 카드 높이만큼의 반투명 세로 패널
+  .swiper-button-prev,
+  .swiper-button-next {
+    top: calc(#{$font-size-row-title} * #{$row-title-line-height} + 1vh);
+    bottom: 4vh;
+    height: auto;
+    width: 4%;
+    margin-top: 0;
+    background-color: rgba($page-background-color, 0.5);
+    transition: background-color 0.2s;
+    &::after {
+      transition: transform 0.2s;
+    }
+    &:hover {
+      background-color: rgba($page-background-color, 0.75);
+      &::after {
+        transform: scale(1.25);
+      }
+    }
+    // 더 넘길 카드가 없으면 패널 자체를 숨긴다
+    &.swiper-button-disabled {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+  .swiper-button-prev {
+    left: 0;
+  }
+  .swiper-button-next {
+    right: 0;
   }
 
   .swiper-wrapper {
@@ -344,7 +464,10 @@ header {
         background-size: cover;
         // 썸네일 로딩 전 자리 표시 (background 단축 속성 뒤에 둬야 초기화되지 않음)
         background-color: $placeholder-color;
-        border-radius: 1px;
+        position: relative;
+        overflow: hidden;
+        border-radius: $card-radius;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
 
         &::after {
           width: 100%;
@@ -367,8 +490,77 @@ header {
           z-index: 1;
           word-break: keep-all;
         }
+        .overlay-meta {
+          display: block;
+          max-height: 0;
+          overflow: hidden;
+          opacity: 0;
+          font-size: 0.8em;
+          color: #d2d2d2;
+          transition: opacity 0.3s ease, max-height 0.3s ease;
+        }
+      }
+      // 마우스가 있는 기기에서만 카드를 키우고 작성자를 보여 준다(터치 기기는 그대로)
+      @media (hover: hover) and (pointer: fine) {
+        &:hover,
+        &:focus-within {
+          z-index: 2;
+        }
+        & > a:hover,
+        & > a:focus-visible {
+          .post-item-image {
+            transform: scale(1.06);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+          }
+          .overlay-meta {
+            max-height: 2em;
+            opacity: 1;
+          }
+        }
+      }
+      & > a:focus-visible {
+        outline: none;
+        .post-item-image {
+          box-shadow: 0 0 0 3px #fff;
+        }
       }
     }
+  }
+}
+
+// 움직임 줄이기 설정이면 확대 없이 작성자만 보여 준다
+@media (prefers-reduced-motion: reduce) {
+  .main-swiper .swiper-wrapper .swiper-slide > a .post-item-image {
+    transform: none !important;
+    transition: none;
+  }
+}
+
+/* 글 상세: 대표 이미지를 상단 배경으로 깔고 제목을 그 위에 얹는다 */
+.post-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 65vh;
+  min-height: 360px;
+  background-size: cover;
+  background-position: center;
+  background-color: $hero-placeholder-color;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba($page-background-color, 0.35) 0%,
+      rgba($page-background-color, 0.55) 55%,
+      $page-background-color 100%
+    );
+  }
+  @media (max-width: 767px) {
+    height: 45vh;
+    min-height: 260px;
   }
 }
 
@@ -379,6 +571,26 @@ article {
   position: relative;
   top: 9vh;
   padding-bottom: 10vh;
+
+  // 대표 이미지가 있으면 배경(.post-backdrop) 아래쪽에 제목이 오도록 내린다
+  &.has-backdrop {
+    z-index: 1;
+    .post-title {
+      padding-top: max(34vh, 190px);
+      font-size: $font-size-hero-title;
+      font-weight: 800;
+      line-height: 1.25;
+      text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+      word-break: keep-all;
+      @media (max-width: 767px) {
+        padding-top: max(22vh, 130px);
+        font-size: $font-size-post-title;
+      }
+    }
+    .post-info {
+      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+    }
+  }
 
   .post-title {
     font-size: $font-size-post-title;

@@ -4,9 +4,22 @@
   <div class="swiper-wrapper">
     {{ range sort ( where site.RegularPages "Section" "posts" ) "Date" "desc" | first 5 }}
       <div class="swiper-slide">
-        <a href="{{.RelPermalink}}" class="hero-link" aria-label="{{ .Title }}">
-          <div class="hero-slide" style="background-image: url('{{ .Params.thumbnail }}')" loading="lazy"></div>
+        {{/* 배경 이미지 링크는 마우스 클릭용이며, 키보드·스크린리더는 아래 읽기 버튼을 쓴다 */}}
+        <a href="{{.RelPermalink}}" class="hero-link" tabindex="-1" aria-hidden="true">
+          <div class="hero-slide" style="background-image: url('{{ .Params.thumbnail }}')"></div>
         </a>
+        <div class="hero-info">
+          {{ with .Params.group }}<p class="hero-group">{{ . }}</p>{{ end }}
+          <h2 class="hero-title">{{ .Title }}</h2>
+          {{ $meta := slice }}
+          {{ with .Params.author }}{{ $meta = $meta | append . }}{{ end }}
+          {{ with .Params.filmTitle }}{{ $meta = $meta | append . }}{{ end }}
+          {{ with $meta }}<p class="hero-meta">{{ delimit . " · " }}</p>{{ end }}
+          <a href="{{.RelPermalink}}" class="hero-cta" aria-label="{{ .Title }} 읽기">
+            <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20"><path d="M7 4.5v15l12-7.5z" fill="currentColor"/></svg>
+            읽기
+          </a>
+        </div>
       </div>
     {{ end }}
   </div>
@@ -43,6 +56,7 @@
                   {{ end }}
                     <div class="overlay-title">
                       {{.Title}}
+                      {{ with .Params.author }}<span class="overlay-meta">{{ . }}</span>{{ end }}
                     </div>
                   </div>
               {{ end }}
@@ -76,8 +90,11 @@
     fadeEffect: { 
       crossFade: true 
     },
-    autoplay: {
-        delay: 3_500, // ms
+    // 움직임 줄이기 설정이면 자동 전환을 끄고, 마우스를 올리면 잠시 멈춘다
+    autoplay: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? false : {
+        // 제목과 소개를 읽을 시간을 주기 위해 사진만 있을 때보다 길게 둔다
+        delay: 6_000, // ms
+        pauseOnMouseEnter: true,
     },
   });
 

@@ -71,6 +71,9 @@
   <footer>
     ©️ BEOTT
   </footer>
+  {{ with resources.Get "js/header.js" | js.Build (dict "targetPath" "js/header.js" "minify" true) | fingerprint }}
+  <script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous" defer></script>
+  {{ end }}
   {{ with resources.Get "js/search.js" | js.Build (dict "targetPath" "js/search.js" "minify" true) | fingerprint }}
   <script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous" defer></script>
   {{ end }}

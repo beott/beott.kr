@@ -1,6 +1,10 @@
 {{ define "main" }}
 
-<article>
+{{ with .Params.thumbnail }}
+<div class="post-backdrop" style="background-image: url('{{ . }}')" aria-hidden="true"></div>
+{{ end }}
+
+<article{{ if .Params.thumbnail }} class="has-backdrop"{{ end }}>
   <div class="post-title">{{.Title}}</div>
 
   <section class="post-info">
