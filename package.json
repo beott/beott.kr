@@ -20,11 +20,9 @@
     "astro": "7.4.13",
     "entities": "9.0.0",
     "jest": "30.2.0",
-    "rehype-raw": "7.0.0",
-    "rehype-stringify": "10.0.1",
+    "parse5": "8.1.1",
     "remark-gfm": "4.0.1",
     "remark-parse": "11.0.0",
-    "remark-rehype": "11.1.2",
     "sass": "1.108.2",
     "smol-toml": "1.9.1",
     "unified": "11.0.5"

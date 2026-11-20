@@ -1,0 +1,57 @@
+---
+/** 글 상세·소개·문의·검색 페이지. URL은 content 경로를 소문자로 바꾼 `/<경로>/`입니다. */
+import Base from "../layouts/Base.astro";
+import SiteSearch from "../components/SiteSearch.astro";
+import { getSite } from "../lib/site.mjs";
+
+export async function getStaticPaths() {
+  const model = await getSite();
+  return model.rendered.map((page) => ({ params: { path: page.url.slice(1, -1) }, props: { id: page.id } }));
+}
+
+const model = await getSite();
+const page = model.rendered.find((candidate) => candidate.id === Astro.props.id);
+if (!page) throw new Error(`페이지를 찾을 수 없습니다: ${Astro.props.id}`);
+const { thumbnail, author, filmTitle, hideme } = page.params;
+const isSearch = page.params.type === "search";
+---
+<Base title={page.title} thumbnail={thumbnail}>
+  {isSearch ? (
+    <SiteSearch mode="page" />
+  ) : (
+    <>
+      {thumbnail && <div class="post-backdrop" style={`background-image: url('${thumbnail}')`} aria-hidden="true"></div>}
+      <article class={thumbnail ? "has-backdrop" : undefined}>
+        <div class="post-title">{page.title}</div>
+
+        <section class="post-info">
+          {author && (
+            <>
+              <section class="author">
+                {author}
+              </section>
+              <section class="film-title">
+                {filmTitle}
+              </section>
+            </>
+          )}
+        </section>
+
+        <section class="post-contents" set:html={page.html} />
+
+        {hideme !== true && (
+          <section class="post-share">
+            {/* 안내 문구는 버튼 위 말풍선으로 띄워 레이아웃을 밀지 않는다 */}
+            <span class="copy-anchor">
+              <button id="copy-button" type="button" title="현재 페이지 링크 복사">
+                <img src="/images/link.svg" alt="링크 복사">
+              </button>
+              <span id="copy-message" role="status" aria-live="polite"></span>
+            </span>
+          </section>
+        )}
+      </article>
+      {hideme !== true && <script src="../../assets/js/post.js"></script>}
+    </>
+  )}
+</Base>

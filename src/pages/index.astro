@@ -1,0 +1,124 @@
+---
+/** 랜딩: 히어로 슬라이더와 `site.main` 순서의 그룹별 썸네일 슬라이더(기존 `layouts/_default/index.html`). */
+import Base from "../layouts/Base.astro";
+import { getSite, site } from "../lib/site.mjs";
+import { groupRows, heroPosts } from "../lib/site-model.mjs";
+
+const model = await getSite();
+const hero = heroPosts(model);
+const rows = groupRows(model);
+const absolute = (path: string) => (/^[a-z]+:/i.test(path) ? path : `${site.baseURL.replace(/\/$/, "")}/${path.replace(/^\//, "")}`);
+---
+<Base>
+  <div class="hero-overlay swiper">
+    <div class="swiper-wrapper">
+      {hero.map((post) => {
+        const meta = [post.params.author, post.params.filmTitle].filter(Boolean);
+        return (
+          <div class="swiper-slide">
+            {/* 배경 이미지 링크는 마우스 클릭용이며, 키보드·스크린리더는 아래 읽기 버튼을 쓴다 */}
+            <a href={post.url} class="hero-link" tabindex="-1" aria-hidden="true">
+              <div class="hero-slide" style={`background-image: url('${post.params.thumbnail ?? ""}')`}></div>
+            </a>
+            <div class="hero-info">
+              {post.params.group && <p class="hero-group">{post.params.group}</p>}
+              <h2 class="hero-title">{post.title}</h2>
+              {meta.length > 0 && <p class="hero-meta">{meta.join(" · ")}</p>}
+              <a href={post.url} class="hero-cta" aria-label={`${post.title} 읽기`}>
+                <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20"><path d="M7 4.5v15l12-7.5z" fill="currentColor"/></svg>
+                읽기
+              </a>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+
+  <div class="post-by-group">
+    {rows.map((row) => (
+      <section class="swiper main-swiper">
+        <h2 class="row-header-title">{row.group}</h2>
+        <div class="swiper-wrapper">
+          {row.pages.map((post) => (
+            <div class="swiper-slide">
+              <a href={post.url}>
+                {post.params.thumbnail && (
+                  <div class="post-item-image" style={`background-image: url('${absolute(post.params.thumbnail)}')`} loading="lazy">
+                    <div class="overlay-title">
+                      {post.title}
+                      {post.params.author && <span class="overlay-meta">{post.params.author}</span>}
+                    </div>
+                  </div>
+                )}
+              </a>
+            </div>
+          ))}
+        </div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      </section>
+    ))}
+  </div>
+
+  <script is:inline src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script is:inline>
+
+  new Swiper('.hero-overlay', {
+    grid: {
+      rows: 1,
+    },
+    loop: true,
+    centeredSlides: false,
+    grabCursor: true,
+    effect: 'fade', // fade, mo
+    speed: 1_600, // ms
+    fadeEffect: { 
+      crossFade: true 
+    },
+    // 움직임 줄이기 설정이면 자동 전환을 끄고, 마우스를 올리면 잠시 멈춘다
+    autoplay: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? false : {
+        // 제목과 소개를 읽을 시간을 주기 위해 사진만 있을 때보다 길게 둔다
+        delay: 6_000, // ms
+        pauseOnMouseEnter: true,
+    },
+  });
+
+  new Swiper('.main-swiper', {
+    grid: {
+      rows: 1,
+    },
+    // loop: true,
+    centeredSlides: false,
+    grabCursor: true,
+    // pagination: {
+    //   el: ".swiper-pagination",
+    //   clickable: true,
+    // },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    // 값을 바꾸면 assets/sass/index.scss의 .swiper-slide 초기 폭도 함께 수정 (CLS 방지)
+    breakpoints: {
+      // when window width is >= 320px
+      320: {
+        slidesPerView: 2,
+        spaceBetween: 5,
+      },
+      768: {
+        slidesPerView: 3,
+        spaceBetween: 10,
+      },
+      1024: {
+        slidesPerView: 4,
+        spaceBetween: 10,
+      },
+      1500: {
+        slidesPerView: 5,
+        spaceBetween: 10,
+      },
+    },
+  });
+  </script>
+</Base>
