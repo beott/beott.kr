@@ -33,6 +33,7 @@ make deploy
 
 - 생성물만 확인하려면 `npx astro build` 후 `dist/`를 본다.
 - `make clean`은 `scripts/generated-paths.txt`의 생성물만 지운다.
+- GitHub Pages(Jekyll)는 `_config.yml`의 `exclude`에 적힌 소스·내부 문서를 배포 사이트에서 뺀다. 없는 주소는 `404.html`(`src/pages/404.astro`)을 보여 준다.
 
 ## 글 작성
 

@@ -1,0 +1,13 @@
+# GitHub Pages가 release 루트를 Jekyll로 처리할 때 Astro 소스와 개발 도구 파일은 건너뛴다.
+# .astro 파일이 `---`로 시작해 Jekyll이 YAML 머리말로 오인하는 것을 막기 위함이다.
+# 사이트 산출물(루트의 html/xml/json/images 등)은 그대로 서빙된다.
+exclude:
+  - src
+  - scripts
+  - tests
+  - node_modules
+  - package.json
+  - package-lock.json
+  - astro.config.mjs
+  - tsconfig.json
+  - Makefile

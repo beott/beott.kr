@@ -1,11 +1,12 @@
 /** 실제 Astro 빌드와 외부 콘텐츠 fixture로 검색 색인의 공개 정책·갱신과 주요 출력을 검증합니다. */
 import assert from "node:assert/strict";
-import { cp, mkdir, mkdtemp, readFile, realpath, rm, stat, symlink, writeFile } from "node:fs/promises";
+import { cp, mkdir, mkdtemp, readdir, readFile, realpath, rm, stat, symlink, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
-import { dirname, join, resolve } from "node:path";
+import { dirname, join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { spawnSync } from "node:child_process";
 import { gzipSync } from "node:zlib";
+import { JEKYLL_DEFAULT_EXCLUDES, isExcludedByPages, isSpecialForJekyll, readPagesExclude } from "./pages-exclude.mjs";
 
 const source = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 // macOS의 /var → /private/var 심볼릭 링크 때문에 Vite 모듈 경로가 어긋나지 않도록 실제 경로를 씁니다.
@@ -71,6 +72,22 @@ try {
   assert.ok(!rss.includes("/search/"), "검색 페이지는 RSS 목록에서 제외");
   assert.ok(sitemap.includes("<loc>https://beott.kr/search/</loc>"), "검색 페이지는 sitemap에 포함");
   assert.equal((sitemap.match(/<loc>/g) || []).length, 57);
+  const notFound = await readFile(join(output, "404.html"), "utf8");
+  assert.ok(notFound.includes('<meta name="robots" content="noindex">'), "404 페이지는 noindex");
+  assert.ok(notFound.includes('href="/"') && notFound.includes('href="/search/"'), "404 페이지는 홈·검색 링크");
+  assert.ok(notFound.includes("<title>BEOTT | 페이지를 찾을 수 없습니다</title>"));
+  for (const html of [home, detail, search]) assert.ok(!html.includes('name="robots"'), "일반 페이지는 noindex 없음");
+  assert.ok(!sitemap.includes("/404") && !rss.includes("/404"), "404 페이지는 sitemap·RSS에서 제외");
+  assert.ok(!entries.some((entry) => entry.href.includes("/404")), "404 페이지는 검색 색인에서 제외");
+  // GitHub Pages(Jekyll) exclude가 실제 산출물을 지우지 않는지 확인합니다.
+  const pagesExclude = readPagesExclude(await readFile(join(source, "_config.yml"), "utf8"));
+  const outputFiles = (await readdir(output, { recursive: true, withFileTypes: true }))
+    .filter((entry) => entry.isFile())
+    .map((entry) => relative(output, join(entry.parentPath, entry.name)));
+  assert.deepEqual(outputFiles.filter((path) => isExcludedByPages(pagesExclude, path)), [], "Pages exclude와 겹치는 산출물");
+  // Jekyll이 기본으로 건너뛰는 이름(`_astro/`, 점 파일 등)이나 기본 exclude 목록과 겹치는 산출물도 없어야 합니다.
+  assert.deepEqual(outputFiles.filter(isSpecialForJekyll), [], "Jekyll이 건너뛰는 _·. 이름의 산출물");
+  assert.deepEqual(outputFiles.filter((path) => isExcludedByPages(JEKYLL_DEFAULT_EXCLUDES, path)), [], "Jekyll 기본 exclude와 겹치는 산출물");
   for (const feed of ["posts", "categories", "tags", "tags/apple-tv+", "tags/netflix"]) {
     assert.ok((await readFile(join(output, feed, "index.xml"), "utf8")).includes("<rss"), `${feed} RSS`);
   }

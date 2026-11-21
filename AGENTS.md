@@ -28,6 +28,7 @@ npm run test:integration
 - 루트의 생성 파일(`index.html`, `index.json`, `index.xml`, `sitemap.xml`, `posts/`, `css/`, `js/`, `images/`, `tags/`, `categories/` 등)은 **직접 수정하지 않는다**. 소스를 고치고 다시 빌드한다.
 - `make clean`은 `scripts/generated-paths.txt`에 적힌 생성물만 지운다. 소스 디렉터리(`src/`, `content/`, `public/`, `assets/`, `scripts/`, `tests/` 등)는 목록에 넣지 않으며, 들어가 있으면 스크립트가 거부한다.
 - `make deploy`는 작업 트리 전체를 커밋하므로, 의도하지 않은 변경이 없는지 먼저 확인한다.
+- GitHub Pages는 repo 루트를 Jekyll로 다시 처리한다. 소스·내부 문서(`src/`, `content/`, `public/`, `assets/`, `scripts/`, `tests/`, `AGENTS.md`, `README.md` 등)는 `_config.yml`의 `exclude`로 배포 사이트에서 뺀다. Jekyll은 패턴을 루트 기준 접두사로도 비교하므로 새 패턴이 산출물 이름과 겹치지 않는지 `npm test`(`tests/pages-exclude.test.js`)와 `npm run test:integration`으로 확인한다. `CNAME`은 커스텀 도메인 파일이라 배포에 남긴다.
 - 산출물을 건드리지 않고 빌드만 확인하려면 `npx astro build`만 실행한다(`dist/`는 git에서 제외).
 - Hugo 시절 출력과 비교하려면 `node scripts/compare-builds.mjs <hugo 출력 폴더> dist`를 쓴다.
 
@@ -46,6 +47,7 @@ npm run test:integration
 | `src/components/SiteSearch.astro` | 검색 dialog/페이지 공통 마크업 |
 | `src/pages/index.astro` | 랜딩: 히어로 슬라이더, 그룹별 썸네일 슬라이더(Swiper `breakpoints` 설정 포함) |
 | `src/pages/[...path].astro` | 글 상세, 소개·문의, 검색 페이지 |
+| `src/pages/404.astro` | 없는 주소용 404 페이지(`/404.html`, `noindex`, sitemap·RSS·검색 색인 제외) |
 | `src/pages/**/*.xml.ts`, `index.json.ts` | RSS(홈·섹션·태그·카테고리), sitemap, 검색 색인 |
 | `assets/sass/index.scss` | 유일한 스타일 소스 |
 | `assets/js/*.js` | 헤더 스크롤, 검색(`search-core.js`는 순수 함수), 링크 복사 |
