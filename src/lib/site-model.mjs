@@ -145,6 +145,44 @@ export function groupRows(model) {
     .map((row) => ({ group: row.group, pages: sortByDateAsc(row.pages).filter((page) => page.params.hideme !== true) }));
 }
 
+/** filmTitle의 `<…>` 안 이름만 작품명으로 돌려줍니다(플랫폼·시즌 등 바깥 글자는 제외). */
+export function workTitles(filmTitle) {
+  return [...String(filmTitle ?? "").matchAll(/<([^<>]+)>/g)].map((match) => match[1].trim()).filter(Boolean);
+}
+
+/** 카드에 보일 작품명: 데이터의 작품명을 `<…>`로 묶어 쉼표로 잇고, 없으면 빈 문자열입니다. */
+export function filmLabel(params) {
+  return workTitles(params?.filmTitle).map((title) => `<${title}>`).join(", ");
+}
+
+/**
+ * 같은 작품의 다른 비평: 현재 글을 빼고, 작품명이 하나라도 겹치는 공개 posts(hideme 제외)를 날짜 오름차순으로 돌려줍니다.
+ * 작품명이 없는 글이나 posts 밖 페이지는 빈 목록입니다.
+ */
+export function relatedByWork(model, page) {
+  if (page.section !== "posts") return [];
+  const works = new Set(workTitles(page.params.filmTitle));
+  if (works.size === 0) return [];
+  const related = model.regularPages.filter((candidate) => candidate !== page && candidate.section === "posts" &&
+    candidate.params.hideme !== true && workTitles(candidate.params.filmTitle).some((title) => works.has(title)));
+  return sortByDateAsc(related);
+}
+
+/**
+ * 호별 목차 바로가기: 홈 그룹 줄(`groupRows`) 순서대로 `비옽 N호:` 그룹의 첫 줄을 호마다 하나씩 돌려줍니다.
+ * 별도 호 목차 페이지는 없으므로 홈의 해당 호 그룹 줄이 목차이고, anchor는 그 줄의 id입니다.
+ */
+export function issueShortcuts(rows) {
+  const shortcuts = [];
+  for (const row of rows) {
+    const match = /^비옽 (\d+)호:/.exec(row.group);
+    if (!match || shortcuts.some((item) => item.issue === Number(match[1]))) continue;
+    const issue = Number(match[1]);
+    shortcuts.push({ issue, label: `${issue}호`, anchor: `issue-${issue}`, group: row.group });
+  }
+  return shortcuts;
+}
+
 /**
  * 검색 색인 항목: 공개 posts(hideme·hidden 제외)와 소개·문의만 포함합니다(기존 `layouts/index.json`).
  * 키 순서는 Go jsonify처럼 알파벳순입니다.

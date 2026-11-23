@@ -84,6 +84,21 @@ content/posts/3/westworld.json  # 메타데이터
 - 태그 RSS 경로는 태그를 소문자·공백은 `-`로 바꾼 값이다(`Apple TV+` → `/tags/apple-tv+/index.xml`). 같은 태그를 대소문자만 다르게 쓰면 한 태그로 합쳐진다.
 - 스키마(`src/lib/content-source.mjs`)에 맞지 않거나 짝이 되는 `.md`가 없으면 빌드가 실패한다. 스키마에 없는 키도 보존된다.
 - 이미지는 `public/images/...`에 두고 본문·`thumbnail`에서 `/images/...`로 참조한다. 원본 URL을 그대로 쓴다(리사이즈 없음).
+- 이미지 표시(모든 글 공통, 모바일 `≤767px`): 본문 이미지는 기본적으로 `100vw`로 놓인다. 그 폭에서 높이가 `40svh`를 넘는 이미지만 `assets/js/post-images.js`가 로드 후 크기와 현재 화면으로 판정해 비율을 지킨 채 `max-height: 40svh`로 줄이고 가운데 둔다. 회전·창 크기가 바뀌면 다시 판정한다. 짧은 이미지·가로 스틸은 그대로다.
+  - 줄어든 이미지 아래에 '크게 보기' 버튼이 붙는다. 버튼(또는 링크가 아닌 이미지 탭)으로 전체 화면 dialog를 열고, 닫기 버튼·Esc·배경 탭으로 닫으면 같은 스크롤 위치와 버튼으로 돌아간다.
+  - 이미지·링크·캡션·alt는 그대로 두고 옮기지 않는다. 링크가 걸린 이미지는 탭하면 원래 링크로 이동하고, '크게 보기' 버튼은 링크 밖(뒤)에 형제로 붙는다(a 안에 button을 넣지 않는다).
+  - 만화·도표처럼 순서와 글자를 읽어야 하는 이미지 묶음은 저자가 **본문형**을 직접 고른다. 비율·파일명으로 자동 분류하지 않는다. 아래처럼 `<div class="image-reader">`로 감싸고 앞뒤에 빈 줄을 둔다. 모바일에서는 이미지를 본문 폭으로 잇고, 40svh보다 길면 앞부분 미리보기와 '펼쳐서 보기/접기' 버튼을 붙인다. 본문형 안 이미지는 위의 자동 축소 대상이 아니다.
+
+```markdown
+<div class="image-reader">
+
+![만화 1쪽: 첫 장면](/images/3/example-comic-1.webp)
+
+![만화 2쪽: 이어지는 장면](/images/3/example-comic-2.webp)
+
+</div>
+```
+
 - `scripts/convert-front-matter.mjs`는 Hugo TOML front matter를 JSON으로 옮긴 1회성 변환 스크립트다(재실행해도 이미 변환된 파일은 건너뜀).
 
 ## Styling Rules (`assets/sass/index.scss`)
@@ -121,6 +136,7 @@ content/posts/3/westworld.json  # 메타데이터
 - 랜딩 썸네일(`.post-item-image`)은 `aspect-ratio: 16 / 9`로 폭에서 높이를 계산한다. **높이를 고정값(`vh`, `px`)으로 지정하지 않는다.** 한 줄당 개수는 `src/pages/index.astro`의 Swiper `slidesPerView`에서 조정한다.
 - Swiper `breakpoints`의 `slidesPerView`/`spaceBetween`을 바꾸면 `index.scss`의 `.swiper-slide` 초기 `width`/`margin-right`도 같은 값으로 수정한다. 어긋나면 JS 초기화 시점에 레이아웃이 밀려 CLS가 나빠진다.
 - 터치 대상(버튼)은 최소 44px(`2.75rem`)을 유지한다. 예: `$copy-button-size`.
+- 모바일 본문 세로 이미지는 모든 이미지에 `max-height`를 거는 방식으로 처리하지 않는다(가로 스틸이 작아진다). `is-tall-image`(JS 판정)에만 `max-height: 40svh`를 둔다. 규칙은 Content Authoring의 '이미지 표시'를 따른다.
 
 ### Color
 

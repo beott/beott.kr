@@ -1005,3 +1005,204 @@ header nav .search-launch {
     padding-top: calc(env(safe-area-inset-top) + 80px);
   }
 }
+
+// 홈 카드 아래 작품명(filmTitle의 <…> 이름): 한 줄 말줄임으로 두어 16:9 썸네일과 제목 오버레이를 밀지 않는다
+.main-swiper .post-item-film {
+  margin: 0.4rem 0 0;
+  font-size: $font-size-overlay-title;
+  color: $search-muted-color;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// 호별 목차 바로가기의 도착 줄: 고정 헤더(데스크톱 약 84px)에 줄 제목이 가리지 않게 여유를 둔다
+.main-swiper[id] {
+  scroll-margin-top: 6rem;
+}
+
+// 홈 추천 줄 아래 호별 목차 바로가기(각 호 첫 그룹 줄로 이동)
+.issue-shortcuts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  margin: 1vh 0 3vh;
+  padding: 0 4%;
+  .issue-shortcuts-title {
+    margin: 0;
+    font-size: $font-size-row-title;
+    line-height: $row-title-line-height;
+    font-weight: 700;
+    color: #e5e5e5;
+  }
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  a {
+    display: inline-flex;
+    align-items: center;
+    // 터치 대상 최소 44px
+    min-height: $copy-button-size;
+    padding: 0 1rem;
+    box-sizing: border-box;
+    border: 1px solid #5a5a5a;
+    border-radius: 999px;
+    color: #fff;
+    font-size: $font-size-nav;
+    text-decoration: none;
+    &:hover,
+    &:focus-visible {
+      border-color: #fff;
+      background-color: $search-hover-color;
+    }
+  }
+}
+
+// 글 하단 '같은 작품의 다른 비평': 같은 작품을 다룬 다른 글의 제목·필자 목록
+article .related-works {
+  margin-top: 6vh;
+  padding-top: 3vh;
+  border-top: 1px solid #333;
+  .related-works-title {
+    margin: 0 0 1vh;
+    font-size: $font-size-post-heading;
+    color: #e5e5e5;
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  li + li {
+    border-top: 1px solid #2a2a2a;
+  }
+  a {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.25rem 1rem;
+    min-height: $copy-button-size;
+    padding: 0.75rem 0;
+    color: #fff;
+    text-decoration: none;
+    &:hover .related-works-post,
+    &:focus-visible .related-works-post {
+      text-decoration: underline;
+    }
+  }
+  .related-works-post {
+    font-size: $font-size-article-body;
+    font-weight: 600;
+    word-break: keep-all;
+  }
+  .related-works-author {
+    font-size: $font-size-article-meta;
+    color: $search-muted-color;
+  }
+}
+
+// 모바일 본문 이미지: 본문 표시 폭(100vw)에서 40svh를 넘는 이미지만 assets/js/post-images.js가 is-tall-image를 붙인다.
+// 비율을 지킨 채 40svh로 줄여 가운데 두고, 짧은 이미지·가로 스틸은 기존 100vw 표시를 그대로 둔다.
+@media (max-width: 767px) {
+  article .post-contents {
+    img.is-tall-image {
+      display: block;
+      width: auto;
+      max-width: 100%;
+      max-height: 40vh;
+      max-height: 40svh;
+      margin: 0 auto;
+      padding: 3vh 0 1vh;
+      cursor: zoom-in;
+    }
+    // 저자가 고른 본문형(.image-reader): 이미지를 본문 폭으로 이어 읽는다
+    .image-reader img {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+      padding: 0;
+      border-radius: 0;
+    }
+    .image-reader.is-collapsed {
+      max-height: 40vh;
+      max-height: 40svh;
+      overflow: hidden;
+      // 아래가 더 있다는 것을 보이도록 끝을 흐린다
+      -webkit-mask-image: linear-gradient(to bottom, #000 70%, transparent);
+      mask-image: linear-gradient(to bottom, #000 70%, transparent);
+    }
+  }
+}
+
+// 세로 이미지 크게 보기·본문형 펼치기 버튼(터치 대상 44px)
+.image-zoom-button,
+.image-reader-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: $copy-button-size;
+  margin: 0 auto 2vh;
+  padding: 0 1rem;
+  border: 1px solid #5a5a5a;
+  border-radius: 999px;
+  background-color: transparent;
+  color: #fff;
+  font-size: $font-size-post-meta;
+  cursor: pointer;
+  &:hover,
+  &:focus-visible {
+    border-color: #fff;
+    background-color: $search-hover-color;
+  }
+  &[hidden] {
+    display: none;
+  }
+}
+
+// 크게 보기 dialog: 화면 전체에 원본 비율로 띄운다
+dialog.image-viewer {
+  width: 100vw;
+  max-width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  max-height: 100dvh;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background-color: rgba(0, 0, 0, 0.92);
+  &::backdrop {
+    background-color: rgba(0, 0, 0, 0.92);
+  }
+  &[open] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+  .image-viewer-close {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    min-width: $copy-button-size;
+    min-height: $copy-button-size;
+    padding: 0 1rem;
+    border: 1px solid #fff;
+    border-radius: 999px;
+    background-color: rgba(20, 20, 20, 0.8);
+    color: #fff;
+    font-size: $font-size-post-meta;
+    cursor: pointer;
+  }
+}

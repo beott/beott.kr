@@ -3,6 +3,7 @@
 import Base from "../layouts/Base.astro";
 import SiteSearch from "../components/SiteSearch.astro";
 import { getSite } from "../lib/site.mjs";
+import { relatedByWork } from "../lib/site-model.mjs";
 
 export async function getStaticPaths() {
   const model = await getSite();
@@ -14,6 +15,7 @@ const page = model.rendered.find((candidate) => candidate.id === Astro.props.id)
 if (!page) throw new Error(`페이지를 찾을 수 없습니다: ${Astro.props.id}`);
 const { thumbnail, author, filmTitle, hideme } = page.params;
 const isSearch = page.params.type === "search";
+const related = relatedByWork(model, page);
 ---
 <Base title={page.title} thumbnail={thumbnail}>
   {isSearch ? (
@@ -50,8 +52,25 @@ const isSearch = page.params.type === "search";
             </span>
           </section>
         )}
+
+        {related.length > 0 && (
+          <nav class="related-works" aria-labelledby="related-works-title">
+            <h2 id="related-works-title" class="related-works-title">같은 작품의 다른 비평</h2>
+            <ul>
+              {related.map((item) => (
+                <li>
+                  <a href={item.url}>
+                    <span class="related-works-post">{item.title}</span>
+                    {item.params.author && <span class="related-works-author">{item.params.author}</span>}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )}
       </article>
       {hideme !== true && <script src="../../assets/js/post.js"></script>}
+      <script src="../../assets/js/post-images.js"></script>
     </>
   )}
 </Base>

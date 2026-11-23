@@ -1,12 +1,17 @@
 ---
 /** 랜딩: 히어로 슬라이더와 `site.main` 순서의 그룹별 썸네일 슬라이더(기존 `layouts/_default/index.html`). */
 import Base from "../layouts/Base.astro";
+import IssueShortcuts from "../components/IssueShortcuts.astro";
 import { getSite, site } from "../lib/site.mjs";
-import { groupRows, heroPosts } from "../lib/site-model.mjs";
+import { filmLabel, groupRows, heroPosts, issueShortcuts } from "../lib/site-model.mjs";
 
 const model = await getSite();
 const hero = heroPosts(model);
 const rows = groupRows(model);
+// 호별 목차 바로가기는 RECOMMEND 줄 바로 아래(없으면 첫 줄 위)에 두고, 각 호의 첫 그룹 줄 id로 이동한다
+const shortcuts = issueShortcuts(rows);
+const anchorOf = new Map(shortcuts.map((item) => [item.group, item.anchor]));
+const shortcutsAfter = rows.findIndex((row) => row.group === "RECOMMEND");
 const absolute = (path: string) => (/^[a-z]+:/i.test(path) ? path : `${site.baseURL.replace(/\/$/, "")}/${path.replace(/^\//, "")}`);
 ---
 <Base>
@@ -36,8 +41,10 @@ const absolute = (path: string) => (/^[a-z]+:/i.test(path) ? path : `${site.base
   </div>
 
   <div class="post-by-group">
-    {rows.map((row) => (
-      <section class="swiper main-swiper">
+    {shortcutsAfter < 0 && shortcuts.length > 0 && <IssueShortcuts shortcuts={shortcuts} />}
+    {rows.map((row, index) => (
+      <>
+      <section class="swiper main-swiper" id={anchorOf.get(row.group)}>
         <h2 class="row-header-title">{row.group}</h2>
         <div class="swiper-wrapper">
           {row.pages.map((post) => (
@@ -51,6 +58,7 @@ const absolute = (path: string) => (/^[a-z]+:/i.test(path) ? path : `${site.base
                     </div>
                   </div>
                 )}
+                {filmLabel(post.params) && <p class="post-item-film">{filmLabel(post.params)}</p>}
               </a>
             </div>
           ))}
@@ -58,6 +66,8 @@ const absolute = (path: string) => (/^[a-z]+:/i.test(path) ? path : `${site.base
         <div class="swiper-button-prev"></div>
         <div class="swiper-button-next"></div>
       </section>
+      {index === shortcutsAfter && shortcuts.length > 0 && <IssueShortcuts shortcuts={shortcuts} />}
+      </>
     ))}
   </div>
 

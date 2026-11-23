@@ -1,0 +1,15 @@
+---
+/** 홈 호별 목차 바로가기: 각 호의 첫 그룹 줄(`#issue-N`)로 이동하는 링크 목록. */
+interface Props {
+  shortcuts: { issue: number; label: string; anchor: string; group: string }[];
+}
+const { shortcuts } = Astro.props;
+---
+<nav class="issue-shortcuts" aria-labelledby="issue-shortcuts-title">
+  <h2 id="issue-shortcuts-title" class="issue-shortcuts-title">호별 목차</h2>
+  <ul>
+    {shortcuts.map((item) => (
+      <li><a href={`#${item.anchor}`} title={item.group}>{item.label} 목차</a></li>
+    ))}
+  </ul>
+</nav>
