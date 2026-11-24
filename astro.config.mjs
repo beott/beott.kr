@@ -1,6 +1,7 @@
 // @ts-check
 /** 비옽 BEOTT Astro 설정. 산출물은 dist/에 만들고 scripts/build.sh가 repo 루트로 복사합니다. */
 import { defineConfig } from "astro/config";
+import { optimizeImagesIntegration } from "./src/lib/responsive-images.mjs";
 
 /**
  * 번들 파일을 Hugo 때처럼 css/·js/ 아래에 둡니다.
@@ -23,6 +24,7 @@ const output = { assetFileNames, entryFileNames: scriptFileNames, chunkFileNames
 
 export default defineConfig({
   site: "https://beott.kr",
+  integrations: [optimizeImagesIntegration()],
   trailingSlash: "ignore",
   devToolbar: { enabled: false },
   // Hugo 출력처럼 인라인 요소 사이 공백(예: 제목과 작성자 사이)을 유지한다.

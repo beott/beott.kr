@@ -10,3 +10,6 @@ node_modules
 # Astro
 dist/
 .astro/
+
+# 빌드 때 만드는 반응형 썸네일(원본 public/images/는 그대로 둔다)
+public/images/opt/

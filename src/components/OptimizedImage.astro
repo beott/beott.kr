@@ -1,0 +1,34 @@
+---
+/** 카드·히어로용 반응형 `<img>`. 파생 WebP는 `responsive-images`가 미리 만들어 둡니다. */
+import { imageSrcset, optimizedUrl } from "../lib/responsive-images.mjs";
+
+interface Props {
+  src: string;
+  widths: number[];
+  sizes: string;
+  alt?: string;
+  eager?: boolean;
+  class?: string;
+  width?: number;
+  height?: number;
+}
+
+const { src, widths, sizes, alt = "", eager = false, width, height } = Astro.props;
+const className = Astro.props.class;
+const srcset = imageSrcset(src, widths);
+const largest = widths[widths.length - 1];
+const srcUrl = (largest && optimizedUrl(src, largest)) || src;
+---
+<img
+  src={srcUrl}
+  srcset={srcset}
+  sizes={sizes}
+  alt={alt}
+  width={width}
+  height={height}
+  loading={eager ? "eager" : "lazy"}
+  fetchpriority={eager ? "high" : undefined}
+  decoding="async"
+  class={className}
+  draggable="false"
+/>

@@ -288,11 +288,16 @@ header {
     position: relative;
     height: 100%;
     width: 100%;
-    background-size: cover; // contain, cover
-    background-position: center;
-    background-repeat: no-repeat;
     // 히어로 이미지 로딩 전 자리 표시
     background-color: $hero-placeholder-color;
+    img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
     // 왼쪽은 글자가 읽히게 어둡게, 아래는 썸네일 줄 배경으로 자연스럽게 이어지게
     &::after {
       content: "";
@@ -483,15 +488,20 @@ header {
         width: 100%;
         // 슬라이드 폭에 따라 높이가 정해지므로 어떤 화면에서도 16:9 유지
         aspect-ratio: 16 / 9;
-        // position: absolute; // absolute하면 overlay-title이 짤리는 화면 사이즈가 있음
-        background: no-repeat center;
-        background-size: cover;
-        // 썸네일 로딩 전 자리 표시 (background 단축 속성 뒤에 둬야 초기화되지 않음)
+        // 썸네일 로딩 전 자리 표시
         background-color: $placeholder-color;
         position: relative;
         overflow: hidden;
         border-radius: $card-radius;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
+        img {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center;
+        }
 
         &::after {
           width: 100%;
@@ -736,16 +746,19 @@ article {
     // width: 50%;
     // float: left;
   }
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    padding-top: 3vh;
-  }
-  h1 {
-    font-size: $font-size-post-heading;
+  // 본문 안 소제목에만 적용한다. 페이지 제목(.post-title이 h1) 크기는 바꾸지 않는다.
+  .post-contents {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      padding-top: 3vh;
+    }
+    h1 {
+      font-size: $font-size-post-heading;
+    }
   }
 }
 
@@ -1204,5 +1217,81 @@ dialog.image-viewer {
     color: #fff;
     font-size: $font-size-post-meta;
     cursor: pointer;
+  }
+}
+
+// 시각적으로 숨기되 스크린리더·문서 개요에는 남긴다(홈 h1)
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// /posts/·/tags/ 등 목록 페이지: 관련 글 목록과 같은 톤에 작은 썸네일을 더한다
+.collection-lead,
+.collection-empty {
+  margin: 1.5vh 0 3vh;
+  text-align: center;
+  color: $search-muted-color;
+  font-size: $font-size-article-meta;
+}
+
+.page-list {
+  margin: 3vh 0 0;
+  padding: 0;
+  list-style: none;
+  li + li {
+    border-top: 1px solid #2a2a2a;
+  }
+  a {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    min-height: $copy-button-size;
+    padding: 0.75rem 0;
+    color: #fff;
+    text-decoration: none;
+    &:hover .page-list-title,
+    &:focus-visible .page-list-title {
+      text-decoration: underline;
+    }
+  }
+  .page-list-thumb {
+    flex: 0 0 7.5rem;
+    width: 7.5rem;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: $card-radius;
+    background-color: $placeholder-color;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  }
+  .page-list-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    min-width: 0;
+  }
+  .page-list-title {
+    font-size: $font-size-article-body;
+    font-weight: 600;
+    word-break: keep-all;
+  }
+  .page-list-meta {
+    font-size: $font-size-article-meta;
+    color: $search-muted-color;
+  }
+  &--terms a {
+    justify-content: space-between;
   }
 }

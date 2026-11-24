@@ -2,8 +2,10 @@
 /** 랜딩: 히어로 슬라이더와 `site.main` 순서의 그룹별 썸네일 슬라이더(기존 `layouts/_default/index.html`). */
 import Base from "../layouts/Base.astro";
 import IssueShortcuts from "../components/IssueShortcuts.astro";
-import { getSite, site } from "../lib/site.mjs";
+import OptimizedImage from "../components/OptimizedImage.astro";
+import { getSite } from "../lib/site.mjs";
 import { filmLabel, groupRows, heroPosts, issueShortcuts } from "../lib/site-model.mjs";
+import { CARD_SIZES, CARD_WIDTHS, HERO_SIZES, HERO_WIDTHS, imageSrcset, localImagePath, optimizedUrl } from "../lib/responsive-images.mjs";
 
 const model = await getSite();
 const hero = heroPosts(model);
@@ -12,18 +14,38 @@ const rows = groupRows(model);
 const shortcuts = issueShortcuts(rows);
 const anchorOf = new Map(shortcuts.map((item) => [item.group, item.anchor]));
 const shortcutsAfter = rows.findIndex((row) => row.group === "RECOMMEND");
-const absolute = (path: string) => (/^[a-z]+:/i.test(path) ? path : `${site.baseURL.replace(/\/$/, "")}/${path.replace(/^\//, "")}`);
+const firstHeroSrc = localImagePath(hero[0]?.params.thumbnail ?? "");
+const firstHeroWidths = firstHeroSrc ? HERO_WIDTHS : [];
+const preloadImage = firstHeroSrc ? {
+  href: optimizedUrl(firstHeroSrc, firstHeroWidths[firstHeroWidths.length - 1] ?? HERO_WIDTHS.at(-1)),
+  srcset: imageSrcset(firstHeroSrc, HERO_WIDTHS),
+  sizes: HERO_SIZES,
+} : undefined;
 ---
-<Base>
+
+<Base preloadImage={preloadImage}>
+  <h1 class="visually-hidden">비옽</h1>
   <div class="hero-overlay swiper">
     <div class="swiper-wrapper">
-      {hero.map((post) => {
+      {hero.map((post, index) => {
         const meta = [post.params.author, post.params.filmTitle].filter(Boolean);
         return (
           <div class="swiper-slide">
             {/* 배경 이미지 링크는 마우스 클릭용이며, 키보드·스크린리더는 아래 읽기 버튼을 쓴다 */}
             <a href={post.url} class="hero-link" tabindex="-1" aria-hidden="true">
-              <div class="hero-slide" style={`background-image: url('${post.params.thumbnail ?? ""}')`}></div>
+              <div class="hero-slide">
+                {post.params.thumbnail && (
+                  <OptimizedImage
+                    src={post.params.thumbnail}
+                    widths={HERO_WIDTHS}
+                    sizes={HERO_SIZES}
+                    alt=""
+                    eager={index === 0}
+                    width={1920}
+                    height={1080}
+                  />
+                )}
+              </div>
             </a>
             <div class="hero-info">
               {post.params.group && <p class="hero-group">{post.params.group}</p>}
@@ -51,7 +73,15 @@ const absolute = (path: string) => (/^[a-z]+:/i.test(path) ? path : `${site.base
             <div class="swiper-slide">
               <a href={post.url}>
                 {post.params.thumbnail && (
-                  <div class="post-item-image" style={`background-image: url('${absolute(post.params.thumbnail)}')`} loading="lazy">
+                  <div class="post-item-image">
+                    <OptimizedImage
+                      src={post.params.thumbnail}
+                      widths={CARD_WIDTHS}
+                      sizes={CARD_SIZES}
+                      alt=""
+                      width={800}
+                      height={450}
+                    />
                     <div class="overlay-title">
                       {post.title}
                       {post.params.author && <span class="overlay-meta">{post.params.author}</span>}

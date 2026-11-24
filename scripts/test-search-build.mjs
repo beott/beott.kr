@@ -91,9 +91,17 @@ try {
   for (const feed of ["posts", "categories", "tags", "tags/apple-tv+", "tags/netflix"]) {
     assert.ok((await readFile(join(output, feed, "index.xml"), "utf8")).includes("<rss"), `${feed} RSS`);
   }
-  for (const missing of ["tags/index.html", "categories/index.html", "posts/index.html"]) {
-    await assert.rejects(stat(join(output, missing)), `${missing}는 만들지 않음`);
+  for (const page of ["tags/index.html", "categories/index.html", "posts/index.html", "tags/netflix/index.html", "tags/apple-tv+/index.html"]) {
+    const html = await readFile(join(output, page), "utf8");
+    assert.ok(html.includes("<article") && (html.includes("page-list") || html.includes("collection-empty")), `${page} HTML 목록`);
   }
+  assert.match(home, /property="og:title" content="BEOTT"/);
+  assert.ok(!home.includes('property="og:title" content>'), "홈 OG 제목은 비어 있지 않음");
+  assert.ok(!detail.includes("beott.kr//images"), "글 OG 이미지는 슬래시가 하나");
+  assert.ok(!detail.includes('content="비옽 BEOTT"'), "글 OG 설명은 본문 요약");
+  assert.ok(home.includes('class="visually-hidden"') && home.includes("<h1"), "홈에 숨긴 h1");
+  assert.ok(home.includes("srcset=") && home.includes('fetchpriority="high"'), "홈 썸네일은 반응형 img");
+  assert.ok(home.includes("issue-shortcuts"), "호별 바로가기는 빌드에 포함");
   assert.ok(entries.find((entry) => entry.href === "/contact-us/").body.includes("mag.beott@gmail.com"));
   for (const entry of entries) await stat(join(output, entry.href, "index.html"));
   const raw = await readFile(join(output, "index.json"));
