@@ -101,14 +101,10 @@ export async function ensureOptimized(src, widths) {
   const sharp = (await import("sharp")).default;
   const metadata = await sharp(input).rotate().metadata();
   const sourceWidth = metadata.width || Math.max(...widths);
-  const unique = [];
-  for (const width of widths) {
-    const target = Math.min(width, sourceWidth);
-    if (!unique.some((item) => item.target === target)) unique.push({ requested: width, target });
-  }
-
+  // 원본이 작아도 srcset에 적은 폭의 파일은 모두 만든다(없는 URL을 광고하지 않기 위해).
   const variants = [];
-  for (const { requested, target } of unique) {
+  for (const requested of widths) {
+    const target = Math.min(requested, sourceWidth);
     const url = optimizedUrl(src, requested);
     const output = join(publicRoot, url.replace(/^\//, ""));
     await mkdir(dirname(output), { recursive: true });
