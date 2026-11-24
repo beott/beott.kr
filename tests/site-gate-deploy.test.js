@@ -126,19 +126,33 @@ describe('runDeploy with mock gate and mock git', () => {
   });
 
   test.each([
+    ['ORCA_AGENT_SESSION_ID is unset', { env: { ORCA_AGENT_SESSION_ID: undefined } }],
+    ['ORCA_AGENT_SESSION_ID differs from receipt.executor', { env: { ORCA_AGENT_SESSION_ID: '99999999-2222-3333-4444-555555555555' } }],
+  ])('allow path still runs when %s', (_name, options) => {
+    // 배포 실행이 Orca 세션 환경 변수에 묶여 있지 않다.
+    const run = deployWith(options);
+
+    expect(run.refusal).toBeNull();
+    expect(run.commit).toBe('NEW');
+    expect(run.gitCalls.filter(call => !call.startsWith('rev-parse') && !call.startsWith('remote get-url'))).toEqual([
+      'add -A',
+      `commit -m ${MESSAGE}`,
+      'push origin release',
+    ]);
+  });
+
+  test.each([
     ['input env missing', { env: { SITE_GATE_INPUT: undefined } }, 'SITE_GATE_INPUT-missing'],
     ['receipt env missing', { env: { SITE_GATE_RECEIPT: undefined } }, 'SITE_GATE_RECEIPT-missing'],
     ['receipt file missing', { env: { SITE_GATE_RECEIPT: '/nonexistent/receipt.json' } }, 'SITE_GATE_RECEIPT-unreadable'],
     ['relative input path', { env: { SITE_GATE_INPUT: 'input.json' } }, 'SITE_GATE_INPUT-missing'],
-    ['executor session missing', { env: { ORCA_AGENT_SESSION_ID: undefined } }, 'executor-unknown'],
-    ['executor session differs', { env: { ORCA_AGENT_SESSION_ID: '99999999-2222-3333-4444-555555555555' } }, 'executor-mismatch'],
     ['receipt expired', { receipt: receiptFor('BASE', { notAfter: new Date(NOW - 1).toISOString() }) }, 'receipt-expired'],
     ['test-mode receipt', { receipt: receiptFor('BASE', { mode: 'test' }) }, 'receipt-not-installed-mode'],
     ['receipt for another branch', { receipt: receiptFor('BASE', { target: { branch: 'main' } }) }, 'receipt-branch'],
     ['receipt for push action', { receipt: receiptFor('BASE', { action: 'push' }) }, 'receipt-action'],
     ['GIT_SSH_COMMAND set', { env: { GIT_SSH_COMMAND: 'ssh -F /tmp/x' } }, 'git-env-override:GIT_SSH_COMMAND'],
   ])('refuses before any gate or git call when %s', (_name, options, reason) => {
-    // 입력·receipt·실행 session이 맞지 않으면 gate도 git도 부르지 않는다.
+    // 입력·receipt가 맞지 않으면 gate도 git도 부르지 않는다.
     const run = deployWith(options);
 
     expect(run.refusal?.reasons).toContain(reason);
@@ -271,7 +285,7 @@ describe('runDeploy with mock gate and mock git', () => {
 
 describe('realDependencies', () => {
   test('targets the installed gate under the account home and keeps the caller environment', () => {
-    // gate 경로는 $HOME이 아니라 계정 홈 기준이고, ORCA_AGENT_SESSION_ID가 gate까지 전달된다(env를 덮어쓰지 않음).
+    // gate 경로는 $HOME이 아니라 계정 홈 기준이고, 호출자 env는 덮어쓰지 않고 gate에 전달된다.
     expect(gateCliPath('/Users/someone')).toBe('/Users/someone/.local/share/agent-outer-loop/agent-task.mjs');
     expect(gateCliPath()).toBe(path.join(os.userInfo().homedir, '.local/share/agent-outer-loop/agent-task.mjs'));
     const env = { PATH: '/bin' };

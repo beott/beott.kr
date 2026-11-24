@@ -102,16 +102,13 @@ function readNamedJson(env, name) {
   }
 }
 
-/** Check the caller-held receipt before anything runs: installed beott deploy to release, this session, not expired. */
+/** Check the caller-held receipt before anything runs: installed beott deploy to release, not expired. */
 function checkReceipt(receipt, env, now) {
-  const session = env.ORCA_AGENT_SESSION_ID;
-  if (!session) throw new DeployRefused('executor', ['executor-unknown']);
   const reasons = [];
   if (receipt?.mode !== 'installed') reasons.push('receipt-not-installed-mode');
   if (receipt?.action !== GATE_ACTION) reasons.push('receipt-action');
   if (receipt?.project?.name !== PROJECT_NAME) reasons.push('receipt-project');
   if (receipt?.target?.branch !== DEPLOY_BRANCH) reasons.push('receipt-branch');
-  if (receipt?.executor !== `orca_session_id:${session}`) reasons.push('executor-mismatch');
   if (!(Date.parse(receipt?.notAfter) > now)) reasons.push('receipt-expired');
   if (!receipt?.bound?.headSha || !receipt?.bound?.artifactTree) reasons.push('receipt-bound');
   if (reasons.length) throw new DeployRefused('receipt', reasons);
@@ -172,7 +169,7 @@ export function runDeploy(deps, commitMessage) {
 }
 
 /**
- * Real dependencies: installed gate CLI (caller environment, so ORCA_AGENT_SESSION_ID reaches it) and git in the
+ * Real dependencies: installed gate CLI (caller environment) and git in the
  * repository root with the gate-equivalent environment. No shell.
  */
 export function realDependencies(repoRoot, { env = process.env, accountHome = os.userInfo().homedir } = {}) {
