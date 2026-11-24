@@ -1,4 +1,4 @@
-/** 섹션 RSS(`/posts/index.xml` 등). content 최상위 폴더마다 하나씩 만들고, 섹션 HTML 목록 페이지는 만들지 않습니다. */
+/** 섹션 RSS(`/posts/index.xml` 등). content 최상위 폴더마다 하나씩 만들고, HTML 목록은 각 섹션의 `index.astro`가 만듭니다. */
 import type { APIRoute, GetStaticPaths } from "astro";
 import { renderRss } from "../../lib/feeds.mjs";
 import { textResponse } from "../../lib/endpoints.mjs";

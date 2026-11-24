@@ -1,0 +1,12 @@
+---
+/** 태그 목록(`/tags/`). RSS는 `index.xml.ts`가 유지합니다. */
+import Base from "../../layouts/Base.astro";
+import CollectionList from "../../components/CollectionList.astro";
+import { getSite } from "../../lib/site.mjs";
+
+const tags = (await getSite()).taxonomies.find((candidate) => candidate.name === "tags");
+if (!tags) throw new Error("tags taxonomy가 없습니다.");
+---
+<Base title="태그" description="비옽 글을 플랫폼·주제로 나눈 태그 목록입니다.">
+  <CollectionList title="태그" description={`${tags.terms.length}개의 태그`} terms={tags.terms} empty="아직 태그가 없습니다." />
+</Base>

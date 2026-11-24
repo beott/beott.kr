@@ -1,0 +1,18 @@
+---
+/** 카테고리별 글 목록(`/categories/<이름>/`). 현재 글에 카테고리가 없어도 라우트를 준비해 둡니다. */
+import type { GetStaticPaths } from "astro";
+import Base from "../../../layouts/Base.astro";
+import CollectionList from "../../../components/CollectionList.astro";
+import { getSite } from "../../../lib/site.mjs";
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const categories = (await getSite()).taxonomies.find((candidate) => candidate.name === "categories");
+  return (categories?.terms ?? []).map((term) => ({ params: { category: term.slug }, props: { url: term.url } }));
+};
+
+const term = (await getSite()).taxonomies.flatMap((taxonomy) => taxonomy.terms).find((candidate) => candidate.url === Astro.props.url);
+if (!term) throw new Error(`카테고리를 찾을 수 없습니다: ${Astro.props.url}`);
+---
+<Base title={term.title} description={`‘${term.title}’ 카테고리의 비옽 글 목록입니다.`}>
+  <CollectionList title={term.title} description={`${term.pages.length}편의 글`} pages={term.pages} />
+</Base>

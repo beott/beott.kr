@@ -1,0 +1,12 @@
+---
+/** 카테고리 목록(`/categories/`). RSS는 `index.xml.ts`가 유지합니다. */
+import Base from "../../layouts/Base.astro";
+import CollectionList from "../../components/CollectionList.astro";
+import { getSite } from "../../lib/site.mjs";
+
+const categories = (await getSite()).taxonomies.find((candidate) => candidate.name === "categories");
+if (!categories) throw new Error("categories taxonomy가 없습니다.");
+---
+<Base title="카테고리" description="비옽 글의 카테고리 목록입니다.">
+  <CollectionList title="카테고리" description={categories.terms.length ? `${categories.terms.length}개의 카테고리` : undefined} terms={categories.terms} empty="아직 카테고리가 없습니다." />
+</Base>

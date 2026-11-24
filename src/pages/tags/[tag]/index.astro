@@ -1,0 +1,18 @@
+---
+/** 태그별 글 목록(`/tags/<태그>/`). RSS는 같은 폴더의 `index.xml.ts`가 유지합니다. */
+import type { GetStaticPaths } from "astro";
+import Base from "../../../layouts/Base.astro";
+import CollectionList from "../../../components/CollectionList.astro";
+import { getSite } from "../../../lib/site.mjs";
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const tags = (await getSite()).taxonomies.find((candidate) => candidate.name === "tags");
+  return (tags?.terms ?? []).map((term) => ({ params: { tag: term.slug }, props: { url: term.url } }));
+};
+
+const term = (await getSite()).taxonomies.flatMap((taxonomy) => taxonomy.terms).find((candidate) => candidate.url === Astro.props.url);
+if (!term) throw new Error(`태그를 찾을 수 없습니다: ${Astro.props.url}`);
+---
+<Base title={term.title} description={`‘${term.title}’ 태그가 달린 비옽 글 목록입니다.`}>
+  <CollectionList title={term.title} description={`${term.pages.length}편의 글`} pages={term.pages} />
+</Base>

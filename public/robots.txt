@@ -1,7 +1,5 @@
 # All Robots
 User-agent: *
-Disallow: /categories/
-Disallow: /tags/
 
 # Sitemap Files
 Sitemap: https://beott.kr/sitemap.xml

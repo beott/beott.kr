@@ -1,0 +1,59 @@
+---
+/** 글·태그 목록 페이지의 공통 목록. 기존 글 상세의 제목·관련 글 톤을 따릅니다. */
+import { filmLabel } from "../lib/site-model.mjs";
+import { CARD_SIZES, CARD_WIDTHS } from "../lib/responsive-images.mjs";
+import OptimizedImage from "./OptimizedImage.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+  pages?: { url: string; title: string; params: Record<string, any> }[];
+  terms?: { url: string; title: string; pages: unknown[] }[];
+  empty?: string;
+}
+
+const { title, description, pages, terms, empty = "아직 글이 없습니다." } = Astro.props;
+---
+<article>
+  <h1 class="post-title">{title}</h1>
+  {description && <p class="collection-lead">{description}</p>}
+  {terms && terms.length > 0 && (
+    <ul class="page-list page-list--terms">
+      {terms.map((term) => (
+        <li>
+          <a href={term.url}>
+            <span class="page-list-title">{term.title}</span>
+            <span class="page-list-meta">{term.pages.length}편</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  )}
+  {pages && pages.length > 0 && (
+    <ul class="page-list">
+      {pages.map((page) => {
+        const thumbnail = page.params.thumbnail;
+        const film = filmLabel(page.params);
+        const meta = [page.params.author, film].filter(Boolean).join(" · ");
+        return (
+          <li>
+            <a href={page.url}>
+              {thumbnail && (
+                <span class="page-list-thumb">
+                  <OptimizedImage src={thumbnail} widths={CARD_WIDTHS} sizes="120px" alt="" width={400} height={225} />
+                </span>
+              )}
+              <span class="page-list-body">
+                <span class="page-list-title">{page.title}</span>
+                {meta && <span class="page-list-meta">{meta}</span>}
+              </span>
+            </a>
+          </li>
+        );
+      })}
+    </ul>
+  )}
+  {((pages && pages.length === 0) || (terms && terms.length === 0) || (!pages && !terms)) && (
+    <p class="collection-empty">{empty}</p>
+  )}
+</article>

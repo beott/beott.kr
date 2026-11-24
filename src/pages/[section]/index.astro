@@ -1,0 +1,22 @@
+---
+/** 섹션 HTML 목록(`/posts/` 등). RSS는 같은 폴더의 `index.xml.ts`가 유지합니다. */
+import type { GetStaticPaths } from "astro";
+import Base from "../../layouts/Base.astro";
+import CollectionList from "../../components/CollectionList.astro";
+import { getSite } from "../../lib/site.mjs";
+
+export const getStaticPaths: GetStaticPaths = async () => (
+  (await getSite()).sections.map((section) => ({
+    params: { section: section.url.slice(1, -1) },
+    props: { url: section.url },
+  }))
+);
+
+const section = (await getSite()).sections.find((candidate) => candidate.url === Astro.props.url);
+if (!section) throw new Error(`섹션을 찾을 수 없습니다: ${Astro.props.url}`);
+const title = section.url === "/posts/" ? "전체 글" : section.title;
+const description = `${section.pages.length}편의 글`;
+---
+<Base title={title} description={`비옽의 ${title} 목록입니다.`}>
+  <CollectionList title={title} description={description} pages={section.pages} />
+</Base>

@@ -1,4 +1,4 @@
-/** 태그별 RSS(`/tags/<태그>/index.xml`). 태그 경로는 Hugo urlize 규칙(예: `apple-tv+`)을 따릅니다. */
+/** 태그별 RSS(`/tags/<태그>/index.xml`). 태그 경로는 Hugo urlize 규칙(예: `apple-tv+`)을 따르며, HTML 목록은 `index.astro`가 만듭니다. */
 import type { APIRoute, GetStaticPaths } from "astro";
 import { renderRss } from "../../../lib/feeds.mjs";
 import { textResponse } from "../../../lib/endpoints.mjs";

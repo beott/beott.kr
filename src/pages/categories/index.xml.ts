@@ -1,4 +1,4 @@
-/** categories taxonomy RSS(`/categories/index.xml`). 글 목록 HTML 페이지는 만들지 않습니다(기존 URL 동작 유지). */
+/** categories taxonomy RSS(`/categories/index.xml`). HTML 목록은 `index.astro`가 만들고, 이 파일은 피드를 유지합니다. */
 import type { APIRoute } from "astro";
 import { renderRss } from "../../lib/feeds.mjs";
 import { textResponse } from "../../lib/endpoints.mjs";
