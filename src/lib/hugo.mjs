@@ -196,3 +196,23 @@ export function plainSearchBody(html) {
   // Go RE2의 `\s`는 ASCII 공백만 뜻하므로 각주 앞 `&#160;`(NBSP)은 그대로 남깁니다.
   return decodeHTML(stripped).replace(/[\t\n\f\r ]+/g, " ").trim();
 }
+
+/** 사이트 기준 절대 URL을 만듭니다. base와 path의 슬래시가 겹치거나 빠지지 않게 붙입니다. */
+export function absoluteUrl(baseURL, path = "") {
+  const base = String(baseURL ?? "").replace(/\/$/, "");
+  const value = String(path ?? "").trim();
+  if (!value) return base || "/";
+  if (/^[a-z][a-z0-9+.-]*:/i.test(value)) return value;
+  return `${base}/${value.replace(/^\//, "")}`;
+}
+
+/** 글 본문 HTML에서 공유·검색엔진용 짧은 설명을 만듭니다. 비어 있으면 빈 문자열입니다. */
+export function metaDescriptionFromHtml(html, maxLength = 180) {
+  const text = plainSearchBody(summarize(html ?? "")).replace(/\s+/g, " ").trim();
+  if (!text) return "";
+  if (text.length <= maxLength) return text;
+  const sliced = text.slice(0, maxLength);
+  const lastSpace = sliced.lastIndexOf(" ");
+  const cut = lastSpace >= Math.floor(maxLength * 0.6) ? sliced.slice(0, lastSpace) : sliced;
+  return `${cut.replace(/[.,、，\s]+$/u, "")}…`;
+}

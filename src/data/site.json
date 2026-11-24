@@ -2,6 +2,7 @@
   "title": "BEOTT",
   "baseURL": "https://beott.kr/",
   "languageCode": "ko",
+  "description": "당신과 나의 OTT, 웹진 [비옽] 입니다.",
   "main": [
     "RECOMMEND",
     "CHOICE",

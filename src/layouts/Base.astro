@@ -2,21 +2,28 @@
 /** 모든 페이지의 공통 head/header/footer입니다(기존 Hugo `layouts/_default/baseof.html`). */
 import SiteSearch from "../components/SiteSearch.astro";
 import { site } from "../lib/site.mjs";
+import { absoluteUrl } from "../lib/hugo.mjs";
 import stylesheet from "../../assets/sass/index.scss?url";
 
 interface Props {
-  /** 페이지 제목. 홈은 비워 둡니다. */
+  /** 페이지 제목. 홈은 비워 두면 문서 제목은 사이트 이름만 씁니다. */
   title?: string;
   /** OG 이미지로 쓸 썸네일 경로(`/images/...`). 없으면 기본 OG 이미지를 씁니다. */
   thumbnail?: string;
+  /** 검색엔진·공유용 설명. 없으면 사이트 기본 설명을 씁니다. */
+  description?: string;
   /** 검색엔진 색인에서 뺄 페이지(예: 404)면 true입니다. */
   noindex?: boolean;
+  /** LCP 이미지를 미리 받도록 head에 preload를 넣습니다. */
+  preloadImage?: { href: string; srcset?: string; sizes?: string };
 }
 
-const { title = "", thumbnail, noindex = false } = Astro.props;
-// 기존 템플릿은 baseURL(끝 `/` 포함) 뒤에 썸네일 경로를 그대로 붙였으므로 같은 주소를 유지합니다.
-const ogImage = `${site.baseURL}${thumbnail || "images/og-image.webp"}`;
+const { title = "", thumbnail, description, noindex = false, preloadImage } = Astro.props;
+const fallbackDescription = site.description || "당신과 나의 OTT, 웹진 [비옽] 입니다.";
+const pageDescription = (description || fallbackDescription).trim();
+const ogImage = absoluteUrl(site.baseURL, thumbnail || "images/og-image.webp");
 const documentTitle = title ? `${site.title} | ${title}` : site.title;
+const ogTitle = title || site.title;
 ---
 <!DOCTYPE html>
 <html lang={site.languageCode || "en"}>
@@ -26,18 +33,21 @@ const documentTitle = title ? `${site.title} | ${title}` : site.title;
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=5, user-scalable=5" name="viewport">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <meta name="google-site-verification" content="93TE4voJgl9wXWf0k087lUFu5V-2j53L58wT_T_s6MM" />
-  <meta name="description" content="당신과 나의 OTT, 웹진 [비옽] 입니다.">
+  <meta name="description" content={pageDescription}>
   <link rel="manifest" href="/manifest.json">
 
-  <meta property="og:title" content={title} />
-  <meta property="og:description" content="비옽 BEOTT" />
+  <meta property="og:title" content={ogTitle} />
+  <meta property="og:description" content={pageDescription} />
   <meta property="og:image" content={ogImage} />
   <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:title" content={title} />
-  <meta property="twitter:description" content="비옽 BEOTT" />
+  <meta property="twitter:title" content={ogTitle} />
+  <meta property="twitter:description" content={pageDescription} />
   <meta property="twitter:image" content={ogImage} />
 
   <title>{documentTitle}</title>{noindex && <meta name="robots" content="noindex">}
+  {preloadImage && (
+    <link rel="preload" as="image" href={preloadImage.href} imagesrcset={preloadImage.srcset} imagesizes={preloadImage.sizes} fetchpriority="high" />
+  )}
 
   <link rel="preload" href="/font/NanumSquareNeoTTF-bRg.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href={stylesheet}>
@@ -58,7 +68,7 @@ const documentTitle = title ? `${site.title} | ${title}` : site.title;
 <body>
   <header>
     <a href={site.baseURL} class="logo">
-      <img src="/images/beott-logo-red.webp" alt="Beott">
+      <img src="/images/beott-logo-red.webp" alt="Beott" width="384" height="92">
     </a>
     <nav>
       <a href="/" class="nav-home">Home</a>

@@ -1,6 +1,6 @@
 import { describe, expect, test } from "@jest/globals";
 import { buildSite, groupRows, heroPosts, searchEntries } from "../src/lib/site-model.mjs";
-import { formatIsoDate, formatRssDate, parseDate, plainSearchBody, summarize, urlize } from "../src/lib/hugo.mjs";
+import { absoluteUrl, formatIsoDate, formatRssDate, metaDescriptionFromHtml, parseDate, plainSearchBody, summarize, urlize } from "../src/lib/hugo.mjs";
 import { renderRss, renderSitemap } from "../src/lib/feeds.mjs";
 
 const site = { title: "BEOTT", baseURL: "https://beott.kr/", languageCode: "ko", main: ["A", "B"] };
@@ -35,6 +35,23 @@ describe("Hugo 호환 보조 함수", () => {
   test("summarizes at the paragraph reaching 70 words", () => {
     const paragraph = `<p>${"단어 ".repeat(40).trim()}</p>\n`;
     expect(summarize(paragraph.repeat(3))).toBe(`${paragraph}${paragraph}`.trim());
+  });
+
+  // 공유 이미지 주소는 baseURL 끝 슬래시와 경로 앞 슬래시가 겹치지 않는다
+  test("joins absolute URLs without a double slash", () => {
+    expect(absoluteUrl("https://beott.kr/", "/images/a.jpg")).toBe("https://beott.kr/images/a.jpg");
+    expect(absoluteUrl("https://beott.kr/", "images/og-image.webp")).toBe("https://beott.kr/images/og-image.webp");
+    expect(absoluteUrl("https://beott.kr/", "https://cdn.example/x.jpg")).toBe("https://cdn.example/x.jpg");
+  });
+
+  // 메타 설명은 태그를 제거하고 긴 본문을 자른다
+  test("builds a plain meta description from HTML", () => {
+    expect(metaDescriptionFromHtml("<p>짧은 소개입니다.</p>")).toBe("짧은 소개입니다.");
+    const long = `<p>${"가나다라마바사아자차. ".repeat(20).trim()}</p>`;
+    const description = metaDescriptionFromHtml(long, 80);
+    expect(description.endsWith("…")).toBe(true);
+    expect(description.length).toBeLessThanOrEqual(81);
+    expect(description.includes("<p>")).toBe(false);
   });
 });
 

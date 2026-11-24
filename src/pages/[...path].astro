@@ -4,6 +4,7 @@ import Base from "../layouts/Base.astro";
 import SiteSearch from "../components/SiteSearch.astro";
 import { getSite } from "../lib/site.mjs";
 import { relatedByWork } from "../lib/site-model.mjs";
+import { metaDescriptionFromHtml } from "../lib/hugo.mjs";
 
 export async function getStaticPaths() {
   const model = await getSite();
@@ -16,15 +17,16 @@ if (!page) throw new Error(`페이지를 찾을 수 없습니다: ${Astro.props.
 const { thumbnail, author, filmTitle, hideme } = page.params;
 const isSearch = page.params.type === "search";
 const related = relatedByWork(model, page);
+const description = isSearch ? undefined : metaDescriptionFromHtml(page.html) || undefined;
 ---
-<Base title={page.title} thumbnail={thumbnail}>
+<Base title={page.title} thumbnail={thumbnail} description={description}>
   {isSearch ? (
     <SiteSearch mode="page" />
   ) : (
     <>
       {thumbnail && <div class="post-backdrop" style={`background-image: url('${thumbnail}')`} aria-hidden="true"></div>}
       <article class={thumbnail ? "has-backdrop" : undefined}>
-        <div class="post-title">{page.title}</div>
+        <h1 class="post-title">{page.title}</h1>
 
         <section class="post-info">
           {author && (
